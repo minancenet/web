@@ -1,0 +1,47 @@
+{% extends "layouts/layout.html" %}
+{% block content %}
+<h3 class="b">Top Hypixel Assets</h3>
+<p class="light">24 Hour Change</p>
+<br>
+<div class="row">
+  {% for count, asset in enumerate(assets) %}
+    <div class="col-3" style="margin-bottom: 1rem;">
+      <a href="{{ url_for('asset.specific_asset', asset_name=asset.name) }}" style="text-decoration: none;">
+        {% if asset.movingValue  == 0 %}
+          <div class="top-stock neutral">
+        {% elif asset.movingValue > 0 %}
+          <div class="top-stock long">
+        {% else %}
+          <div class="top-stock short">
+        {% endif %}
+          <div>
+            <h2 class="top-stock-name">
+              {% if asset.name|length >= 20 %}
+                {{ asset.name.title().replace("_", " ")[:19] }}...
+              {% else %}
+                {{ asset.name.title().replace("_", " ") }}
+              {% endif %}
+              <span class="top-stock-position">#{{ count + 1 }}</span>
+            </h2>
+          </div>
+          <div>
+            <span class="top-stock-price">${{ round(asset.sellPrice, 2) }}</span>
+            {% if asset.movingValue == 0 %}
+              <span class="top-stock-movement">{{ asset.movingValue }}%</span>
+            {% elif asset.movingValue > 0 %}
+              <span class="top-stock-movement">+{{ asset.movingValue }}%</span>
+            {% else %}
+              <span class="top-stock-movement">{{ asset.movingValue }}%</span>
+            {% endif %}
+          </div>
+          <div>
+            <span class="top-stock-volume"><span class="top-stock-volume-label">Volume</span> {{ asset.sellVolume }}</span>
+          </div>
+          <!-- <div class="top-stock-graph-filler"></div> -->
+        </div>
+      </a>
+    </div>
+  {% endfor %}
+</div>
+<button>View Asset List</button>
+{% endblock content %}
