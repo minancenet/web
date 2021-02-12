@@ -80,6 +80,7 @@ class Candle(db.Model):
 class Asset(db.Model):
   id = db.Column(db.Integer(), primary_key=True)
   name = db.Column(db.String(), nullable=False)
+  lastUpdated = db.Column(db.DateTime(), nullable=False, default=datetime.utcnow())
   
   sellPrice = db.Column(db.Float(precision=4), nullable=False)
   sellPrices = db.Column(db.PickleType(), default=pickle.dumps([]))
@@ -114,6 +115,19 @@ class Asset(db.Model):
       margin = 1 - (self.sellPrice / self.buyPrice)
 
     return round(margin, 2)
+
+  @property
+  def volumeAbr(self):
+    combinedVolume = self.sellVolume + self.buyVolume
+    val = str(combinedVolume)
+    if combinedVolume > 1000000 and combinedVolume < 10000000:
+      val = str(combinedVolume)[0] + "." + str(combinedVolume)[1] + "M"
+    elif combinedVolume > 10000000 and combinedVolume < 100000000:
+      val = str(combinedVolume)[:2] + "M"
+    else:
+      val = format(int(val), ",d")
+
+    return val
 
   @property
   def movingValue(self):

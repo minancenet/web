@@ -2,6 +2,8 @@ import requests
 import logging
 import time
 
+from datetime import datetime
+
 from trade import app, db
 from trade.models import Asset
 
@@ -37,6 +39,7 @@ def updateAssets():
 
       db.session.add(newAsset)
     else:
+      searchAsset.lastUpdated = datetime.utcnow()
       searchAsset.sellPrice = round(asset["sellPrice"], 4)
       searchAsset.sellVolume = asset["sellVolume"]
       searchAsset.sellMovingWeek = asset["sellMovingWeek"]
