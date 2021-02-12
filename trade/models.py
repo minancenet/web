@@ -57,78 +57,65 @@ class UserAsset(db.Model):
       
     return val
 
+class Candle(db.Model):
+  id = db.Column(db.Integer(), primary_key=True)
+  priceType = db.Column(db.String(), nullable=False)
+  timeframe = db.Column(db.Integer(), nullable=False) # Type of candle in minutes
+
+  # OHLC
+  open = db.Column(db.Float(precision=4), nullable=False)
+  high = db.Column(db.Float(precision=4), nullable=False)
+  low = db.Column(db.Float(precision=4), nullable=False)
+  close = db.Column(db.Float(precision=4), nullable=False)
+
+  volume = db.Column(db.Integer(), nullable=False)
+  date = db.Column(db.DateTime(), nullable=False, default=datetime.utcnow())
+
+  asset_id = db.Column(db.Integer(), db.ForeignKey("asset.id"), nullable=False)
+
+  @property
+  def formattedOHLC(self):
+    return [self.date.timestamp(), self.open, self.high, self.low, self.close, self.volume]
+
 class Asset(db.Model):
   id = db.Column(db.Integer(), primary_key=True)
   name = db.Column(db.String(), nullable=False)
   
   sellPrice = db.Column(db.Float(precision=4), nullable=False)
+  sellPrices = db.Column(db.PickleType(), default=pickle.dumps([]))
   sellVolume = db.Column(db.Integer(), nullable=False)
   sellMovingWeek = db.Column(db.Integer(), nullable=False)
   sellOrders = db.Column(db.Integer(), nullable=False)
 
   buyPrice = db.Column(db.Float(precision=4), nullable=False)
+  buyPrices = db.Column(db.PickleType(), default=pickle.dumps([]))
   buyVolume = db.Column(db.Integer(), nullable=False)
   buyMovingWeek = db.Column(db.Integer(), nullable=False)
   buyOrders = db.Column(db.Integer(), nullable=False)
 
-  oneMinOHLC = db.Column(db.PickleType(), nullable=False, default=pickle.dumps([]))
-  fiveMinOHLC = db.Column(db.PickleType(), nullable=False, default=pickle.dumps([]))
-  tenMinOHLC = db.Column(db.PickleType(), nullable=False, default=pickle.dumps([]))
-  thirtyMinOHLC = db.Column(db.PickleType(), nullable=False, default=pickle.dumps([]))
-  # oneHourOHLC = db.Column(db.PickleType(), nullable=False, default=pickle.dumps([]))
-  # sixHourOHLC = db.Column(db.PickleType(), nullable=False, default=pickle.dumps([]))
-  # oneDayOHLC = db.Column(db.PickleType(), nullable=False, default=pickle.dumps([]))
-  # oneWeekOHLC = db.Column(db.PickleType(), nullable=False, default=pickle.dumps([]))
-  # oneMonthOHLC = db.Column(db.PickleType(), nullable=False, default=pickle.dumps([]))
+  oneMinOHLC = db.relationship("Candle", backref="asset", lazy=True)
 
   userAssets = db.relationship("UserAsset", backref="asset", lazy=True)
-
-  # -------------------------------------------------------------
 
   @property
   def updatePrices(self):
     sellPrices = pickle.loads(self.sellPrices)
-    sellPrices.append([datetime.now(), self.sellPrice])
+    sellPrices.append([datetime.utcnow(), self.sellPrice])
     self.sellPrices = pickle.dumps(sellPrices)
 
     buyPrices = pickle.loads(self.buyPrices)
-    buyPrices.append(self.buyPrice)
+    buyPrices.append([datetime.utcnow(), self.buyPrice])
     self.buyPrices = pickle.dumps(buyPrices)
 
   @property
-  def movingValue(self):
-    sellPrices = pickle.loads(self.sellPrices)
-    perChange = 0
-    if sellPrices:
-      if sellPrices[-1][1] != 0:
-        perChange = round((sellPrices[0][1] / sellPrices[-1][1] - 1), 2)
-    return perChange
-
-  @classmethod
   def calcMargin(self):
     margin = 0
     if self.buyPrice != 0:
       margin = 1 - (self.sellPrice / self.buyPrice)
 
-    return margin
+    return round(margin, 2)
 
   @property
-  def printMargin(self):
-    margin = 0 
-    if self.buyPrice != 0:
-      margin = round((1 - (self.sellPrice / self.buyPrice))*100, 2)
-
-    return margin
-
-  @property
-  def volumeAbr(self):
-    combinedVolume = self.sellVolume + self.buyVolume
-    val = str(combinedVolume)
-    if combinedVolume > 1000000 and combinedVolume < 10000000:
-      val = str(combinedVolume)[0] + "." + str(combinedVolume)[1] + "M"
-    elif combinedVolume > 10000000 and combinedVolume < 100000000:
-      val = str(combinedVolume)[:2] + "M"
-    else:
-      val = format(int(val), ",d")
-
-    return val
+  def movingValue(self):
+    # Work on this
+    return 0

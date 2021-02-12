@@ -90,6 +90,10 @@ p {
   margin: 0;
 }
 
+.bold {
+  font-family: "Roboto Bold";
+}
+
 .main-wrapper {
   min-height: 100vh;
   margin-top: 2rem;
@@ -658,6 +662,10 @@ footer hr {
 .flash-alert {
   background-color: #2e1e07;
   color: #e59823;
+}
+
+.stock-container {
+  margin-bottom: 1rem;
 }
 
 /*# sourceMappingURL=main.css.map */

@@ -15,16 +15,16 @@
     <th class="number-td">Change 30D</th>
   </tr>
   {% for asset in assets %}
-      <tr>
-        <td class="letter-td">{{ asset.name.title().replace("_", " ") }}</td>
-        <td class="number-td">{{ asset.sellPrice }}</td>
-        <td class="number-td">{{ asset.buyPrice }}</td>
-        <td class="number-td">{{ asset.printMargin }}%</td>
-        <td class="number-td">{{ asset.volumeAbr }}</td>
-        <td class="number-td {{ 'green' if asset.movingValue > 0 else 'red' }}">{{ asset.movingValue }}%</td>
-        <td class="number-td {{ 'green' if asset.movingValue > 0 else 'red' }}">{{ asset.movingValue }}%</td>
-        <td class="number-td {{ 'green' if asset.movingValue > 0 else 'red' }}">{{ asset.movingValue }}%</td>
-        <td class="number-td {{ 'green' if asset.movingValue > 0 else 'red' }}">{{ asset.movingValue }}%</td>
+    <tr onClick="window.location = '/asset/{{ asset.name }}';">
+      <a href="#"><td class="letter-td">{{ asset.name.title().replace("_", " ") }}</td></a>
+      <td class="number-td">{{ asset.sellPrice }}</td>
+      <td class="number-td">{{ asset.buyPrice }}</td>
+      <td class="number-td">{{ asset.calcMargin }}%</td>
+      <td class="number-td">{{ asset.volumeAbr }}</td>
+      <td class="number-td {{ 'green' if asset.movingValue > 0 else 'red' }}">{{ asset.movingValue }}%</td>
+      <td class="number-td {{ 'green' if asset.movingValue > 0 else 'red' }}">{{ asset.movingValue }}%</td>
+      <td class="number-td {{ 'green' if asset.movingValue > 0 else 'red' }}">{{ asset.movingValue }}%</td>
+      <td class="number-td {{ 'green' if asset.movingValue > 0 else 'red' }}">{{ asset.movingValue }}%</td>
     </tr>
   {% endfor %}
 </table>

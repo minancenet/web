@@ -37,7 +37,6 @@ def updateAssets():
 
       db.session.add(newAsset)
     else:
-      searchAsset.updatePrices
       searchAsset.sellPrice = round(asset["sellPrice"], 4)
       searchAsset.sellVolume = asset["sellVolume"]
       searchAsset.sellMovingWeek = asset["sellMovingWeek"]
@@ -47,5 +46,7 @@ def updateAssets():
       searchAsset.buyMovingWeek = asset["buyMovingWeek"]
       searchAsset.buyOrders = asset["buyOrders"]
 
+      searchAsset.updatePrices
+
   db.session.commit()
-  logging.warn("Assets updated.")
+  print("[Arbitrage] Assets updated.")

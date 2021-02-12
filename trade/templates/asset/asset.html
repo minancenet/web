@@ -21,13 +21,46 @@
 <script src="https://code.highcharts.com/modules/price-indicator.js"></script>
 
 <div class="item">
-  <h3>{{ asset.name.title().replace("_", " ") }}</h3>
-  <h2>{{ asset.sellPrice }}</h2>
-  <div class="stock-container" id="container" class="chart" style="background-color: #000000!important;"></div>
+  <h1>{{ asset.name.title().replace("_", " ") }}</h1>
+  <br>
 </div>
+<div class="row">
+  <div class="col-6">
+    <h2>Sell Chart</h2>
+    <div class="stock-container" id="sellContainer" class="chart" style="background-color: #000000!important;"></div>
+  </div>
+  <div class="col-6">
+    <h2>Buy Chart</h2>
+    <div class="stock-container" id="buyContainer" class="chart" style="background-color: #000000!important;"></div>
+  </div>
+</div>
+<table class="assets-table">
+  <tr>
+    <th class="letter-td">Name</th>
+    <th class="number-td">Sell Price</th>
+    <th class="number-td">Buy Price</th>
+    <th class="number-td">Margin (%)</th>
+    <th class="number-td">Volume</th>
+    <th class="number-td">Change 30M</th>
+    <th class="number-td">Change 24H</th>
+    <th class="number-td">Change 7D</th>
+    <th class="number-td">Change 30D</th>
+  </tr>
+    <tr>
+      <td class="letter-td">{{ asset.name.title().replace("_", " ") }}</td>
+      <td class="number-td">{{ asset.sellPrice }}</td>
+      <td class="number-td">{{ asset.buyPrice }}</td>
+      <td class="number-td">{{ asset.printMargin }}%</td>
+      <td class="number-td">{{ asset.volumeAbr }}</td>
+      <td class="number-td {{ 'green' if asset.movingValue > 0 else 'red' }}">{{ asset.movingValue }}%</td>
+      <td class="number-td {{ 'green' if asset.movingValue > 0 else 'red' }}">{{ asset.movingValue }}%</td>
+      <td class="number-td {{ 'green' if asset.movingValue > 0 else 'red' }}">{{ asset.movingValue }}%</td>
+      <td class="number-td {{ 'green' if asset.movingValue > 0 else 'red' }}">{{ asset.movingValue }}%</td>
+  </tr>
+</table>    
 <script>
   Highcharts.getJSON(
-    "http://localhost:5000/asset/{{asset.name}}/one_minute.json",
+    "http://localhost:5000/asset/{{asset.name}}/sell/oneMinOHLC.json",
     function (data) {
       // split the data set into ohlc and volume
       var ohlc = [],
@@ -50,7 +83,98 @@
         ]);
       }
 
-      Highcharts.stockChart("container", {
+      Highcharts.stockChart("sellContainer", {
+        chart: {
+          backgroundColor: "#000000"
+        },
+        plotOptions: {
+          candlestick: {
+            color: "red",
+            upColor: "green",
+            upLineColor: "green",
+            lineColor: "red"
+          },
+        },
+        yAxis: [
+          {
+            labels: {
+              align: "left",
+            },
+            height: "80%",
+            resize: {
+              enabled: true,
+            },
+          },
+          {
+            labels: {
+              align: "left",
+            },
+            top: "80%",
+            height: "20%",
+            offset: 0,
+          },
+        ],
+
+        series: [
+          {
+            type: "candlestick",
+            id: "ohlc",
+            name: '{{ asset.name.title().replace("_", " ") }} Price',
+            data: ohlc,
+          },
+          {
+            type: "column",
+            id: "volume",
+            name: '{{ asset.name.title().replace("_", " ") }} Volume',
+            data: volume,
+            yAxis: 1,
+          },
+        ],
+        responsive: {
+          rules: [
+            {
+              condition: {
+                maxWidth: 800,
+              },
+              chartOptions: {
+                rangeSelector: {
+                  inputEnabled: false,
+                },
+              },
+            },
+          ],
+        },
+      });
+    }
+  );
+</script>
+
+<script>
+  Highcharts.getJSON(
+    "http://localhost:5000/asset/{{asset.name}}/buy/oneMinOHLC.json",
+    function (data) {
+      // split the data set into ohlc and volume
+      var ohlc = [],
+        volume = [],
+        dataLength = data.length,
+        i = 0;
+
+      for (i; i < dataLength; i += 1) {
+        ohlc.push([
+          data[i][0], // the date
+          data[i][1], // open
+          data[i][2], // high
+          data[i][3], // low
+          data[i][4], // close
+        ]);
+
+        volume.push([
+          data[i][0], // the date
+          data[i][5], // the volume
+        ]);
+      }
+
+      Highcharts.stockChart("buyContainer", {
         chart: {
           backgroundColor: "#000000"
         },

@@ -3,60 +3,76 @@ import logging
 from datetime import datetime, timedelta
 
 from trade import db
-from trade.models import Asset
+from trade.models import Asset, Candle
 
 logger = logging.getLogger(__name__)
 
 def genOneMinOHLC():
   assets = Asset.query.all()
-  for asset in assets:
-    oneMinOHLC = pickle.loads(asset.oneMinOHLC)
-    oneMinOHLC.append(createCandle(1, asset))
-    asset.oneMinOHLC = pickle.dumps(oneMinOHLC)
+  completed = 0
+  for count, asset in enumerate(assets):
+    completed += createCandle("sell", 1, asset)
+    completed += createCandle("buy", 1, asset)
 
-def genFiveMinOHLC():
-  assets = Asset.query.all()
-  for asset in assets:
-    fiveMinOHLC = pickle.loads(asset.fiveMinOHLC)
-    fiveMinOHLC.append(createCandle(5, asset))
-    asset.fiveMinOHLC = pickle.dumps(fiveMinOHLC)
+  print(f"[Arbitrage] [{completed}/{count*2}] assets updated.")
 
-def createCandle(minutes, asset):
+def getHigh(candlePrices):
   """
-  [0]: Epoch Time,
-  [1]: Price
+  Get highest value from nested list for insertion into Candle object
   """
-  prices = pickle.loads(asset.sellPrices)
-  now = datetime.now()
+  maximum = candlePrices[0]
 
-  minutePrices = []
+  for i in candlePrices:
+    if i[1] > maximum[1]:
+      maximum = i
 
-  for price in prices:
-    if (now - timedelta(minutes=minutes)) < price[0]:
-      minutePrices.append(price)
+  return maximum[1]
 
+def getLow(candlePrices):
   """
-  [0] Open Time,
-  [1] Open Price,
-  [2] High Price,
-  [3] Low Price,
-  [4] Close Price,
-  [5] Volume
+  Get lowest value from nested list for insertion into Candle object
   """
-  candle = [minutePrices[0][0].timestamp(), minutePrices[0][1], None, None, minutePrices[-1][1], asset.sellVolume]
+  minimum = candlePrices[0]
 
-  for data in minutePrices:
-    if candle[2]:
-      if data[1] > candle[2]:
-        candle[2] = data[1]
-    else:
-      candle[2] = data[1]
-    if candle[3]:
-      if data[1] < candle[3]:
-        candle[3] = data[1]
-    else:
-      candle[3] = data[1]
+  for i in candlePrices:
+    if i[1] < minimum[1]:
+      minimum = i
 
-  minutePrices = []
+  return minimum[1] 
 
-  return candle
+def createCandle(priceType, minutes, asset):
+  """
+  Create candle object for a certain time frame, asset and price type.
+  """
+  
+  """
+  candlesPrices[]
+  [0] Datetime object of price addition,
+  [1] Price at time of datetime object
+  """
+  candlePrices = []
+
+  # Adding prices to candlePrices list if the price was added within the last x minutes
+  for price in pickle.loads(asset.buyPrices) if priceType == "buy" else pickle.loads(asset.sellPrices):
+    if (datetime.utcnow() - timedelta(minutes=minutes)) < price[0]:
+      candlePrices.append(price)
+
+  if len(candlePrices) >= 2:
+    candle = Candle(
+      priceType=priceType,
+      timeframe=minutes,
+      open=candlePrices[0][1],
+      high=getHigh(candlePrices),
+      low=getLow(candlePrices),
+      close=candlePrices[-1][1],
+      volume=asset.buyVolume if priceType == "buy" else asset.sellVolume,
+      date=datetime.utcnow(),
+      asset=asset
+    )
+
+    db.session.add(candle)
+    db.session.commit()
+
+    return 1
+  else:
+    return 0

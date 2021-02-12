@@ -21,11 +21,5 @@ class Config(object):
       "func": "trade.asset.utils:genOneMinOHLC",
       "trigger": "interval",
       "minutes": 1
-    },
-    {
-      "id": "fiveMinOHLC",
-      "func": "trade.asset.utils:genFiveMinOHLC",
-      "trigger": "interval",
-      "minutes": 5
     }
   ]
