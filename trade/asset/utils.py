@@ -14,7 +14,34 @@ def genOneMinOHLC():
     completed += createCandle("sell", 1, asset)
     completed += createCandle("buy", 1, asset)
 
-  print(f"[Arbitrage] [{completed}/{count*2}] assets updated.")
+  print(f"[Arbitrage] [{completed}/{count*2}] 1 minute candles updated.")
+
+def genFiveMinOHLC():
+  assets = Asset.query.all()
+  completed = 0
+  for count, asset in enumerate(assets):
+    completed += createCandle("sell", 5, asset)
+    completed += createCandle("buy", 5, asset)
+
+  print(f"[Arbitrage] [{completed}/{(count+1)*2}] 5 minute candles updated.")
+
+def genThirtyMinOHLC():
+  assets = Asset.query.all()
+  completed = 0
+  for count, asset in enumerate(assets):
+    completed += createCandle("sell", 30, asset)
+    completed += createCandle("buy", 30, asset)
+
+  print(f"[Arbitrage] [{completed}/{(count+1)*2}] 30 minute candles updated.")
+
+def genOneHourOHLC():
+  assets = Asset.query.all()
+  completed = 0
+  for count, asset in enumerate(assets):
+    completed += createCandle("sell", 60, asset)
+    completed += createCandle("buy", 60, asset)
+
+  print(f"[Arbitrage] [{completed}/{(count+1)*2}] 60 minute candles updated.")
 
 def getHigh(candlePrices):
   """

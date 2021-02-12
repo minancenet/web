@@ -94,7 +94,7 @@ class Asset(db.Model):
   buyMovingWeek = db.Column(db.Integer(), nullable=False)
   buyOrders = db.Column(db.Integer(), nullable=False)
 
-  oneMinOHLC = db.relationship("Candle", backref="asset", lazy=True)
+  ohlc = db.relationship("Candle", backref="asset", lazy=True)
 
   userAssets = db.relationship("UserAsset", backref="asset", lazy=True)
 

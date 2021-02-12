@@ -51,5 +51,5 @@ def updateAssets():
 
       searchAsset.updatePrices
 
-  db.session.commit()
+    db.session.commit()
   print("[Arbitrage] Assets updated.")

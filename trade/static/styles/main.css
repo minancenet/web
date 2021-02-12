@@ -103,6 +103,10 @@ p {
   display: block;
 }
 
+.main-wrapper-alt {
+  min-height: 100vh;
+}
+
 .top-stock {
   color: #d3d3d3;
   padding: 0.75rem 0.75rem;
@@ -670,6 +674,32 @@ footer hr {
 
 .asset-subtitle {
   margin-bottom: 1rem;
+}
+
+.tabs {
+  margin-top: 0 !important;
+  overflow: hidden;
+  border-bottom: 1px solid #2e2e2e;
+}
+.tabs button {
+  padding: 0.4rem 0.6rem;
+  margin: 0;
+  background: rgba(0, 0, 0, 0);
+  border: none;
+  border-right: 1px solid #2e2e2e;
+  color: #d3d3d3;
+  border-radius: none;
+  font-size: 0.78rem;
+  font-family: "DM Sans";
+  cursor: pointer;
+}
+.tabs button:focus {
+  border: none;
+  border-right: 1px solid #2e2e2e;
+}
+
+.tabcontent {
+  display: none;
 }
 
 /*# sourceMappingURL=main.css.map */

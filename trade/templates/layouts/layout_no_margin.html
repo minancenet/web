@@ -7,11 +7,11 @@
   <body>
     <header>
       <div class="header-sec-1">
-        <div class="header-section left dropdown dropbtn" onclick="dropdown('arbitrageDropdown')">
-          <div class="logo-info">
-            <i class="fab fa-pied-piper header-logo"></i>
-            <span class="header-title">Arbitrage</span>
-              <div id="arbitrageDropdown" class="dropdown-content">
+        <div class="header-section left dropdown dropbtn" onclick="myFunction()">
+          <div class="logo-info dropbtn">
+            <i class="fab fa-pied-piper header-logo dropbtn"></i>
+            <span class="header-title dropbtn">Arbitrage</span>
+              <div id="myDropdown" class="dropdown-content">
                 <div class="row">
                   <div class="col-6">
                     <h5>Market data</h5>
@@ -95,7 +95,7 @@
                 <h5 onclick="openCity(event, 'login')" class="tablinks">Sign in</h5>
               </div>
             </div>  
-            <div id="register" class="tabcontent" style="display: block;">
+            <div id="register" class="tabcontent">
               <hr style="width: 80%;">
               <p class="auth-text">Create an account to gain access to dozens of free features</p>
               <form method="POST" action="{{ url_for('auth.register') }}" class="auth-form">
@@ -188,7 +188,7 @@
           </div> 
         </div>
       </div>
-      <div class="main-wrapper bg">
+      <div class="main-wrapper-alt bg">
         {% block content %}
         {% endblock content %}
       </div>
@@ -225,4 +225,42 @@
       }
     }
   </script>
+
+<script>
+  function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
+  </script>
+  
+  <script>
+    /* When the user clicks on the button, 
+    toggle between hiding and showing the dropdown content */
+    function myFunction() {
+      document.getElementById("myDropdown").classList.toggle("show");
+    }
+    
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+      if (!event.target.matches('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+      }
+    }
+    </script>
 </html>

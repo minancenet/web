@@ -1,245 +1,222 @@
-{% extends "layouts/layout.html" %} {% block content %}
+{% extends "layouts/layout_no_margin.html" %} {% block content %}
 
-<link
-  rel="stylesheet"
-  type="text/css"
-  href="https://code.highcharts.com/css/stocktools/gui.css"
-/>
-<link
-  rel="stylesheet"
-  type="text/css"
-  href="https://code.highcharts.com/css/annotations/popup.css"
-/>
+<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
 
-<script src="https://code.highcharts.com/stock/highstock.js"></script>
-<script src="https://code.highcharts.com/stock/modules/data.js"></script>
-
-<script src="https://code.highcharts.com/stock/indicators/indicators-all.js"></script>
-<script src="https://code.highcharts.com/stock/modules/drag-panes.js"></script>
-
-<script src="https://code.highcharts.com/modules/annotations-advanced.js"></script>
-<script src="https://code.highcharts.com/modules/price-indicator.js"></script>
-
-<div class="item">
-  <h1>{{ asset.name.title().replace("_", " ") }}</h1>
-  <h4>Last updated at {{ asset.lastUpdated.strftime("%X UTC on %B %d, %Y") }}</h4>
-  <br>
+<div class="tabs">
+  <button class="tablink" onclick="openTab(event, 'sell')">Sell Candlestick Chart</button>
+  <button class="tablink" onclick="openTab(event, 'buy')">Buy Candlestick Chart</button>
+  <button class="tablink">5M <i class="fas fa-chevron-down" style="font-size: 0.6rem;"></i></button>
 </div>
+
 <div class="row">
   <div class="col-6">
-    <h2 class="asset-subtitle">Sell Candlestick Chart</h2>
-    <div class="stock-container" id="sellContainer" class="chart" style="background-color: #000000!important;"></div>
+    <div id="sell" class="tabcontent" style="display: block;">
+      <div id="sellChart"></div>
+      <script>
+        fetch("http://localhost:5000/api/v1/asset/{{ asset.name }}/ohlc/5.json")
+        .then(res => res.json())
+        .then((out) => {
+          var dates = []
+          var o = []
+          var h = []
+          var l = []
+          var c = []
+          
+          for (var i = 0; i < out["sell"].length; i++) {
+            dates.push(out["sell"][i][0]*1000)
+            o.push(out["sell"][i][1])
+            h.push(out["sell"][i][2])
+            l.push(out["sell"][i][3])
+            c.push(out["sell"][i][4])
+          }
+          
+          var trace1 = {
+        
+            x: dates, 
+                    
+            open: o,
+            high: h,        
+            low: l,
+            close: c, 
+          
+            line: {color: 'rgba(31,119,180,1)'}, 
+    
+            type: 'candlestick', 
+            xaxis: 'x', 
+            yaxis: 'y'
+          };
+        
+          var data = [trace1];
+  
+          var layout = {
+            dragmode: 'zoom', 
+            margin: {
+              r: 10, 
+              t: 25, 
+              b: 40, 
+              l: 60
+            }, 
+            showlegend: false, 
+            xaxis: {
+              autorange: true, 
+              rangeslider: {}, 
+              title: 'Date', 
+              type: 'date'
+            }, 
+            yaxis: {
+              title: "Sell Price",
+              autorange: true, 
+              type: 'linear'
+            },
+            plot_bgcolor: "rgb(0,0,0)",
+            paper_bgcolor: "rgb(0,0,0)"
+          };
+  
+          Plotly.newPlot('sellChart', data, layout);
+        })
+      </script>
+    </div> 
+    <div id="buy" class="tabcontent">
+      <div id="buyChart"></div>
+      <script>
+        fetch("http://localhost:5000/api/v1/asset/{{ asset.name }}/ohlc/5.json")
+        .then(res => res.json())
+        .then((out) => {
+          var dates = []
+          var o = []
+          var h = []
+          var l = []
+          var c = []
+
+          for (var i = 0; i < out["buy"].length; i++) {
+            dates.push(out["buy"][i][0]*1000)
+            o.push(out["buy"][i][1])
+            h.push(out["buy"][i][2])
+            l.push(out["buy"][i][3])
+            c.push(out["buy"][i][4])
+          }
+          
+          var trace1 = {
+        
+            x: dates, 
+                    
+            open: o,
+            high: h,        
+            low: l,
+            close: c, 
+          
+            line: {color: 'rgba(31,119,180,1)'}, 
+    
+            type: 'candlestick', 
+            xaxis: 'x', 
+            yaxis: 'y'
+          };
+        
+          var data = [trace1];
+  
+          var layout = {
+            dragmode: 'zoom', 
+            margin: {
+              r: 10, 
+              t: 25, 
+              b: 40, 
+              l: 60
+            }, 
+            showlegend: false, 
+            xaxis: {
+              autorange: true, 
+              rangeslider: {}, 
+              title: 'Date', 
+              type: 'date'
+            }, 
+            yaxis: {
+              title: "Buy Price",
+              autorange: true, 
+              type: 'linear'
+            },
+            plot_bgcolor: "rgb(0,0,0)",
+            paper_bgcolor: "rgb(0,0,0)"
+          };
+  
+          Plotly.newPlot('buyChart', data, layout);
+        })
+      </script>
+    </div>       
   </div>
   <div class="col-6">
-    <h2 class="asset-subtitle">Buy Candlestick Chart</h2>
-    <div class="stock-container" id="buyContainer" class="chart" style="background-color: #000000!important;"></div>
+    <div id="lineChart"></div>
+    <script>
+      fetch("http://localhost:5000/api/v1/asset/{{ asset.name }}/price")
+      .then(res => res.json())
+      .then((out) => {
+        var dates = []
+        var sell = []
+        var buy = []
+        
+        for (var i = 0; i < out["sell"].length; i++) {
+          dates.push(out["sell"][i][0]*1000)
+          sell.push(out["sell"][i][1])
+        }
+
+        for (var i = 0; i < out["buy"].length; i++) {
+          dates.push(out["buy"][i][0]*1000)
+          buy.push(out["buy"][i][1])
+        }
+        
+        var trace1 = {
+      
+          x: dates, 
+          y: sell,
+          name: "Sell Price",
+        
+          line: {color: 'rgba(31,119,180,1)'}, 
+  
+          type: 'scatter', 
+          xaxis: 'x', 
+          yaxis: 'y'
+        };
+
+        var trace2 = {
+          x: dates,
+          y: buy,
+          name: "Buy Price",
+
+          line: {color: '#7F7F7F'},
+            
+          type: 'scatter', 
+          xaxis: 'x', 
+          yaxis: 'y'
+        }
+    
+        var data = [trace1, trace2];
+
+        var layout = {
+          dragmode: 'zoom', 
+          margin: {
+            r: 10, 
+            t: 25, 
+            b: 40, 
+            l: 60
+          }, 
+          showlegend: false, 
+          xaxis: {
+            autorange: true, 
+            rangeslider: {}, 
+            title: 'Date', 
+            type: 'date'
+          }, 
+          yaxis: {
+            title: "Price",
+            autorange: true, 
+            type: 'linear'
+          },
+          plot_bgcolor: "rgb(0,0,0)",
+          paper_bgcolor: "rgb(0,0,0)"
+        };
+
+        Plotly.newPlot('lineChart', data, layout);
+      })
+    </script>
   </div>
 </div>
-<h2 class="asset-subtitle">Stats</h2>
-<table class="assets-table">
-  <tr>
-    <th class="letter-td">Name</th>
-    <th class="number-td">Sell Price</th>
-    <th class="number-td">Buy Price</th>
-    <th class="number-td">Margin (%)</th>
-    <th class="number-td">Volume</th>
-    <th class="number-td">Change 30M</th>
-    <th class="number-td">Change 24H</th>
-    <th class="number-td">Change 7D</th>
-    <th class="number-td">Change 30D</th>
-  </tr>
-    <tr>
-      <td class="letter-td">{{ asset.name.title().replace("_", " ") }}</td>
-      <td class="number-td">{{ asset.sellPrice }}</td>
-      <td class="number-td">{{ asset.buyPrice }}</td>
-      <td class="number-td">{{ asset.printMargin }}%</td>
-      <td class="number-td">{{ asset.volumeAbr }}</td>
-      <td class="number-td {{ 'green' if asset.movingValue > 0 else 'red' }}">{{ asset.movingValue }}%</td>
-      <td class="number-td {{ 'green' if asset.movingValue > 0 else 'red' }}">{{ asset.movingValue }}%</td>
-      <td class="number-td {{ 'green' if asset.movingValue > 0 else 'red' }}">{{ asset.movingValue }}%</td>
-      <td class="number-td {{ 'green' if asset.movingValue > 0 else 'red' }}">{{ asset.movingValue }}%</td>
-  </tr>
-</table>    
-<script>
-  Highcharts.getJSON(
-    "http://localhost:5000/asset/{{asset.name}}/sell/oneMinOHLC.json",
-    function (data) {
-      // split the data set into ohlc and volume
-      var ohlc = [],
-        volume = [],
-        dataLength = data.length,
-        i = 0;
-
-      for (i; i < dataLength; i += 1) {
-        ohlc.push([
-          data[i][0], // the date
-          data[i][1], // open
-          data[i][2], // high
-          data[i][3], // low
-          data[i][4], // close
-        ]);
-
-        volume.push([
-          data[i][0], // the date
-          data[i][5], // the volume
-        ]);
-      }
-
-      Highcharts.stockChart("sellContainer", {
-        chart: {
-          backgroundColor: "#000000"
-        },
-        plotOptions: {
-          candlestick: {
-            color: "red",
-            upColor: "green",
-            upLineColor: "green",
-            lineColor: "red"
-          },
-        },
-        yAxis: [
-          {
-            labels: {
-              align: "left",
-            },
-            height: "80%",
-            resize: {
-              enabled: true,
-            },
-          },
-          {
-            labels: {
-              align: "left",
-            },
-            top: "80%",
-            height: "20%",
-            offset: 0,
-          },
-        ],
-
-        series: [
-          {
-            type: "candlestick",
-            id: "ohlc",
-            name: '{{ asset.name.title().replace("_", " ") }} Price',
-            data: ohlc,
-          },
-          {
-            type: "column",
-            id: "volume",
-            name: '{{ asset.name.title().replace("_", " ") }} Volume',
-            data: volume,
-            yAxis: 1,
-          },
-        ],
-        responsive: {
-          rules: [
-            {
-              condition: {
-                maxWidth: 800,
-              },
-              chartOptions: {
-                rangeSelector: {
-                  inputEnabled: false,
-                },
-              },
-            },
-          ],
-        },
-      });
-    }
-  );
-</script>
-
-<script>
-  Highcharts.getJSON(
-    "http://localhost:5000/asset/{{asset.name}}/buy/oneMinOHLC.json",
-    function (data) {
-      // split the data set into ohlc and volume
-      var ohlc = [],
-        volume = [],
-        dataLength = data.length,
-        i = 0;
-
-      for (i; i < dataLength; i += 1) {
-        ohlc.push([
-          data[i][0], // the date
-          data[i][1], // open
-          data[i][2], // high
-          data[i][3], // low
-          data[i][4], // close
-        ]);
-
-        volume.push([
-          data[i][0], // the date
-          data[i][5], // the volume
-        ]);
-      }
-
-      Highcharts.stockChart("buyContainer", {
-        chart: {
-          backgroundColor: "#000000"
-        },
-        plotOptions: {
-          candlestick: {
-            color: "red",
-            upColor: "green",
-            upLineColor: "green",
-            lineColor: "red"
-          },
-        },
-        yAxis: [
-          {
-            labels: {
-              align: "left",
-            },
-            height: "80%",
-            resize: {
-              enabled: true,
-            },
-          },
-          {
-            labels: {
-              align: "left",
-            },
-            top: "80%",
-            height: "20%",
-            offset: 0,
-          },
-        ],
-
-        series: [
-          {
-            type: "candlestick",
-            id: "ohlc",
-            name: '{{ asset.name.title().replace("_", " ") }} Price',
-            data: ohlc,
-          },
-          {
-            type: "column",
-            id: "volume",
-            name: '{{ asset.name.title().replace("_", " ") }} Volume',
-            data: volume,
-            yAxis: 1,
-          },
-        ],
-        responsive: {
-          rules: [
-            {
-              condition: {
-                maxWidth: 800,
-              },
-              chartOptions: {
-                rangeSelector: {
-                  inputEnabled: false,
-                },
-              },
-            },
-          ],
-        },
-      });
-    }
-  );
-</script>
-
 {% endblock content %}

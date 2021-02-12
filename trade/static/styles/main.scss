@@ -117,6 +117,10 @@ p {
   display: block;
 }
 
+.main-wrapper-alt {
+  min-height: 100vh;
+}
+
 .top-stock {
   color: $--COLOR-text;
   padding: 0.75rem 0.75rem;
@@ -702,4 +706,32 @@ footer {
 
 .asset-subtitle {
   margin-bottom: 1rem;
+}
+
+.tabs {
+  margin-top: 0!important;
+  overflow: hidden;
+  border-bottom: 1px solid $--COLOR-neutral-alt;
+
+  button {
+    padding: 0.4rem 0.6rem;
+    margin: 0;
+    background: rgba(0,0,0,0);
+    border: none;
+    border-right: 1px solid $--COLOR-neutral-alt;
+    color: $--COLOR-text;
+    border-radius: none;
+    font-size: 0.78rem;
+    font-family: "DM Sans";
+    cursor: pointer;
+  }
+
+  button:focus {
+    border: none;
+    border-right: 1px solid $--COLOR-neutral-alt;
+  }
+}
+
+.tabcontent {
+  display: none;
 }
