@@ -131,5 +131,9 @@ class Asset(db.Model):
 
   @property
   def movingValue(self):
-    # Work on this
-    return 0
+    sellPrices = pickle.loads(self.sellPrices)
+    perChange = 0
+    if sellPrices:
+      if sellPrices[-1][1] != 0:
+        perChange = round((sellPrices[0][1] / sellPrices[-1][1] - 1), 2)
+    return perChange
