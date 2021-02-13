@@ -12,7 +12,12 @@ Simple data visualization, analysis and simulation for the Hypixel Skyblock baza
 - [PostgreSQL](https://www.postgresql.org/)
 - [SASS](https://sass-lang.com/)
 
-## Images
+## Roadmap
 
+See the [open issues](https://github.com/minancenet/web/issues) for a list of proposed features (and known issues).
+
+## Contributing
+
+Minance is open to contributions, but I recommend creating an issue or replying in a comment to let me know what you are working on first that way we don't overwrite each other.
 
 Design heavily inspired by https://cryptowat.ch
