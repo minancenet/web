@@ -3,5 +3,8 @@ flask-sqlalchemy
 flask-apscheduler
 flask-login
 flask-bcrypt
+flask-wtf
+flask-migrate
+flask-script
 requests
 psycopg2

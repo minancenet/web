@@ -449,17 +449,9 @@ tr:nth-child(even) {
   background-color: $--COLOR-cta;
 }
 
-.green {
-  color: $--COLOR-long;
-}
-
-.red {
-  color: $--COLOR-short;
-}
-
-.grey {
-  color: #b4b4b4;
-}
+.green { color: $--COLOR-long; }
+.red { color: $--COLOR-short; }
+.grey { color: #929292; }
 
 footer {
   width: 65%;
@@ -733,5 +725,16 @@ footer {
 }
 
 .tabcontent {
+  max-width: 100%;
   display: none;
+}
+
+.border-right { border-right: 1px solid $--COLOR-neutral-alt; }
+.border-bottom { border-bottom: 1px solid $--COLOR-neutral-alt; }
+
+.stats-section {
+  width: 96%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 }

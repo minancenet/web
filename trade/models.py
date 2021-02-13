@@ -134,6 +134,6 @@ class Asset(db.Model):
     sellPrices = pickle.loads(self.sellPrices)
     perChange = 0
     if sellPrices:
-      if sellPrices[-1][1] != 0:
-        perChange = round((sellPrices[0][1] / sellPrices[-1][1] - 1), 2)
+      if sellPrices[0][1] != 0:
+        perChange = round(((sellPrices[-1][1]) / (sellPrices[0][1]) - 1), 2)
     return perChange

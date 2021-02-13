@@ -52,4 +52,4 @@ def updateAssets():
       searchAsset.updatePrices
 
     db.session.commit()
-  print("[Arbitrage] Assets updated.")
+  print("[Minance] Assets updated.")

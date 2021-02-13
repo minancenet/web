@@ -425,7 +425,7 @@ tr:nth-child(even) {
 }
 
 .grey {
-  color: #b4b4b4;
+  color: #929292;
 }
 
 footer {
@@ -699,7 +699,23 @@ footer hr {
 }
 
 .tabcontent {
+  max-width: 100%;
   display: none;
+}
+
+.border-right {
+  border-right: 1px solid #2e2e2e;
+}
+
+.border-bottom {
+  border-bottom: 1px solid #2e2e2e;
+}
+
+.stats-section {
+  width: 96%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 }
 
 /*# sourceMappingURL=main.css.map */
