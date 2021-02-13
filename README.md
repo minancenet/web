@@ -20,4 +20,13 @@ See the [open issues](https://github.com/minancenet/web/issues) for a list of pr
 
 Minance is open to contributions, but I recommend creating an issue or replying in a comment to let me know what you are working on first that way we don't overwrite each other.
 
-Design heavily inspired by https://cryptowat.ch
+## Social
+
+- Discord: https://discord.gg/ERRDyRZ7dR
+- Twitter: https://twitter.com/minance
+
+## Acknowledgements
+
+- Design heavily inspired by [CryptoWatch](https://cryptowat.ch)
+- Charts created with [Plotly.js](https://plotly.com/)
+- Icons from [Font Awesome](https://fontawesome.com/)
