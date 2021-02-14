@@ -3,6 +3,7 @@ from sqlalchemy.sql.expression import func
 from trade import app
 from trade.models import Asset
 from trade.auth.forms import RegistrationForm, LoginForm
+from trade.main.forms import SearchForm
 
 @app.context_processor
 def processor():
@@ -11,5 +12,6 @@ def processor():
   return dict(
     random_assets=random_assets,
     registrationForm=RegistrationForm(),
+    searchForm=SearchForm(),
     loginForm=LoginForm()
   )

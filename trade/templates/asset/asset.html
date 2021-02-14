@@ -7,22 +7,22 @@
   <button class="tablink" onclick="openTab(event, 'sell')">Sell Candlestick Chart</button>
   <button class="tablink" onclick="openTab(event, 'buy')">Buy Candlestick Chart</button>
   <div class="outerdrop dropdown dropbtn" onclick="dropdown('timeFrameDropdown')">
-    <button class="tablink dropbtn"><span class="dropbtn" id="timeFrameDisplay" style="font-family: 'Iosevka'; padding-right: 0.2rem;">1M</span><i class="fas fa-chevron-down dropbtn" style="font-size: 0.6rem;"></i></button>  
+    <button class="tablink dropbtn"><span class="dropbtn" id="timeFrameDisplay" style="font-family: 'Iosevka'; padding-right: 0.2rem;">5M</span><i class="fas fa-chevron-down dropbtn" style="font-size: 0.6rem;"></i></button>  
     <div id="timeFrameDropdown" class="dropdown-content alt">
       <ul>
-        <li onclick="changeTimeFrame(1, 'M')">1M</li>
-        <li onclick="changeTimeFrame(3, 'M')">3M</li>
-        <li onclick="changeTimeFrame(5, 'M')">5M</li>
-        <li onclick="changeTimeFrame(15, 'M')">15M</li>
-        <li onclick="changeTimeFrame(30, 'M')">30M</li>
-        <li onclick="changeTimeFrame(60, 'H')">1H</li>
-        <li onclick="changeTimeFrame(120, 'H')">2H</li>
-        <li onclick="changeTimeFrame(240), 'H'">4H</li>
-        <li onclick="changeTimeFrame(360), 'H'">6H</li>
-        <li onclick="changeTimeFrame(720), 'H'">12H</li>
-        <li onclick="changeTimeFrame(1440, 'D')">1D</li>
-        <li onclick="changeTimeFrame(4320, 'D')">3D</li>
-        <li onclick="changeTimeFrame(10080, 'W')">1W</li>
+        <li onclick="changeTimeFrame(1, '1M')">1M</li>
+        <li onclick="changeTimeFrame(3, '3M')">3M</li>
+        <li onclick="changeTimeFrame(5, '5M')">5M</li>
+        <li onclick="changeTimeFrame(15, '15M')">15M</li>
+        <li onclick="changeTimeFrame(30, '30M')">30M</li>
+        <li onclick="changeTimeFrame(60, '1H')">1H</li>
+        <li onclick="changeTimeFrame(120, '2H')">2H</li>
+        <li onclick="changeTimeFrame(240,'4H')">4H</li>
+        <li onclick="changeTimeFrame(360, '6H')">6H</li>
+        <li onclick="changeTimeFrame(720, '12H')">12H</li>
+        <li onclick="changeTimeFrame(1440, '1D')">1D</li>
+        <li onclick="changeTimeFrame(4320, '3D')">3D</li>
+        <li onclick="changeTimeFrame(10080, '1W')">1W</li>
       </ul>
     </div>
   </div>
@@ -206,12 +206,12 @@
 <script>
   createBuySellChart("{{ asset.name }}")
 
-  createChart("sell", 1, "{{ asset.name }}")
-  createChart("buy", 1, "{{ asset.name }}")
+  createChart("sell", 5, "{{ asset.name }}")
+  createChart("buy", 5, "{{ asset.name }}")
 
   function changeTimeFrame(timeFrame, abbr) {
     var timeFrameDisplay = document.getElementById("timeFrameDisplay")
-    timeFrameDisplay.innerHTML = timeFrame.toString() + abbr
+    timeFrameDisplay.innerHTML = abbr
 
     createChart("sell", timeFrame, "{{ asset.name }}")
     createChart("buy", timeFrame, "{{ asset.name }}")  
