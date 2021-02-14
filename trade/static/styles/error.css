@@ -1,0 +1,33 @@
+html, body {
+  background-color: #000;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.error-content {
+  padding: 4rem;
+  text-align: center;
+  color: #fcfcfc;
+  font-family: "Iosevka";
+}
+
+.error-content h1 {
+  margin: 0.4rem;
+}
+
+.error-content h1 a {
+  color: #fcfcfc;
+  text-decoration: none;
+}
+
+.error-content p {
+  color: #d3d3d3;
+  margin: 0.2rem;
+}
+
+.error-img {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  width: 20%;
+}
