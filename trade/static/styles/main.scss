@@ -655,49 +655,87 @@ footer {
 
 .dropdown-content {
   display: none;
-  position: absolute;
-  background-color: #000000;
-  border: 1px solid #222222;
-  left: 0;
-  width: 430px;
-  overflow: auto;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 100;
-  line-height: normal;
-  cursor: auto;
 
-  h5 {
-    font-size: 0.76rem;
-    font-family: "DM Sans Bold";
-    color: $--COLOR-text;
+  &.main {
+    position: absolute;
+    background-color: #000000;
+    border: 1px solid #222222;
+    left: 0;
+    width: 430px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 100;
+    line-height: normal;
+    cursor: auto;
+  
+    h5 {
+      font-size: 0.76rem;
+      font-family: "DM Sans Bold";
+      color: $--COLOR-text;
+    }
+  
+    ul {
+      padding-left: 0;
+      list-style-type: none;
+    }
+  
+    li {
+      padding: 0.2rem 0;
+      margin: 0;
+      font-size: 0.71rem;
+      font-family: "DM Sans";
+    }
+  
+    li a {
+      color: $--COLOR-text;
+      text-decoration: none;
+    }
+  
+    p {
+      margin-top: 1rem;
+      font-size: 0.7rem;
+      color: $--COLOR-text;
+      font-family: "DM Sans";
+    }
+  
+    .col-6 {
+      padding: 16px;
+    }  
   }
 
-  ul {
-    padding-left: 0;
-    list-style-type: none;
-  }
+  &.alt {
+    position: absolute;
+    background-color: #000000;
+    border: 1px solid #222222;
+    border-top: 1px solid $--COLOR-neutral-alt;
+    left: -5px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 100;
+    line-height: normal;
+    cursor: auto;
+    font-family: "Iosevka";
+    width: 49px;
+    overflow: hidden;
 
-  li {
-    padding: 0.2rem 0;
-    margin: 0;
-    font-size: 0.71rem;
-    font-family: "DM Sans";
-  }
+    ul {
+      margin-top: 0.2rem;
+      margin-bottom: 0;
+      padding: 0;
+      list-style-type: none;
+    }
 
-  li a {
-    color: $--COLOR-text;
-    text-decoration: none;
-  }
+    ul li {
+      color: $--COLOR-text;
+      font-size: 0.76rem;
+      font-family: "Iosevka";
+      padding: 0.2rem 0.6rem;
+    }
 
-  p {
-    margin-top: 1rem;
-    font-size: 0.7rem;
-    color: $--COLOR-text;
-    font-family: "DM Sans";
-  }
-
-  .col-6 {
-    padding: 16px;
+    ul li:hover {
+      cursor: pointer;
+      color: $--COLOR-text-alt;
+    }
   }
 }
 
@@ -729,10 +767,9 @@ footer {
 
 .tabs {
   margin-top: 0!important;
-  overflow: hidden;
   border-bottom: 1px solid $--COLOR-neutral-alt;
 
-  button {
+  .tablink {
     padding: 0.4rem 0.6rem;
     margin: 0;
     background: rgba(0,0,0,0);
@@ -743,9 +780,11 @@ footer {
     font-size: 0.78rem;
     font-family: "DM Sans";
     cursor: pointer;
+
+    margin-left: 0;
   }
 
-  button:focus {
+  .tablink:focus {
     border: none;
     border-right: 1px solid $--COLOR-neutral-alt;
   }

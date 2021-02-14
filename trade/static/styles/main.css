@@ -626,6 +626,8 @@ footer hr {
 
 .dropdown-content {
   display: none;
+}
+.dropdown-content.main {
   position: absolute;
   background-color: #000000;
   border: 1px solid #222222;
@@ -637,33 +639,64 @@ footer hr {
   line-height: normal;
   cursor: auto;
 }
-.dropdown-content h5 {
+.dropdown-content.main h5 {
   font-size: 0.76rem;
   font-family: "DM Sans Bold";
   color: #d3d3d3;
 }
-.dropdown-content ul {
+.dropdown-content.main ul {
   padding-left: 0;
   list-style-type: none;
 }
-.dropdown-content li {
+.dropdown-content.main li {
   padding: 0.2rem 0;
   margin: 0;
   font-size: 0.71rem;
   font-family: "DM Sans";
 }
-.dropdown-content li a {
+.dropdown-content.main li a {
   color: #d3d3d3;
   text-decoration: none;
 }
-.dropdown-content p {
+.dropdown-content.main p {
   margin-top: 1rem;
   font-size: 0.7rem;
   color: #d3d3d3;
   font-family: "DM Sans";
 }
-.dropdown-content .col-6 {
+.dropdown-content.main .col-6 {
   padding: 16px;
+}
+.dropdown-content.alt {
+  position: absolute;
+  background-color: #000000;
+  border: 1px solid #222222;
+  border-top: 1px solid #2e2e2e;
+  left: -5px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+  line-height: normal;
+  cursor: auto;
+  font-family: "Iosevka";
+  width: 49px;
+  overflow: hidden;
+}
+.dropdown-content.alt ul {
+  margin-top: 0.2rem;
+  margin-bottom: 0;
+  padding: 0;
+  list-style-type: none;
+}
+.dropdown-content.alt ul li {
+  color: #d3d3d3;
+  font-size: 0.76rem;
+  font-family: "Iosevka";
+  padding: 0.2rem 0.6rem;
+}
+.dropdown-content.alt ul li:hover {
+  cursor: pointer;
+  color: #fcfcfc;
 }
 
 .show {
@@ -699,10 +732,9 @@ footer hr {
 
 .tabs {
   margin-top: 0 !important;
-  overflow: hidden;
   border-bottom: 1px solid #2e2e2e;
 }
-.tabs button {
+.tabs .tablink {
   padding: 0.4rem 0.6rem;
   margin: 0;
   background: rgba(0, 0, 0, 0);
@@ -713,8 +745,9 @@ footer hr {
   font-size: 0.78rem;
   font-family: "DM Sans";
   cursor: pointer;
+  margin-left: 0;
 }
-.tabs button:focus {
+.tabs .tablink:focus {
   border: none;
   border-right: 1px solid #2e2e2e;
 }
