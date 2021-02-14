@@ -23,7 +23,13 @@
     </div>
   </div>
   <div class="header-section left" style="border-right: none;">
-    <input type="text" placeholder="Search" class="search-field">
+    <form method="POST" action="{{ url_for('main.search') }}">
+      {{ searchForm.hidden_tag() }}
+      
+      {{ searchForm.query(class="search-field invalid", placeholder="Search") }}
+    </form>
+  </div>
+  <div class="header-section left" style="border-right: none;">
     <ul class="navbar">
       <li class="nav-item {{ 'active' if active_page == 'index' else '' }}"><a href="{{ url_for('main.home') }}">Home</a></li>
       <li class="nav-item {{ 'active' if active_page == 'assets' else '' }}"><a href="{{ url_for('asset.assets') }}">Assets</a></li>

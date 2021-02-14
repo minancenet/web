@@ -317,7 +317,7 @@ header {
 
 .navbar {
   list-style-type: none;
-  margin: 0 20px;
+  margin: 0 8px;
   padding: 0;
   overflow: hidden;
 }
@@ -356,16 +356,15 @@ header {
 }
 
 .search-field {
-  float: left;
   vertical-align: middle;
-  margin: 6px 40px 6px 4px;
+  margin: 6px 4px 6px 4px;
   padding: 6px 8px;
   border-radius: none;
   border: 1px solid #222222;
   background-color: #030303;
   color: #bebebe;
-  display: inline;
-  width: 16rem;
+  display: inline-block;
+  width: 18rem;
 }
 
 .light {
