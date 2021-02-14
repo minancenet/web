@@ -34,11 +34,13 @@ from trade.asset.routes import asset
 from trade.auth.routes import auth
 from trade.portfolio.routes import portfolio
 from trade.api.routes import api
+from trade.errors.handlers import errors
 
 app.register_blueprint(main)
 app.register_blueprint(asset)
 app.register_blueprint(auth)
 app.register_blueprint(portfolio)
 app.register_blueprint(api)
+app.register_blueprint(errors)
 
 from trade import routes

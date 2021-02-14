@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" text="text/css" href="{{ url_for('static', filename='styles/error.css') }}" />
+    <link rel="stylesheet" text="text/css" href="{{ url_for('static', filename='styles/fonts.css') }}" />
+
+    <title>Minance - 401</title>
+  </head>
+  <body>
+    <div class="error-content">
+      <img src="{{ url_for('static', filename='img/error.svg') }}" class="error-img"/>
+      <h1><a href="{{ url_for('main.home') }}">Minance</a></h1>
+      <p>401: Permissions Denied</p>
+    </div>
+  </body>
+</html>
