@@ -1,6 +1,7 @@
 {% extends "layouts/layout_no_margin.html" %} {% block content %}
 
 <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+<script src="{{ url_for('static', filename='js/charts.js') }}"></script>
 
 <div class="tabs">
   <button class="tablink" onclick="openTab(event, 'sell')">Sell Candlestick Chart</button>
@@ -19,80 +20,6 @@
   </div>
   <div class="col-6">
     <div id="lineChart"></div>
-    <script>
-      fetch("http://localhost:5000/api/v1/asset/{{ asset.name }}/price")
-      .then(res => res.json())
-      .then((out) => {
-        var dates = []
-        var sell = []
-        var buy = []
-        
-        for (var i = 0; i < out["sell"].length; i++) {
-          dates.push(out["sell"][i][0]*1000)
-          sell.push(out["sell"][i][1])
-        }
-
-        for (var i = 0; i < out["buy"].length; i++) {
-          dates.push(out["buy"][i][0]*1000)
-          buy.push(out["buy"][i][1])
-        }
-        
-        var trace1 = {
-      
-          x: dates, 
-          y: sell,
-          name: "Sell Price",
-        
-          line: {color: 'rgba(31,119,180,1)'}, 
-          fill: 'tozeroy',
-  
-          type: 'scatter', 
-          xaxis: 'x', 
-          yaxis: 'y'
-        };
-
-        var trace2 = {
-          x: dates,
-          y: buy,
-          name: "Buy Price",
-
-          line: {color: '#7F7F7F'},
-          fill: 'tonexty',
-            
-          type: 'scatter', 
-          xaxis: 'x', 
-          yaxis: 'y'
-        }
-    
-        var data = [trace1, trace2];
-
-        var layout = {
-          dragmode: 'zoom', 
-          margin: {
-            r: 10, 
-            t: 25, 
-            b: 40, 
-            l: 60
-          }, 
-          showlegend: false, 
-          xaxis: {
-            autorange: true, 
-            rangeslider: {}, 
-            title: 'Date', 
-            type: 'date'
-          }, 
-          yaxis: {
-            title: "Price",
-            autorange: true, 
-            type: 'linear'
-          },
-          plot_bgcolor: "rgb(0,0,0)",
-          paper_bgcolor: "rgb(0,0,0)"
-        };
-
-        Plotly.newPlot('lineChart', data, layout);
-      })
-    </script>
   </div>
 </div>
 <div class="row border-bottom" style="margin-top: 0;">
@@ -258,137 +185,9 @@
 </div>
 
 <script>
-  fetch("http://localhost:5000/api/v1/asset/{{ asset.name }}/ohlc/5.json")
-  .then(res => res.json())
-  .then((out) => {
-    var dates = []
-    var o = []
-    var h = []
-    var l = []
-    var c = []
-    
-    for (var i = 0; i < out["sell"].length; i++) {
-      dates.push(out["sell"][i][0]*1000)
-      o.push(out["sell"][i][1])
-      h.push(out["sell"][i][2])
-      l.push(out["sell"][i][3])
-      c.push(out["sell"][i][4])
-    }
-    
-    var trace1 = {
-  
-      x: dates, 
-              
-      open: o,
-      high: h,        
-      low: l,
-      close: c, 
-    
-      line: {color: 'rgba(31,119,180,1)'}, 
-
-      type: 'candlestick', 
-      xaxis: 'x', 
-      yaxis: 'y'
-    };
-  
-    var data = [trace1];
-
-    var layout = {
-      dragmode: 'zoom', 
-      margin: {
-        r: 10, 
-        t: 25, 
-        b: 40, 
-        l: 60
-      }, 
-      showlegend: false, 
-      xaxis: {
-        autorange: true, 
-        rangeslider: {}, 
-        title: 'Date', 
-        type: 'date'
-      }, 
-      yaxis: {
-        title: "Sell Price",
-        autorange: true, 
-        type: 'linear'
-      },
-      width: 600,
-      plot_bgcolor: "rgb(0,0,0)",
-      paper_bgcolor: "rgb(0,0,0)"
-    };
-
-    var config = {responsive: true}
-
-    Plotly.newPlot('sellChart', data, layout, config);
-  })
-</script>
-
-<script>
-  fetch("http://localhost:5000/api/v1/asset/{{ asset.name }}/ohlc/5.json")
-  .then(res => res.json())
-  .then((out) => {
-    var dates = []
-    var o = []
-    var h = []
-    var l = []
-    var c = []
-
-    for (var i = 0; i < out["buy"].length; i++) {
-      dates.push(out["buy"][i][0]*1000)
-      o.push(out["buy"][i][1])
-      h.push(out["buy"][i][2])
-      l.push(out["buy"][i][3])
-      c.push(out["buy"][i][4])
-    }
-    
-    var trace1 = {
-  
-      x: dates, 
-              
-      open: o,
-      high: h,        
-      low: l,
-      close: c, 
-    
-      line: {color: 'rgba(31,119,180,1)'}, 
-
-      type: 'candlestick', 
-      xaxis: 'x', 
-      yaxis: 'y'
-    };
-  
-    var data = [trace1];
-
-    var layout = {
-      dragmode: 'zoom', 
-      margin: {
-        r: 10, 
-        t: 25, 
-        b: 40, 
-        l: 60
-      }, 
-      showlegend: false, 
-      xaxis: {
-        autorange: true, 
-        rangeslider: {}, 
-        title: 'Date', 
-        type: 'date'
-      }, 
-      yaxis: {
-        title: "Buy Price",
-        autorange: true, 
-        type: 'linear'
-      },
-      width: 600,
-      plot_bgcolor: "rgb(0,0,0)",
-      paper_bgcolor: "rgb(0,0,0)"
-    };
-
-    var config = {responsive: true}
-
-    Plotly.newPlot('buyChart', data, layout, config);
-  })
+  createChart("sell", 1, "{{ asset.name }}")
+  createChart("buy", 1, "{{ asset.name }}")
+  createBuySellChart("{{ asset.name }}")
 </script>
 
 {% endblock content %}
