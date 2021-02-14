@@ -12,7 +12,7 @@ def genOneMinOHLC():
     completed += createCandle("sell", 1, asset)
     completed += createCandle("buy", 1, asset)
 
-  print(f"[Minance] [{completed}/{count*2}] 1 minute candles updated.")
+  print(f"[Minance] [{completed}/{(count+1)*2}] 1 minute candles updated.")
 
 def genFiveMinOHLC():
   assets = Asset.query.all()
