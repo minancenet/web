@@ -86,13 +86,15 @@ class Asset(db.Model):
   sellPrices = db.Column(db.PickleType(), default=pickle.dumps([]))
   sellVolume = db.Column(db.Integer(), nullable=False)
   sellMovingWeek = db.Column(db.Integer(), nullable=False)
-  sellOrders = db.Column(db.Integer(), nullable=False)
+  sellOrderAmount = db.Column(db.Integer(), nullable=False)
+  sellOrders = db.Column(db.PickleType(), nullable=False, default=pickle.dumps([]))
 
   buyPrice = db.Column(db.Float(precision=4), nullable=False)
   buyPrices = db.Column(db.PickleType(), default=pickle.dumps([]))
   buyVolume = db.Column(db.Integer(), nullable=False)
   buyMovingWeek = db.Column(db.Integer(), nullable=False)
-  buyOrders = db.Column(db.Integer(), nullable=False)
+  buyOrderAmount = db.Column(db.Integer(), nullable=False)
+  buyOrders = db.Column(db.PickleType(), nullable=False, default=pickle.dumps([]))
 
   ohlc = db.relationship("Candle", backref="asset", lazy=True)
 

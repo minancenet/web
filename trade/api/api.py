@@ -1,6 +1,7 @@
 import requests
 import logging
 import time
+import pickle
 
 from datetime import datetime
 
@@ -10,46 +11,86 @@ from trade.models import Asset
 API_URI = "https://api.hypixel.net/"
 API_KEY = app.config.get("API_KEY")
 
-logger = logging.getLogger(__name__)
-
 def formulateCall(method):
   r = requests.get(API_URI + method + "?key=" + API_KEY)
   return r.json()
 
-def updateAssets():
-  assets = formulateCall("skyblock/bazaar")["products"]
+def createAsset(asset):
+  """
+  Create asset if asset is not initialized in database.
+  """
   
+  status = asset["quick_status"]
+
+  newAsset = Asset(
+    name = status["productId"],
+    sellPrice = status["sellPrice"],
+    sellVolume = status["sellVolume"],
+    sellMovingWeek = status["sellMovingWeek"],
+    sellOrderAmount = status["sellOrders"],
+    buyPrice = status["buyPrice"],
+    buyVolume = status["buyVolume"],
+    buyMovingWeek = status["buyMovingWeek"],
+    buyOrderAmount = status["buyOrders"]
+  )
+
+  db.session.add(newAsset)
+
+def fifteenSecondUpdate():
+  """
+  Used for grabbing necessary price information and updates every 15 seconds.
+  Information crucial for making one minute candles.
+  """
+  
+  assets = formulateCall("skyblock/bazaar")["products"]
+
   for asset in assets:
-    searchAsset = Asset.query.filter_by(name=assets[asset]["product_id"]).first()
+    dbAsset = Asset.query.filter_by(name=assets[asset]["product_id"]).first()
 
-    asset = assets[asset]["quick_status"]
-
-    if searchAsset == None:
-      newAsset = Asset(
-        name = asset["productId"],
-        sellPrice = round(asset["sellPrice"], 4),
-        sellVolume = asset["sellVolume"],
-        sellMovingWeek = asset["sellMovingWeek"],
-        sellOrders = asset["sellOrders"],
-        buyPrice = round(asset["buyPrice"], 4),
-        buyVolume = asset["buyVolume"],
-        buyMovingWeek = asset["buyMovingWeek"],
-        buyOrders = asset["buyOrders"]
-      )
-
-      db.session.add(newAsset)
+    if dbAsset == None:
+      createAsset(assets[asset])
     else:
-      searchAsset.lastUpdated = datetime.utcnow()
-      searchAsset.sellPrice = round(asset["sellPrice"], 4)
-      searchAsset.sellVolume = asset["sellVolume"]
-      searchAsset.sellMovingWeek = asset["sellMovingWeek"]
-      searchAsset.sellOrders = asset["sellOrders"]
-      searchAsset.buyPrice = round(asset["buyPrice"], 4)
-      searchAsset.buyVolume = asset["buyVolume"]
-      searchAsset.buyMovingWeek = asset["buyMovingWeek"]
-      searchAsset.buyOrders = asset["buyOrders"]
+      status = assets[asset]["quick_status"]
 
-      searchAsset.updatePrices
+      dbAsset.lastUpdated = datetime.utcnow()
+      dbAsset.sellPrice = status["sellPrice"]
+      dbAsset.sellVolume = status["sellVolume"]
+      dbAsset.buyPrice = status["buyPrice"]
+      dbAsset.buyVolume = status["buyVolume"]
+      
+      dbAsset.updatePrices
 
-    db.session.commit()
-  print("[Minance] Assets updated.")
+  db.session.commit()
+  app.logger.info("Primary asset data updated.")
+
+def oneMinuteUpdate():
+  """
+  Used for updated less time sensitive data then the fifteenSecond() call.
+  """
+
+  assets = formulateCall("skyblock/bazaar")["products"]
+
+  for asset in assets:
+    dbAsset = Asset.query.filter_by(name=assets[asset]["product_id"]).first()
+    status = assets[asset]["quick_status"]
+
+    dbAsset.sellMovingWeek = status["sellMovingWeek"]
+    dbAsset.sellOrderAmount = status["sellOrders"]
+    dbAsset.buyMovingWeek = status["buyMovingWeek"]
+    dbAsset.buyOrderAmount = status["buyOrders"]
+
+    sell = assets[asset]["sell_summary"]
+    buy = assets[asset]["buy_summary"]
+
+    buyOrders = []
+    sellOrders = []
+    for order in buy:
+      buyOrders.append([order["amount"], order["pricePerUnit"], order["orders"]])
+    for order in sell:
+      sellOrders.append([order["amount"], order["pricePerUnit"], order["orders"]])
+
+    dbAsset.buyOrders = pickle.dumps(buyOrders)
+    dbAsset.sellOrders = pickle.dumps(sellOrders)
+
+  db.session.commit()
+  app.logger.info("Secondary asset data updated.")

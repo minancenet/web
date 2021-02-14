@@ -12,10 +12,16 @@ class Config(object):
 
   JOBS = [
     {
-      "id": "updateAssets",
-      "func": "trade.api.api:updateAssets",
+      "id": "fifteenSecondUpdate",
+      "func": "trade.api.api:fifteenSecondUpdate",
       "trigger": "interval",
-      "seconds": 30
+      "seconds": 15
+    },
+    {
+      "id": "oneMinuteUpdate",
+      "func": "trade.api.api:oneMinuteUpdate",
+      "trigger": "interval",
+      "seconds": 15
     },
     {
       "id": "oneMinOHLC",

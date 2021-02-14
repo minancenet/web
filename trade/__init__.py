@@ -1,4 +1,5 @@
 import os
+import logging
 
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
@@ -10,6 +11,10 @@ from trade.config import Config
 
 app = Flask(__name__)
 app.config.from_object(Config)
+
+logging.basicConfig(filename="logs/debug.log", level=logging.DEBUG, format=f'%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
+logging.basicConfig(filename="logs/info.log", level=logging.INFO, format=f'%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
+logging.basicConfig(filename="logs/error.log", level=logging.WARNING, format=f'%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
 
 db = SQLAlchemy(app)
 

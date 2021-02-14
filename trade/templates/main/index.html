@@ -43,5 +43,6 @@
     </div>
   {% endfor %}
 </div>
-<button>View Asset List</button>
+<a href="{{ url_for('asset.assets') }}" style="text-decoration: none;"><button class="asset-btn"><i class="fas fa-bars" style="margin-right: 0.2rem;"></i> View Asset List</button></a>
+<hr class="footer-hr">
 {% endblock content %}

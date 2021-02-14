@@ -6,79 +6,8 @@
   </head>
   <body>
     <header>
-      <div class="header-sec-1">
-        <div class="header-section left dropdown dropbtn" onclick="dropdown('arbitrageDropdown')">
-          <div class="logo-info">
-            <i class="fab fa-pied-piper header-logo"></i>
-            <span class="header-title">Minance</span>
-              <div id="arbitrageDropdown" class="dropdown-content">
-                <div class="row">
-                  <div class="col-6">
-                    <h5>Market data</h5>
-                    <ul>
-                      <li><a href="{{ url_for('main.home') }}">Home</a></li>
-                      <li><a href="{{ url_for('asset.assets') }}">Assets</a></li>
-                      <li><a href="{{ url_for('portfolio.portfolio_dash') }}">Portfolio</a></li>
-                    </ul>
-                  </div>
-                  <div class="col-6"  style="border-left: 1px solid #222222;">
-                    <h5>What is Minance?</h5>
-                    <p>Cryptowatch is a real-time crypto markets platform.<br><br>
-                    We connect you to the global crypto markets with tools that enable research, analysis, monitoring and order execution.</p>
-                  </div>
-                </div>
-              </div>
-          </div>
-        </div>
-        <div class="header-section left" style="border-right: none;">
-          <input type="text" placeholder="Search" class="search-field">
-          <ul class="navbar">
-            <li class="nav-item {{ 'active' if active_page == 'index' else '' }}"><a href="{{ url_for('main.home') }}">Home</a></li>
-            <li class="nav-item {{ 'active' if active_page == 'assets' else '' }}"><a href="{{ url_for('asset.assets') }}">Assets</a></li>
-            <li class="nav-item {{ 'active' if active_page == 'portfolio' else '' }}"><a href="{{ url_for('portfolio.portfolio_dash') }}">Simulation</a></li>
-          </ul>
-        </div>
-        <div class="header-section right">
-          <a id="myBtn" style="color: #FFFFFF; text-decoration: none;">
-            <div class="logo-info">
-              <i class="fas fa-user auth-icon"></i>
-              <span class="auth-plus">+</span>
-            </div>
-          </a>
-        </div>
-        <div class="header-section right">
-          <a href="{{ url_for('portfolio.portfolio_dash') }}" style="color: #FFFFFF; text-decoration: none">
-            <div class="logo-info">
-              <i class="fas fa-coins"></i>
-              <span class="portfolio">Portfolio</span>
-            </div>
-          </a>
-        </div>
-      </div>
-      <div class="tcontainer"><div class="ticker-wrap"><div class="ticker-move">
-        {% for asset in random_assets %}
-          <div class="ticker-item">{{ asset.name.title().replace("_", " ") }}
-            {% if asset.movingValue == 0  %}
-              <span class="grey">0%</span>
-            {% elif asset.movingValue > 0 %}
-              <span class="green">+{{ asset.movingValue }}%</span>
-            {% else %}
-              <span class="red">{{ asset.movingValue }}%</span>
-            {% endif %}
-          </div>
-        {% endfor %}
-      </div></div></div>
-      {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-          {% for category, message in messages %}
-            <div class="main-flashes">
-                <div class="flash-message flash-{{category}}">
-                    <p>{{ message }}</p>
-                </div>
-            </div>
-          {% endfor %}
-        {% endif %}
-      {% endwith %}
+      {% include "layouts/header.html" %}
+      {% block header %} {% endblock header %}
     </header>
     <main>
       <div id="myModal" class="modal">

@@ -1,4 +1,6 @@
 import pickle
+import logging
+
 from flask import Blueprint, render_template
 
 from trade.models import Asset

@@ -13,6 +13,7 @@ $--COLOR-neutral-bg: rgb(19, 19, 19);
 $--COLOR-cta: rgb(5, 10, 31);
 $--COLOR-cta-alt: rgb(10, 19, 54);
 $--COLOR-cta-lighter: rgb(14, 24, 68);
+$--COLOR-cta-light: rgb(18, 32, 93);
 $--COLOR-cta-darker: rgb(4, 7, 20);
 
 html,
@@ -302,7 +303,7 @@ header {
   animation-iteration-count: infinite;
   animation-timing-function: linear;
   animation-name: ticker;
-  animation-duration: 45s;
+  animation-duration: 50s;
 }
 .ticker-move:hover{
   animation-play-state: paused; /* Pause scroll on mouse hover */
@@ -409,10 +410,32 @@ header {
   width: 100%;
   color: $--COLOR-text;
   margin-top: 1.5rem;
+
+  &.alt {
+    margin-top: 0rem;
+    td, th {
+      font-family: "DM Sans";
+      font-size: 0.7rem;
+    }
+
+    th {
+      padding: 6px 4px;
+    }
+
+    td {
+      padding: 4px 2px;
+    }
+  }
+}
+
+tr:first-child {
+  &:hover {
+    background-color: #000000;
+  }
 }
 
 td, th {
-  border-top: 1px solid #202020;
+  border-top: 1px solid #383838;
   font-size: 0.78rem;
 }
 
@@ -447,6 +470,10 @@ th {
 
 tr:nth-child(even) {
   background-color: $--COLOR-cta;
+}
+
+tr:hover {
+  background-color: rgb(7, 14, 43);
 }
 
 .green { color: $--COLOR-long; }
@@ -737,4 +764,111 @@ footer {
   margin-left: auto;
   margin-right: auto;
   display: block;
+}
+
+.asset-btn {
+  text-align: center;
+  background-color: rgba(0,0,0,0);
+  border: 1px solid $--COLOR-cta-lighter;
+  color: $--COLOR-text;
+  padding: 0.4rem 0.8rem;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+
+  &:hover {
+    border: 1px solid $--COLOR-cta-light;
+  }
+}
+
+.footer-hr {
+  border: none;
+  background-color:rgb(37, 37, 37);
+  height: 0.7px;
+  width: 85%;
+}
+
+.form-group {
+  width: 100%;
+  padding: 0.5rem 0rem;
+}
+
+.form-buttons {
+}
+
+.form-label {
+  float: left;
+
+  p {
+    font-size: 0.85rem;
+  }
+}
+
+.form-field {
+  float: right;
+  font-size: 0.7rem;
+}
+
+.clear {
+  clear: both;
+}
+
+.check-btn {
+  background-color: rgba(0,0,0,0);
+  color: $--COLOR-text;
+  border: 1px solid #7a7a7a;
+  padding: 0.2rem 1.4rem;
+  font-size: 0.85rem;
+}
+
+.reset-btn {
+  background-color: rgba(0,0,0,0);
+  color: $--COLOR-text;
+  border: 1px solid #7a7a7a;
+  padding: 0.2rem 0.8rem;
+  font-size: 0.85rem;
+}
+
+.section-header {
+  font-size: 1.1rem;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.section-subheader {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.trade-output {
+  font-family: "Iosevka";
+  font-size: 0.78rem;
+  padding: 4px;
+  
+  background-color:rgb(7, 46, 20); color: rgb(35, 229, 67);
+}
+
+.data-table {
+  border: 1px solid #3f3f3f;
+  margin-bottom: 1rem;
+  font-size: 0.88rem;
+  width: 90%;
+  color: $--COLOR-text;
+
+  .entry:last-child {
+    border-bottom: none;
+  }
+}
+
+.entry {
+  padding: 4px 4px;
+  border-bottom: 1px solid #3f3f3f;
+}
+
+.entry-label {
+  font-family: "DM Sans Bold";
 }

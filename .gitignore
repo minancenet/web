@@ -5,5 +5,4 @@ venv/
 
 API_KEY
 
-site.db
-site.db-journal
+logs/
