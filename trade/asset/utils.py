@@ -50,7 +50,7 @@ def genOneDayOHLC():
 def genThreeDayOHLC():
   prepXMinOHLC(4320)
 
-def genoneWeekOHLC():
+def genOneWeekOHLC():
   prepXMinOHLC(10080)
 
 
@@ -120,31 +120,41 @@ def genXMinOHLC(priceType, minutes, asset):
       
   else:
     # Compile x candles of the previous reference
-    reference = 0
+    # references = [1, 3, 5, 15, 30, 60, 120, 240, 360, 720, 1440, 4320, 10080]
+    
     for i, j in enumerate(references):
       if j == minutes:
-        reference = i-1
+        for k in range(i-1, -1, -1):
+          l = minutes / references[k]
+          if l.is_integer():
+            index = k
+            break
 
-    candleNumber = minutes / references[reference]
+    timeframe = references[index]
+    candleAmount = int(minutes/references[index])
 
-    allCandles = Candle.query.filter_by(asset=asset).filter_by(priceType=priceType).filter_by(timeFrame=minutes).order_by(Candle.creationDate.desc())
+    allCandles = Candle.query.filter_by(asset=asset).filter_by(priceType=priceType).filter_by(timeframe=timeframe).order_by(Candle.creationDate.desc())
     
     # Add number of candles to candles list
     candles = []
-    for i in range(candleNumber):
-      candles.append(allCandles[i])
+    if allCandles.count() >= candleAmount:
+      for i in range(candleAmount):
+        candles.append(allCandles[i])
+    else:
+      for i in range(allCandles.count()):
+        candles.append(allCandles[i])
 
     # Get minimum price from candles
     minimum = candles[0].low
     for i in candles:
       if i.low < minimum:
-        minimum = i
+        minimum = i.low
       
     # Get maximum price from candles
     maximum = candles[0].high
     for i in candles:
       if i.high > maximum:
-        maximum = i
+        maximum = i.high
 
     candle = Candle(
       priceType=priceType,

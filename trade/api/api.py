@@ -36,7 +36,7 @@ def createAsset(asset):
 
   db.session.add(newAsset)
 
-def fifteenSecondUpdate():
+def fifteenSecondTasks():
   """
   Used for grabbing necessary price information and updates every 15 seconds.
   Information crucial for making one minute candles.
@@ -63,7 +63,7 @@ def fifteenSecondUpdate():
   db.session.commit()
   app.logger.info("Primary asset data updated.")
 
-def oneMinuteUpdate():
+def oneMinuteTasks():
   """
   Used for updated less time sensitive data then the fifteenSecond() call.
   """
@@ -91,6 +91,18 @@ def oneMinuteUpdate():
 
     dbAsset.buyOrders = pickle.dumps(buyOrders)
     dbAsset.sellOrders = pickle.dumps(sellOrders)
+
+    historicBuyOrders = pickle.loads(dbAsset.sellHistoricOrders)
+    historicSellOrders = pickle.loads(dbAsset.buyHistoricOrders)
+
+    # Adding top current top orders to list of all top orders
+    if len(buy) > 0:
+      historicBuyOrders.append([datetime.utcnow(), buy[0]["amount"], buy[0]["pricePerUnit"], buy[0]["orders"]])
+    if len(sell) > 0:
+      historicSellOrders.append([datetime.utcnow(), sell[0]["amount"], sell[0]["pricePerUnit"], sell[0]["orders"]])
+
+    dbAsset.historicBuyOrders = historicBuyOrders
+    dbAsset.historicSellOrders = historicSellOrders
 
   db.session.commit()
   app.logger.info("Secondary asset data updated.")

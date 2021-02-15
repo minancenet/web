@@ -20,7 +20,6 @@ def search():
   if request.method == "POST":
     query = request.form["query"]
     query = query.replace(" ", "_")
-    print(query)
     asset = Asset.query.filter(Asset.name.ilike(query)).first()
     if asset:
       return redirect(url_for("asset.specific_asset", asset_name=asset.name))
