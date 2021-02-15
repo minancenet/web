@@ -48,7 +48,7 @@
         <h5 class="section-header">Latest Orders</h5>
         <div class="row">
           <div class="col-6">
-            <h5 class="section-subheader">Sell Orders</h5>
+            <h5 class="section-subheader">Ask</h5>
             <table class="assets-table alt">
               <tr>
                 <th class="letter-td">Unit Price</th>
@@ -65,7 +65,7 @@
             </table>            
           </div>
           <div class="col-6">
-            <h5 class="section-subheader">Buy Orders</h5>
+            <h5 class="section-subheader">Bid</h5>
             <table class="assets-table alt">
               <tr>
                 <th class="letter-td">Unit Price</th>
@@ -164,6 +164,42 @@
               </div>
             {% else %}
               {{ form.sellTime(class="") }}
+            {% endif %}  
+            </div>
+          </div>
+          <div class="clear"></div>
+          <div class="form-group">
+            <div class="form-label">
+              <p>Purchase Type</p>
+            </div>
+            <div class="form-field">
+              {% if form.purchaseType.errors %}
+              {{ form.purchaseType(class="invalid") }}
+              <div class="invalid-feedback">
+                  {% for error in form.purchaseType.errors %}
+                    <span>{{ error }}</span>
+                  {% endfor %}
+              </div>
+            {% else %}
+              {{ form.purchaseType(class="") }}
+            {% endif %}
+            </div>
+          </div>
+          <div class="clear"></div>
+          <div class="form-group">
+            <div class="form-label">
+              <p>Sell Type</p>
+            </div>
+            <div class="form-field">
+              {% if form.sellType.errors %}
+              {{ form.sellType(class="invalid") }}
+              <div class="invalid-feedback">
+                  {% for error in form.sellType.errors %}
+                    <span>{{ error }}</span>
+                  {% endfor %}
+              </div>
+            {% else %}
+              {{ form.sellType(class="") }}
             {% endif %}  
             </div>
           </div>
