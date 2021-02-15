@@ -57,10 +57,16 @@ class UserAsset(db.Model):
       
     return val
 
+candles = db.Table("candles",
+  db.Column("containee_id", db.Integer, db.ForeignKey("candle.id")),
+  db.Column("container_id", db.Integer, db.ForeignKey("candle.id"))
+)
+
 class Candle(db.Model):
   id = db.Column(db.Integer(), primary_key=True)
   priceType = db.Column(db.String(), nullable=False)
   timeframe = db.Column(db.Integer(), nullable=False) # Type of candle in minutes
+  creationDate = db.Column(db.DateTime(), nullable=False, default=datetime.utcnow())
 
   # OHLC
   open = db.Column(db.Float(precision=4), nullable=False)
@@ -70,6 +76,14 @@ class Candle(db.Model):
 
   volume = db.Column(db.Integer(), nullable=False)
   date = db.Column(db.DateTime(), nullable=False, default=datetime.utcnow())
+
+  contains = db.relationship(
+    "Candle", secondary=candles,
+    primaryjoin=(candles.c.containee_id == id),
+    secondaryjoin=(candles.c.container_id == id),
+    backref=db.backref("candles", lazy="dynamic"),
+    lazy="dynamic"
+  )
 
   asset_id = db.Column(db.Integer(), db.ForeignKey("asset.id"), nullable=False)
 
@@ -88,6 +102,7 @@ class Asset(db.Model):
   sellMovingWeek = db.Column(db.Integer(), nullable=False)
   sellOrderAmount = db.Column(db.Integer(), nullable=False)
   sellOrders = db.Column(db.PickleType(), nullable=False, default=pickle.dumps([]))
+  sellHistoricOrders = db.Column(db.PickleType(), nullable=False, default=pickle.dumps([]))
 
   buyPrice = db.Column(db.Float(precision=4), nullable=False)
   buyPrices = db.Column(db.PickleType(), default=pickle.dumps([]))
@@ -95,6 +110,7 @@ class Asset(db.Model):
   buyMovingWeek = db.Column(db.Integer(), nullable=False)
   buyOrderAmount = db.Column(db.Integer(), nullable=False)
   buyOrders = db.Column(db.PickleType(), nullable=False, default=pickle.dumps([]))
+  buyHistoricOrders = db.Column(db.PickleType(), nullable=False, default=pickle.dumps([]))
 
   ohlc = db.relationship("Candle", backref="asset", lazy=True)
 
