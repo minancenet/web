@@ -5,41 +5,54 @@ from datetime import datetime, timedelta
 from trade import app, db
 from trade.models import Asset, Candle
 
-def genOneMinOHLC():
+def prepXMinOHLC(minutes):
   assets = Asset.query.all()
   completed = 0
   for count, asset in enumerate(assets):
-    completed += createCandle("sell", 1, asset)
-    completed += createCandle("buy", 1, asset)
+    completed += genXMinOHLC("sell", minutes, asset)
+    completed += genXMinOHLC("buy", minutes, asset)
 
-  print(f"[Minance] [{completed}/{(count+1)*2}] 1 minute candles updated.")
+  print(f"[Minance] [{completed}/{(count+1)*2}] {minutes} minute candles updated.")
+
+def genOneMinOHLC():
+  prepXMinOHLC(1)
+
+def genThreeMinOHLC():
+  prepXMinOHLC(3)
 
 def genFiveMinOHLC():
-  assets = Asset.query.all()
-  completed = 0
-  for count, asset in enumerate(assets):
-    completed += createCandle("sell", 5, asset)
-    completed += createCandle("buy", 5, asset)
+  prepXMinOHLC(5)
 
-  print(f"[Minance] [{completed}/{(count+1)*2}] 5 minute candles updated.")
+def genFifteenMinOHLC():
+  prepXMinOHLC(15)
 
 def genThirtyMinOHLC():
-  assets = Asset.query.all()
-  completed = 0
-  for count, asset in enumerate(assets):
-    completed += createCandle("sell", 30, asset)
-    completed += createCandle("buy", 30, asset)
-
-  print(f"[Minance] [{completed}/{(count+1)*2}] 30 minute candles updated.")
+  prepXMinOHLC(30)
 
 def genOneHourOHLC():
-  assets = Asset.query.all()
-  completed = 0
-  for count, asset in enumerate(assets):
-    completed += createCandle("sell", 60, asset)
-    completed += createCandle("buy", 60, asset)
+  prepXMinOHLC(60)
 
-  print(f"[Minance] [{completed}/{(count+1)*2}] 60 minute candles updated.")
+def genTwoHourOHLC():
+  prepXMinOHLC(120)
+
+def genFourHourOHLC():
+  prepXMinOHLC(240)
+
+def genSixHourOHLC():
+  prepXMinOHLC(360)
+
+def genTwelveHourOHLC():
+  prepXMinOHLC(720)
+
+def genOneDayOHLC():
+  prepXMinOHLC(1440)
+
+def genThreeDayOHLC():
+  prepXMinOHLC(4320)
+
+def genoneWeekOHLC():
+  prepXMinOHLC(10080)
+
 
 def getHigh(candlePrices):
   """
@@ -65,42 +78,93 @@ def getLow(candlePrices):
 
   return minimum[1] 
 
-def createCandle(priceType, minutes, asset):
-  """
-  Create candle object for a certain time frame, asset and price type.
-  """
-  
-  """
-  candlesPrices[]
-  [0] Datetime object of price addition,
-  [1] Price at time of datetime object
-  """
-  candlePrices = []
+def genXMinOHLC(priceType, minutes, asset):
+  references = [1, 3, 5, 15, 30, 60, 120, 240, 360, 720, 1440, 4320, 10080]
 
-  # Adding prices to candlePrices list if the price was added within the last x minutes
-  for price in pickle.loads(asset.buyPrices) if priceType == "buy" else pickle.loads(asset.sellPrices):
-    if (datetime.utcnow() - timedelta(minutes=minutes)) < price[0]:
-      candlePrices.append(price)
+  if minutes == 1:
+    """
+    Create candle object for a certain time frame, asset and price type.
+    """
+    
+    """
+    candlesPrices[]
+    [0] Datetime object of price addition,
+    [1] Price at time of datetime object
+    """
+    candlePrices = []
 
-  if len(candlePrices) >= 2:
+    # Adding prices to candlePrices list if the price was added within the last x minutes
+    for price in pickle.loads(asset.buyPrices) if priceType == "buy" else pickle.loads(asset.sellPrices):
+      if (datetime.utcnow() - timedelta(minutes=minutes)) < price[0]:
+        candlePrices.append(price)
+
+    if len(candlePrices) >= 2:
+      candle = Candle(
+        priceType=priceType,
+        timeframe=minutes,
+        open=candlePrices[0][1],
+        high=getHigh(candlePrices),
+        low=getLow(candlePrices),
+        close=candlePrices[-1][1],
+        volume=asset.buyVolume if priceType == "buy" else asset.sellVolume,
+        date=datetime.utcnow(),
+        asset=asset
+      )
+
+      db.session.add(candle)
+      db.session.commit()
+
+      return 1
+    else:
+      return 0
+      
+  else:
+    # Compile x candles of the previous reference
+    reference = 0
+    for i, j in enumerate(references):
+      if j == minutes:
+        reference = i-1
+
+    candleNumber = minutes / references[reference]
+
+    allCandles = Candle.query.filter_by(asset=asset).filter_by(priceType=priceType).filter_by(timeFrame=minutes).order_by(Candle.creationDate.desc())
+    
+    # Add number of candles to candles list
+    candles = []
+    for i in range(candleNumber):
+      candles.append(allCandles[i])
+
+    # Get minimum price from candles
+    minimum = candles[0].low
+    for i in candles:
+      if i.low < minimum:
+        minimum = i
+      
+    # Get maximum price from candles
+    maximum = candles[0].high
+    for i in candles:
+      if i.high > maximum:
+        maximum = i
+
     candle = Candle(
       priceType=priceType,
       timeframe=minutes,
-      open=candlePrices[0][1],
-      high=getHigh(candlePrices),
-      low=getLow(candlePrices),
-      close=candlePrices[-1][1],
+      open=candles[0].open,
+      high=maximum,
+      low=minimum,
+      close=candles[-1].close,
       volume=asset.buyVolume if priceType == "buy" else asset.sellVolume,
       date=datetime.utcnow(),
       asset=asset
     )
 
+    for i in candles:
+      candle.contains.append(i)
+
     db.session.add(candle)
     db.session.commit()
 
     return 1
-  else:
-    return 0
 
 def findProfitMargin(assetName, purchaseTime, sellTime):
   asset = Asset.query.filter_by(name=assetName).first()
