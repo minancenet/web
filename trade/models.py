@@ -75,7 +75,6 @@ class Candle(db.Model):
   close = db.Column(db.Float(precision=4), nullable=False)
 
   volume = db.Column(db.Integer(), nullable=False)
-  date = db.Column(db.DateTime(), nullable=False, default=datetime.utcnow())
 
   contains = db.relationship(
     "Candle", secondary=candles,
@@ -89,7 +88,7 @@ class Candle(db.Model):
 
   @property
   def formattedOHLC(self):
-    return [self.date.timestamp(), self.open, self.high, self.low, self.close, self.volume]
+    return [self.creationDate.timestamp(), self.open, self.high, self.low, self.close, self.volume]
 
 class Asset(db.Model):
   id = db.Column(db.Integer(), primary_key=True)

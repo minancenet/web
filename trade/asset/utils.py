@@ -106,8 +106,8 @@ def genXMinOHLC(priceType, minutes, asset):
         high=getHigh(candlePrices),
         low=getLow(candlePrices),
         close=candlePrices[-1][1],
+        creationDate=datetime.utcnow(),
         volume=asset.buyVolume if priceType == "buy" else asset.sellVolume,
-        date=datetime.utcnow(),
         asset=asset
       )
 
@@ -134,15 +134,15 @@ def genXMinOHLC(priceType, minutes, asset):
     candleAmount = int(minutes/references[index])
 
     allCandles = Candle.query.filter_by(asset=asset).filter_by(priceType=priceType).filter_by(timeframe=timeframe).order_by(Candle.creationDate.desc())
-    
+
     # Add number of candles to candles list
     candles = []
-    if allCandles.count() >= candleAmount:
-      for i in range(candleAmount):
-        candles.append(allCandles[i])
-    else:
-      for i in range(allCandles.count()):
-        candles.append(allCandles[i])
+
+    for i, j in enumerate(allCandles):
+      if i == timeframe:
+        break
+      else:
+        candles.append(j)
 
     # Get minimum price from candles
     minimum = candles[0].low
@@ -159,12 +159,12 @@ def genXMinOHLC(priceType, minutes, asset):
     candle = Candle(
       priceType=priceType,
       timeframe=minutes,
-      open=candles[0].open,
+      open=candles[-1].open,
       high=maximum,
       low=minimum,
-      close=candles[-1].close,
+      close=candles[0].close,
+      creationDate=datetime.utcnow(),
       volume=asset.buyVolume if priceType == "buy" else asset.sellVolume,
-      date=datetime.utcnow(),
       asset=asset
     )
 
