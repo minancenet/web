@@ -7,6 +7,7 @@ from datetime import datetime
 
 from trade import app, db
 from trade.models import Asset
+from trade.main.notifier import makeNotification
 
 API_URI = "https://api.hypixel.net/"
 API_KEY = app.config.get("API_KEY")
@@ -41,7 +42,7 @@ def fifteenSecondTasks():
   Used for grabbing necessary price information and updates every 15 seconds.
   Information crucial for making one minute candles.
   """
-  
+
   assets = formulateCall("skyblock/bazaar")["products"]
 
   for asset in assets:
@@ -106,3 +107,14 @@ def oneMinuteTasks():
 
   db.session.commit()
   app.logger.info("Secondary asset data updated.")
+
+def fiveMinuteTasks():
+  """
+  Currently just used for checking stats and pushing notifications.
+  """
+
+  # Temporary (Finish later today)
+  assets = Asset.query.all()
+  for asset in assets:
+    if asset.movingValue >= 0.5:
+      makeNotification("rally", asset.prettyName, f"{asset.prettyName} has increase 0.5% from the last x hours.")

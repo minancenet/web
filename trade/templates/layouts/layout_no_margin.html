@@ -6,6 +6,9 @@
   </head>
   <body>
     <header>
+      {% include "layouts/notifications.html" %}
+      {% block notifications %} {% endblock notifications %}
+
       {% include "layouts/header.html" %}
       {% block header %} {% endblock header %}
     </header>

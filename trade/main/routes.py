@@ -1,6 +1,7 @@
 import pickle
 import logging
 
+from trade import app, socketio
 from flask import Blueprint, render_template, request, redirect, url_for
 
 from trade.models import Asset

@@ -55,7 +55,7 @@
 </div>
 <div class="tcontainer"><div class="ticker-wrap"><div class="ticker-move">
   {% for asset in random_assets %}
-    <div class="ticker-item">{{ asset.name.title().replace("_", " ") }}
+    <div class="ticker-item">{{ asset.prettyName }}
       {% if asset.movingValue == 0  %}
         <span class="grey">0%</span>
       {% elif asset.movingValue > 0 %}

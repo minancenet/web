@@ -872,4 +872,60 @@ footer hr {
   font-family: "DM Sans Bold";
 }
 
+@keyframes notification-slide {
+  0% {
+    right: -350px;
+  }
+  100% {
+    right: 0;
+  }
+}
+.notifications {
+  position: fixed;
+  z-index: 100;
+  top: 20px;
+  right: 0;
+}
+
+.notification {
+  background-color: rgba(5, 10, 31, 0.9);
+  border: 1px solid #0e1844;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  transition-timing-function: ease-in;
+  animation: notification-slide 1s normal;
+  animation-play-state: paused;
+  text-align: left;
+  display: flex;
+  max-width: 25vw;
+  position: relative;
+  right: 0;
+}
+.notification i {
+  font-size: 3rem;
+  margin-right: 1rem;
+  float: left;
+}
+.notification .notification-body {
+  float: right;
+}
+.notification .notification-title {
+  font-family: "DM Sans Bold";
+  font-size: 0.8rem;
+}
+.notification .notification-content {
+  font-size: 0.75rem;
+  color: #d3d3d3;
+}
+.notification .exit {
+  position: absolute;
+  top: 2px;
+  right: 8px;
+}
+.notification .exit:hover {
+  cursor: pointer;
+}
+
 /*# sourceMappingURL=main.css.map */
