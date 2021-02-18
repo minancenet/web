@@ -32,3 +32,4 @@ Minance is open to contributions, but I recommend creating an issue or replying 
 - Design heavily inspired by [CryptoWatch](https://cryptowat.ch)
 - Charts created with [Plotly.js](https://plotly.com/)
 - Icons from [Font Awesome](https://fontawesome.com/)
+- Data from [Hypixel API](https://api.hypixel.net/)
