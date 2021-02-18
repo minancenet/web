@@ -114,7 +114,10 @@ def fiveMinuteTasks():
   """
 
   # Temporary (Finish later today)
-  assets = Asset.query.all()
-  for asset in assets:
-    if asset.movingValue >= 0.5:
-      makeNotification("rally", asset.prettyName, f"{asset.prettyName} has increase 0.5% from the last x hours.")
+  # assets = Asset.query.all()
+  # for asset in assets:
+  #   if asset.movingValue >= 0.5:
+  #     makeNotification("rally", asset.prettyName, f"{asset.prettyName} has increase 0.5% from the last x hours.")
+
+  # app.logger.info("Notifications sent out to connected clients.")
+  pass
