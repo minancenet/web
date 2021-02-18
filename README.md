@@ -1,4 +1,6 @@
-# Minance
+<img src="docs/logo-w-text.png" style="width: 40vw;">
+
+https://minance.net/
 
 Simple data visualization, analysis and simulation for the Hypixel Skyblock bazaar.
 

@@ -13,9 +13,9 @@ from trade.config import Config
 app = Flask(__name__)
 app.config.from_object(Config)
 
-logging.basicConfig(filename="logs/debug.log", level=logging.DEBUG, format=f'%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
-logging.basicConfig(filename="logs/info.log", level=logging.INFO, format=f'%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
-logging.basicConfig(filename="logs/error.log", level=logging.WARNING, format=f'%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
+logging.basicConfig(filename="logs/debug.log", level=logging.DEBUG, format=f"%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s")
+logging.basicConfig(filename="logs/info.log", level=logging.INFO, format=f"%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s")
+logging.basicConfig(filename="logs/error.log", level=logging.WARNING, format=f"%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s")
 
 db = SQLAlchemy(app)
 
@@ -28,7 +28,7 @@ login_manager.login_message_category = "alert"
 socketio = SocketIO(app)
 
 # Used to prevent two scheduler instances from being instantiated
-if not app.config.get("DEBUG") or os.environ.get('WERKZEUG_RUN_MAIN') == 'true':
+if not app.config.get("DEBUG") or os.environ.get("WERKZEUG_RUN_MAIN") == "true":
   scheduler = APScheduler()
   scheduler.init_app(app)
   scheduler.start()
