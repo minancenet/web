@@ -2,9 +2,13 @@
   <img src="docs/logo-w-text.png" width="350px">
 </p>
 
-https://minance.net/
-
+<p align="center">
 Simple data visualization, analysis and simulation for the Hypixel Skyblock bazaar.
+</p>
+
+<p align="center"><b>https://minance.net/</b></p>
+
+<hr>
 
 ## About the Project
 
@@ -32,6 +36,6 @@ Minance is open to contributions, but I recommend creating an issue or replying 
 ## Acknowledgements
 
 - Design heavily inspired by [CryptoWatch](https://cryptowat.ch)
+- Data from [Hypixel API](https://api.hypixel.net/)
 - Charts created with [Plotly.js](https://plotly.com/)
 - Icons from [Font Awesome](https://fontawesome.com/)
-- Data from [Hypixel API](https://api.hypixel.net/)
