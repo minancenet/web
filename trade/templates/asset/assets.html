@@ -14,7 +14,7 @@
     <th class="number-td">Change 7D</th>
     <th class="number-td">Change 30D</th>
   </tr>
-  {% for asset in assets %}
+  {% for asset in assets.items %}
     <tr onClick="window.location = '/asset/{{ asset.name }}';">
       <a href="#"><td class="letter-td">{{ asset.name.title().replace("_", " ") }}</td></a>
       <td class="number-td">{{ asset.sellPrice }}</td>
@@ -40,4 +40,19 @@
     </tr>
   {% endfor %}
 </table>
+
+<ul class="assets-pagination">
+  {% for page_num in assets.iter_pages(left_edge=1, right_edge=1, left_current=8, right_current=8) %}
+    {% if page_num %}
+      {% if assets.page == page_num %}
+        <li><a href="{{ url_for('asset.assets', page=page_num) }}">{{ page_num }}</a></li>
+      {% else %}
+        <li><a href="{{ url_for('asset.assets', page=page_num) }}">{{ page_num }}</a></li>
+      {% endif %}
+    {% else %}
+      ...
+    {% endif %}
+  {% endfor %}
+</ul>
+
 {% endblock content %}

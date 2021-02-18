@@ -1,7 +1,7 @@
 import pickle
 from datetime import datetime
 
-from flask import Blueprint, render_template, abort, Response, session
+from flask import Blueprint, render_template, abort, Response, session, request
 
 from trade.models import Asset
 from trade.asset.forms import TrackForm
@@ -11,7 +11,9 @@ asset = Blueprint("asset", __name__)
 
 @asset.route("/assets")
 def assets():
-  assets = Asset.query.all()
+  page = request.args.get("page", 1, type=int)
+
+  assets = Asset.query.order_by(Asset.name.asc()).paginate(page, per_page=20)
 
   return render_template("asset/assets.html", assets=assets, active_page="assets", title="Assets")
 

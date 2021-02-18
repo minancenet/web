@@ -469,14 +469,23 @@ footer hr {
   margin-top: 0.5rem;
 }
 .footer li {
-  font-size: 0.72rem;
-  text-decoration: underline;
-  color: #fcfcfc;
+  font-size: 0.78rem;
+  margin-bottom: 0.2rem;
   font-family: "Iosevka";
+}
+.footer li a {
+  color: #fcfcfc;
+  -webkit-text-decoration-color: #929292;
+  text-decoration-color: #929292;
+  text-decoration: underline;
 }
 .footer h5 {
   font-family: "DM Sans Bold";
   font-size: 0.88rem;
+}
+.footer h5 a {
+  color: #d3d3d3;
+  text-decoration: none;
 }
 
 .modal {
@@ -926,6 +935,10 @@ footer hr {
 }
 .notification .exit:hover {
   cursor: pointer;
+}
+
+.assets-pagination li {
+  display: inline-block;
 }
 
 /*# sourceMappingURL=main.css.map */

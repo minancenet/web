@@ -501,14 +501,25 @@ footer {
     margin-top: 0.5rem;
   }
   li {
-    font-size: 0.72rem;
-    text-decoration: underline;
-    color: $--COLOR-text-alt;
+    font-size: 0.78rem;
+    margin-bottom: 0.2rem;
     font-family: "Iosevka";
+
+    a {
+      color: $--COLOR-text-alt;
+      -webkit-text-decoration-color: #929292;
+      text-decoration-color: #929292;
+      text-decoration: underline;
+    }
   }
   h5 {
     font-family: "DM Sans Bold";
     font-size: 0.88rem;
+    
+    a {
+      color: $--COLOR-text;
+      text-decoration: none;
+    }
   }
 }
 
@@ -973,5 +984,11 @@ footer {
 
   .exit:hover {
     cursor: pointer;
+  }
+}
+
+.assets-pagination {
+  li {
+    display: inline-block;
   }
 }
