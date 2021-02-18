@@ -6,6 +6,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_bcrypt import Bcrypt
 from flask_apscheduler import APScheduler
+from flask_socketio import SocketIO
 
 from trade.config import Config
 
@@ -24,6 +25,9 @@ login_manager = LoginManager(app)
 login_manager.login_view = "main.home"
 login_manager.login_message_category = "alert"
 
+socketio = SocketIO(app)
+
+# Used to prevent two scheduler instances from being instantiated
 if not app.config.get("DEBUG") or os.environ.get('WERKZEUG_RUN_MAIN') == 'true':
   scheduler = APScheduler()
   scheduler.init_app(app)

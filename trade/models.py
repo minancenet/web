@@ -154,3 +154,7 @@ class Asset(db.Model):
       if sellPrices[0][1] != 0:
         perChange = round(((sellPrices[-1][1]) / (sellPrices[0][1]) - 1), 2)
     return perChange
+
+  @property
+  def prettyName(self):
+    return self.name.title().replace("_", " ")
