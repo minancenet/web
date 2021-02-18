@@ -1,4 +1,4 @@
-<img src="docs/logo-w-text.png" width="450px">
+<img src="docs/logo-w-text.png" width="400px">
 
 https://minance.net/
 
