@@ -15,6 +15,7 @@ $--COLOR-cta-alt: rgb(10, 19, 54);
 $--COLOR-cta-lighter: rgb(14, 24, 68);
 $--COLOR-cta-light: rgb(18, 32, 93);
 $--COLOR-cta-darker: rgb(4, 7, 20);
+$--COLOR-highlighted: #05ffa1;
 
 html,
 body {
@@ -107,7 +108,8 @@ p {
   margin: 0;
 }
 
-.bold { font-family: "Roboto Bold"; }
+.bold { font-family: "DM Sans Bold"; }
+.highlighted { color: $--COLOR-highlighted; }
 
 .main-wrapper {
   min-height: 100vh;
@@ -338,6 +340,7 @@ header {
 .header-title {
   font-family: "DM Sans Bold";
   font-size: 1rem;
+  color: #05ffa1;
 }
 
 .header-logo {
@@ -839,6 +842,7 @@ footer {
   background-color:rgb(37, 37, 37);
   height: 0.7px;
   width: 85%;
+  margin-top: 2rem;
 }
 
 .form-group {
@@ -988,7 +992,26 @@ footer {
 }
 
 .assets-pagination {
+  text-align: center;
   li {
     display: inline-block;
+    padding: 0px 5.5px;
+
+    a {
+      text-decoration: none;
+      color: $--COLOR-text;
+    }
+
+    &.active {
+      border: 1px solid $--COLOR-highlighted;
+      
+      a {
+        color: $--COLOR-text-alt;
+      }
+    }
   }
+}
+
+.pagination-key {
+  font-size: 0.82rem;
 }

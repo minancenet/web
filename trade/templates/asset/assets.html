@@ -42,17 +42,19 @@
 </table>
 
 <ul class="assets-pagination">
+  <li class="pagination-key"><a href="{{ url_for('asset.assets', page=assets.page-1) }}">&larr; prev</a></li>
   {% for page_num in assets.iter_pages(left_edge=1, right_edge=1, left_current=8, right_current=8) %}
     {% if page_num %}
       {% if assets.page == page_num %}
-        <li><a href="{{ url_for('asset.assets', page=page_num) }}">{{ page_num }}</a></li>
+        <li class="active"><a href="{{ url_for('asset.assets', page=page_num) }}">{{ page_num }}</a></li>
       {% else %}
         <li><a href="{{ url_for('asset.assets', page=page_num) }}">{{ page_num }}</a></li>
       {% endif %}
     {% else %}
-      ...
+      <span class="highlighted">...</span>
     {% endif %}
   {% endfor %}
+  <li class="pagination-key"><a href="{{ url_for('asset.assets', page=assets.page+1) }}">next &rarr;</a></li>
 </ul>
 
 {% endblock content %}

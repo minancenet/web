@@ -91,7 +91,11 @@ p {
 }
 
 .bold {
-  font-family: "Roboto Bold";
+  font-family: "DM Sans Bold";
+}
+
+.highlighted {
+  color: #05ffa1;
 }
 
 .main-wrapper {
@@ -309,6 +313,7 @@ header {
 .header-title {
   font-family: "DM Sans Bold";
   font-size: 1rem;
+  color: #05ffa1;
 }
 
 .header-logo {
@@ -803,6 +808,7 @@ footer hr {
   background-color: #252525;
   height: 0.7px;
   width: 85%;
+  margin-top: 2rem;
 }
 
 .form-group {
@@ -937,8 +943,26 @@ footer hr {
   cursor: pointer;
 }
 
+.assets-pagination {
+  text-align: center;
+}
 .assets-pagination li {
   display: inline-block;
+  padding: 0px 5.5px;
+}
+.assets-pagination li a {
+  text-decoration: none;
+  color: #d3d3d3;
+}
+.assets-pagination li.active {
+  border: 1px solid #05ffa1;
+}
+.assets-pagination li.active a {
+  color: #fcfcfc;
+}
+
+.pagination-key {
+  font-size: 0.82rem;
 }
 
 /*# sourceMappingURL=main.css.map */
