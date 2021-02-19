@@ -16,6 +16,7 @@ $--COLOR-cta-lighter: rgb(14, 24, 68);
 $--COLOR-cta-light: rgb(18, 32, 93);
 $--COLOR-cta-darker: rgb(4, 7, 20);
 $--COLOR-highlighted: #05ffa1;
+$--COLOR-highlighted-alt: #06e791;
 
 html,
 body {
@@ -109,7 +110,7 @@ p {
 }
 
 .bold { font-family: "DM Sans Bold"; }
-.highlighted { color: $--COLOR-highlighted; }
+.highlighted { color: $--COLOR-cta-light; }
 
 .main-wrapper {
   min-height: 100vh;
@@ -658,7 +659,7 @@ footer {
 }
 
 .dropbtn:hover, .dropbtn:focus {
-  color: $--COLOR-text-alt;
+  color: $--COLOR-highlighted-alt;
 }
 
 .dropdown {
@@ -995,7 +996,8 @@ footer {
   text-align: center;
   li {
     display: inline-block;
-    padding: 0px 5.5px;
+    padding: 1px 5px;
+    font-size: 0.8rem;
 
     a {
       text-decoration: none;
@@ -1003,7 +1005,7 @@ footer {
     }
 
     &.active {
-      border: 1px solid $--COLOR-highlighted;
+      border: 1px solid $--COLOR-cta-light;
       
       a {
         color: $--COLOR-text-alt;
@@ -1013,5 +1015,55 @@ footer {
 }
 
 .pagination-key {
-  font-size: 0.82rem;
+  font-size: 0.74rem;
+}
+
+.filters {
+  padding: 0.5rem;
+  margin-top: 1rem;
+
+  label {
+    font-size: 0.88rem;
+    color: $--COLOR-text;
+  }
+
+  select {
+    background-color: #030303;
+    color: #bebebe;  
+    border: 1px solid #222222;
+    margin: 6px 4px 8px 0px;
+    padding: 4px 6px;
+    width: 100%;
+    font-size: 0.85rem;
+    -moz-appearance:none; /* Firefox */
+    -webkit-appearance:none; /* Safari and Chrome */
+    appearance:none;
+  }
+}
+
+
+.filter-field {
+  width: 100%;
+}
+
+.filter-field[type=text] {
+  margin: 6px 4px 8px 0px;
+  padding: 4px 6px;
+  border-radius: none;
+  font-size: 0.85rem;
+  border: 1px solid #222222;
+  background-color: #030303;
+  color: #bebebe;
+  display: inline-block;
+  width: 91.5%;
+}
+
+.filter-btn {
+  background-color: #030303;
+  border: 1px solid $--COLOR-cta-lighter;
+  color: #bebebe;
+  border-radius: none;
+  font-size: 0.85rem;
+  margin: 6px 4px 4px 0px;
+  padding: 4px 16px;
 }

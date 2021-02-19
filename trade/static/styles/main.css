@@ -95,7 +95,7 @@ p {
 }
 
 .highlighted {
-  color: #05ffa1;
+  color: #12205d;
 }
 
 .main-wrapper {
@@ -629,7 +629,7 @@ footer hr {
 }
 
 .dropbtn:hover, .dropbtn:focus {
-  color: #fcfcfc;
+  color: #06e791;
 }
 
 .dropdown {
@@ -948,21 +948,71 @@ footer hr {
 }
 .assets-pagination li {
   display: inline-block;
-  padding: 0px 5.5px;
+  padding: 1px 5px;
+  font-size: 0.8rem;
 }
 .assets-pagination li a {
   text-decoration: none;
   color: #d3d3d3;
 }
 .assets-pagination li.active {
-  border: 1px solid #05ffa1;
+  border: 1px solid #12205d;
 }
 .assets-pagination li.active a {
   color: #fcfcfc;
 }
 
 .pagination-key {
-  font-size: 0.82rem;
+  font-size: 0.74rem;
+}
+
+.filters {
+  padding: 0.5rem;
+  margin-top: 1rem;
+}
+.filters label {
+  font-size: 0.88rem;
+  color: #d3d3d3;
+}
+.filters select {
+  background-color: #030303;
+  color: #bebebe;
+  border: 1px solid #222222;
+  margin: 6px 4px 8px 0px;
+  padding: 4px 6px;
+  width: 100%;
+  font-size: 0.85rem;
+  -moz-appearance: none;
+  /* Firefox */
+  -webkit-appearance: none;
+  /* Safari and Chrome */
+  appearance: none;
+}
+
+.filter-field {
+  width: 100%;
+}
+
+.filter-field[type=text] {
+  margin: 6px 4px 8px 0px;
+  padding: 4px 6px;
+  border-radius: none;
+  font-size: 0.85rem;
+  border: 1px solid #222222;
+  background-color: #030303;
+  color: #bebebe;
+  display: inline-block;
+  width: 91.5%;
+}
+
+.filter-btn {
+  background-color: #030303;
+  border: 1px solid #0e1844;
+  color: #bebebe;
+  border-radius: none;
+  font-size: 0.85rem;
+  margin: 6px 4px 4px 0px;
+  padding: 4px 16px;
 }
 
 /*# sourceMappingURL=main.css.map */
