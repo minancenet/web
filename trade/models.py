@@ -126,12 +126,16 @@ class Asset(db.Model):
     self.buyPrices = pickle.dumps(buyPrices)
 
   @property
-  def calcMargin(self):
+  def printMargin(self):
     margin = 0
     if self.buyPrice != 0:
-      margin = 1 - (self.sellPrice / self.buyPrice)
+      margin = (1 - (self.sellPrice / self.buyPrice))*100
 
     return round(margin, 2)
+
+  @classmethod
+  def calcMargin(self):
+    return (1 - (self.sellPrice / self.buyPrice))*100
 
   @property
   def volumeAbr(self):
@@ -145,6 +149,10 @@ class Asset(db.Model):
       val = format(int(val), ",d")
 
     return val
+
+  @classmethod
+  def calcVolume(self):
+    return self.sellVolume + self.buyVolume
 
   @property
   def movingValue(self):

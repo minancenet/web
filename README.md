@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-Simple data visualization, analysis and simulation for the Hypixel Skyblock bazaar.
+  <i>Simple data visualization, analysis and simulation for the Hypixel Skyblock bazaar.</i>
 </p>
 
 <p align="center"><b>https://minance.net/</b></p>
