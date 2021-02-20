@@ -112,7 +112,7 @@ class Asset(db.Model):
   buyOrders = db.Column(db.PickleType(), nullable=False, default=pickle.dumps([]))
   buyHistoricOrders = db.Column(db.PickleType(), nullable=False, default=pickle.dumps([]))
 
-  margin = db.Column(db.Float(precision=2))
+  margin = db.Column(db.Float(precision=2), nullable=False, default=0.0)
 
   ohlc = db.relationship("Candle", backref="asset", lazy=True)
 

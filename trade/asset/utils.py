@@ -133,9 +133,6 @@ def genXMinOHLC(priceType, minutes, asset):
     timeframe = references[index]
     candleAmount = int(minutes/references[index])
 
-    print(f"Timeframe: {timeframe}")
-    print(f"Candles: {candleAmount}")
-
     allCandles = Candle.query.filter_by(asset=asset).filter_by(priceType=priceType).filter_by(timeframe=timeframe).order_by(Candle.creationDate.desc())
 
     # Add number of candles to candles list
@@ -146,8 +143,6 @@ def genXMinOHLC(priceType, minutes, asset):
         break
       else:
         candles.append(j)
-
-    print(candles)
 
     # Get minimum price from candles
     minimum = candles[0].low
