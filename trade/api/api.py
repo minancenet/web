@@ -99,10 +99,11 @@ def oneMinuteTasks():
     # Adding top current top orders to list of all top orders
     if len(buy) > 0:
       historicBuyOrders.append([datetime.utcnow(), buy[0]["amount"], buy[0]["pricePerUnit"], buy[0]["orders"]])
-      dbAsset.topBuyOrder = buy[0]["pricePerUnit"]
     if len(sell) > 0:
       historicSellOrders.append([datetime.utcnow(), sell[0]["amount"], sell[0]["pricePerUnit"], sell[0]["orders"]])
-      dbAsset.topSellOrder = sell[0]["pricePerUnit"]
+
+    if len(buy) > 0 and buy[0]["pricePerUnit"] != 0:
+      dbAsset.margin = ((1 - (sell[0]["pricePerUnit"] / buy[0]["pricePerUnit"]))*100)
 
     dbAsset.historicBuyOrders = historicBuyOrders
     dbAsset.historicSellOrders = historicSellOrders

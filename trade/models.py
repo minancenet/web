@@ -101,7 +101,6 @@ class Asset(db.Model):
   sellVolume = db.Column(db.Integer(), nullable=False)
   sellMovingWeek = db.Column(db.Integer(), nullable=False)
   sellOrderAmount = db.Column(db.Integer(), nullable=False)
-  topSellOrder = db.Column(db.Integer())
   sellOrders = db.Column(db.PickleType(), nullable=False, default=pickle.dumps([]))
   sellHistoricOrders = db.Column(db.PickleType(), nullable=False, default=pickle.dumps([]))
 
@@ -110,9 +109,10 @@ class Asset(db.Model):
   buyVolume = db.Column(db.Integer(), nullable=False)
   buyMovingWeek = db.Column(db.Integer(), nullable=False)
   buyOrderAmount = db.Column(db.Integer(), nullable=False)
-  topBuyOrder = db.Column(db.Integer())
   buyOrders = db.Column(db.PickleType(), nullable=False, default=pickle.dumps([]))
   buyHistoricOrders = db.Column(db.PickleType(), nullable=False, default=pickle.dumps([]))
+
+  margin = db.Column(db.Float(precision=2))
 
   ohlc = db.relationship("Candle", backref="asset", lazy=True)
 
@@ -127,18 +127,6 @@ class Asset(db.Model):
     buyPrices = pickle.loads(self.buyPrices)
     buyPrices.append([datetime.utcnow(), self.buyPrice])
     self.buyPrices = pickle.dumps(buyPrices)
-
-  @property
-  def printMargin(self):
-    margin = 0
-    if self.topBuyOrder != None:
-      margin = (1 - (self.topSellOrder / self.topBuyOrder))*100
-
-    return round(margin, 2)
-
-  @classmethod
-  def calcMargin(self):
-    pass
 
   @property
   def volumeAbr(self):
