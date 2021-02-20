@@ -1,10 +1,10 @@
 import pickle
 import logging
 
-from trade import app, socketio
+from minance import app, socketio
 from flask import Blueprint, render_template, request, redirect, url_for
 
-from trade.models import Asset
+from minance.models import Asset
 
 main = Blueprint("main", __name__)
 

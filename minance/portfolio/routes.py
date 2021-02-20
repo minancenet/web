@@ -4,9 +4,9 @@ import pickle
 from flask import Blueprint, render_template, flash, redirect, url_for
 from flask_login import login_required, current_user
 
-from trade import db
-from trade.models import Asset, UserAsset
-from trade.portfolio.forms import AddAssetForm
+from minance import db
+from minance.models import Asset, UserAsset
+from minance.portfolio.forms import AddAssetForm
 
 portfolio = Blueprint("portfolio", __name__)
 

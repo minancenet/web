@@ -4,7 +4,7 @@ from datetime import datetime
 
 from flask import Blueprint, render_template, abort, Response
 
-from trade.models import Asset, Candle
+from minance.models import Asset, Candle
 
 api = Blueprint("api", __name__)
 

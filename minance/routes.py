@@ -1,9 +1,9 @@
 from sqlalchemy.sql.expression import func
 
-from trade import app
-from trade.models import Asset
-from trade.auth.forms import RegistrationForm, LoginForm
-from trade.main.forms import SearchForm
+from minance import app
+from minance.models import Asset
+from minance.auth.forms import RegistrationForm, LoginForm
+from minance.main.forms import SearchForm
 
 @app.context_processor
 def processor():

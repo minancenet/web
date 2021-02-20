@@ -1,8 +1,8 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from flask_login import login_user, logout_user, current_user
 
-from trade import db, bcrypt
-from trade.models import User
+from minance import db, bcrypt
+from minance.models import User
 
 auth = Blueprint("auth", __name__)
 

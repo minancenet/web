@@ -3,9 +3,9 @@ from datetime import datetime
 
 from flask import Blueprint, render_template, abort, Response, session, request
 
-from trade.models import Asset
-from trade.asset.forms import TrackForm
-from trade.asset.utils import findProfitMargin
+from minance.models import Asset
+from minance.asset.forms import TrackForm
+from minance.asset.utils import findProfitMargin
 
 asset = Blueprint("asset", __name__)
 

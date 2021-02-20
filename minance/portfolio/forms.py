@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired, ValidationError
 
-from trade.models import Asset
+from minance.models import Asset
 
 class AddAssetForm(FlaskForm):
   asset_name = StringField("Asset", validators=[DataRequired()])

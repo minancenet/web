@@ -6,3 +6,4 @@ venv/
 API_KEY
 
 logs/
+tests/

@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, Length, ValidationError
 
-from trade.models import User
+from minance.models import User
 
 class RegistrationForm(FlaskForm):
   username = StringField("Username", validators=[DataRequired(), Length(min=4, max=16)])

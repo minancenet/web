@@ -1,6 +1,6 @@
 import psycopg2
 
-from trade import db
+from minance import db
 
 conn = psycopg2.connect(
   database="postgres", user="postgres", password="jmUQinWi2eA9LzhW", host="database-1.cb7zx4b6eekp.us-east-1.rds.amazonaws.com", port="5432"

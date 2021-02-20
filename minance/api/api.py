@@ -5,9 +5,9 @@ import pickle
 
 from datetime import datetime
 
-from trade import app, db
-from trade.models import Asset
-from trade.main.notifier import makeNotification
+from minance import app, db
+from minance.models import Asset
+from minance.main.notifier import makeNotification
 
 API_URI = "https://api.hypixel.net/"
 API_KEY = app.config.get("API_KEY")
