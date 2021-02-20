@@ -9,7 +9,7 @@ class Config(object):
 
   # Used for enabling or disabling price and candle updates
   # Used for decreasing required processing power of application
-  UPDATE_CANDLES = False
+  UPDATE_CANDLES = True
 
   with open("trade/API_KEY", "r") as f:
     API_KEY = f.read()

@@ -60,7 +60,7 @@
           <a href="#"><td class="letter-td">{{ asset.name.title().replace("_", " ") }}</td></a>
           <td class="number-td">{{ round(asset.sellPrice, 2) }}</td>
           <td class="number-td">{{ round(asset.buyPrice, 2) }}</td>
-          <td class="number-td">{{ asset.printMargin }}%</td>
+          <td class="number-td">{{ round(asset.margin, 2) }}%</td>
           <td class="number-td">{{ asset.volumeAbr }}</td>
           {% if asset.movingValue > 0 %}
             <td class="number-td green">{{ asset.movingValue }}%</td>

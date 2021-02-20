@@ -44,9 +44,9 @@ def filterAssets():
 
   elif mainFilter == "margin":
     if orderBy == "asc":
-      assets = Asset.query.filter(Asset.buyPrice!=0).filter(Asset.name.like(searchText)).order_by(Asset.calcMargin().asc())
+      assets = Asset.query.filter(Asset.buyPrice!=0).filter(Asset.name.like(searchText)).order_by(Asset.margin.asc())
     else:
-      assets = Asset.query.filter(Asset.buyPrice!=0).filter(Asset.name.like(searchText)).order_by(Asset.calcMargin().desc())
+      assets = Asset.query.filter(Asset.buyPrice!=0).filter(Asset.name.like(searchText)).order_by(Asset.margin.desc())
 
   else:
     assets = Asset.query.filter(Asset.name.like(searchText)).order_by(Asset.name.asc())
@@ -69,4 +69,4 @@ def specific_asset(asset_name):
   if form.reset.data and form.validate():
     session.pop("margin")
 
-  return render_template("asset/asset.html", asset=asset, form=form, title=asset.name, pickle=pickle)
+  return render_template("asset/asset.html", asset=asset, form=form, title=asset.prettyName, pickle=pickle)
