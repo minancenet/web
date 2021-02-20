@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang=”en-US”>
   <head>
     <link rel="stylesheet" text="text/css" href="{{ url_for('static', filename='styles/error.css') }}" />
     <link rel="stylesheet" text="text/css" href="{{ url_for('static', filename='styles/fonts.css') }}" />
@@ -8,7 +8,7 @@
   </head>
   <body>
     <div class="error-content">
-      <img src="{{ url_for('static', filename='img/error.svg') }}" class="error-img"/>
+      <img src="{{ url_for('static', filename='img/error.svg') }}" class="error-img" alt="error image"/>
       <h1><a href="{{ url_for('main.home') }}">Minance</a></h1>
       <p>403: Forbidden</p>
     </div>
