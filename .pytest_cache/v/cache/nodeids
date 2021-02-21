@@ -1,0 +1,4 @@
+[
+  "tests/functional/test_index.py::test_index_page",
+  "tests/unit/test_models.py::test_new_asset"
+]
