@@ -3,11 +3,11 @@
 <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
 <script src="{{ url_for('static', filename='js/charts.js') }}"></script>
 
-<div class="tabs">
-  <button class="tablink" onclick="openTab(event, 'sell')">Sell Candlestick Chart</button>
-  <button class="tablink" onclick="openTab(event, 'buy')">Buy Candlestick Chart</button>
+<div class="tabs-alt tabs">
+  <button class="tablink-alt tablink" onclick="openTab(event, 'sell')">Sell Candlestick Chart</button>
+  <button class="tablink-alt tablink" onclick="openTab(event, 'buy')">Buy Candlestick Chart</button>
   <div class="outerdrop dropdown dropbtn" onclick="dropdown('timeFrameDropdown')">
-    <button class="tablink dropbtn"><span class="dropbtn" id="timeFrameDisplay" style="font-family: 'Iosevka'; padding-right: 0.2rem;">5M</span><i class="fas fa-chevron-down dropbtn" style="font-size: 0.6rem;"></i></button>  
+    <button class="tablink-alt tablink dropbtn"><span class="dropbtn" id="timeFrameDisplay" style="font-family: 'Iosevka'; padding-right: 0.2rem;">5M</span><i class="fas fa-chevron-down dropbtn" style="font-size: 0.6rem;"></i></button>  
     <div id="timeFrameDropdown" class="dropdown-content alt">
       <ul>
         <li onclick="changeTimeFrame(1, '1M')">1M</li>
@@ -30,10 +30,10 @@
 
 <div class="row border-bottom">
   <div class="col-6 border-right">
-    <div id="sell" class="tabcontent" style="display: block;">
+    <div id="sell" class="tabcontent tabcontent-alt" style="display: block;">
       <div id="sellChart"></div>
     </div>
-    <div id="buy" class="tabcontent">
+    <div id="buy" class="tabcontent tabcontent-alt">
       <div id="buyChart"></div>
     </div>
   </div>

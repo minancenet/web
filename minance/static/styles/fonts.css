@@ -14,6 +14,11 @@
 }
 
 @font-face {
+  font-family: "DM Sans Medium";
+  src: url("../fonts/DM_Sans/DMSans-Medium.ttf");
+}
+
+@font-face {
   font-family: "DM Sans Bold";
   src: url("../fonts/DM_Sans/DMSans-Bold.ttf");
 }

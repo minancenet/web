@@ -1,20 +1,59 @@
 {% extends "layouts/layout.html" %}
 {% block content %}
 <div class="about-section">
-  <div class="row">
+  <div class="row" style="display: flex;">
     <div class="col-3">
-      <div class="about-nav">
-        <ul>
-          <li>About</li>
-          <li>Guides</li>
-          <li>Terms of Service</li>
-          <li>Contact</li>
-        </ul>  
+      <div class="about-nav-outer">
+        <div class="about-nav">
+          <div class="tabs">
+            <ul>
+              <li class="tablink" onclick="openTab(event, 'about')">About</li>
+              <li class="tablink" onclick="openTab(event, 'guides')">Guides</li>
+              <li class="tablink" onclick="openTab(event, 'tos')">Terms of Service</li>
+              <li class="tablink" onclick="openTab(event, 'contact')">Contact</li>
+              <li class="tablink" onclick="openTab(event, 'support')">Support</li>
+            </ul>  
+          </div>
+        </div>
       </div>
     </div>
     <div class="col-9">
       <div class="about-content">
-        <h1>About Minance</h1>
+        <div id="about" class="tabcontent">
+          <h2>About Minance</h2>
+          <br>
+          <p>Minance was created because we wanted to fill the in the missing piece in all Hypixel Skyblock bazaar tracking websites out there. No other site provides the functionality Minance provides. Here's a list of the current features and features that are soon to come.</p>
+          <h4 style="margin-top: 1rem;">Features</h4>
+          <ul>
+            <li>Real-time, accurate bazaar item prices. Updated every 15 seconds.</li>
+            <li>A wide array of technical analysis tools.</li>
+            <li>Advanced filters for querying bazaar data.</li>
+            <li>Crash and rally notifications live on-site.</li>
+            <li>All sensitive user data is encrypted.</li>
+          </ul>
+          <h4>In the Works</h4>
+          <ul>
+            <li>Personal user accounts for persistent data tracking.</li>
+            <ul>
+              <li>Read more <a href="#">here</a>.</li> <!-- Link to github issue with data on user accounts -->
+            </ul>
+            <li>Live chat for conversing on the hottest 🔥 trades.</li>
+          </ul>
+          <h4 style="margin-bottom: 0.5rem;">Want to Help?</h4>
+          <p>Whether you've got programming experience, or just want to report some issues or leave feedback. Check out our public <a href="#">github</a> and leave an issue there. For contributing make sure to check out the contributing docs. Head to the <a href="#">discord</a> if you have any specific questions.</p>  
+        </div>
+        <div id="guides" class="tabcontent">
+          <h2>Guides</h2>
+        </div>
+        <div id="tos" class="tabcontent">
+          <h2>Terms of Service</h2>
+        </div>
+        <div id="contact" class="tabcontent">
+          <h2>Contact</h2>
+        </div>
+        <div id="support" class="tabcontent">
+          <h2>Support</h2>
+        </div>
       </div>
     </div>
   </div>

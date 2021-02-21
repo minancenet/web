@@ -10,6 +10,8 @@ function openTab(evt, tabName) {
   }
   document.getElementById(tabName).style.display = "block";
   document.getElementById(tabName).style.maxWidth = "100%";
-  document.getElementById(tabName).style.borderRight = "1px solid rgb(46, 46, 46)";;
+  if (tabName == "sell" || tabName == "buy") {
+    document.getElementById(tabName).style.borderRight = "1px solid rgb(46, 46, 46)";;
+  }
   evt.currentTarget.className += " active";
 }

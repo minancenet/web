@@ -54,7 +54,6 @@ function createChart(chartType, timeFrame, assetName) {
         autorange: true, 
         type: 'linear'
       },
-      width: 600,
       plot_bgcolor: "rgb(0,0,0)",
       paper_bgcolor: "rgb(0,0,0)"
     };
