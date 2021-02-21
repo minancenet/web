@@ -14,6 +14,18 @@ def home():
   assets = Asset.query.order_by(Asset.sellPrice.desc()).limit(24)
   return render_template("main/index.html", assets=assets, active_page="index", pickle=pickle, enumerate=enumerate, round=round, str=str, title="Home")
 
+@main.route("/about")
+def about():
+  return render_template("main/about.html", active_page="about", title="About")
+
+@main.route("/tos")
+def tos():
+  return render_template("main/tos.html", title="TOS")
+
+@main.route("/guides")
+def guides():
+  return render_template("main/guides.html", title="Guides")
+
 @main.route("/search", methods=["POST"])
 def search():
   next_page = request.args.get("next")

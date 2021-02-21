@@ -1,15 +1,3 @@
-html,
-body {
-  margin: 0;
-  padding: 0;
-  color: #fff;
-  background-color: #0d0d0d;
-  font-family: "DM Sans";
-  overflow-x: hidden;
-  background-color: #000000;
-  scroll-behavior: smooth;
-}
-
 .row:after {
   display: block;
   clear: both;
@@ -77,6 +65,18 @@ body {
 
 .col-12 {
   width: 100%;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  background-color: #0d0d0d;
+  font-family: "DM Sans";
+  overflow-x: hidden;
+  background-color: #000000;
+  scroll-behavior: smooth;
 }
 
 h1,
@@ -1013,6 +1013,18 @@ footer hr {
   font-size: 0.85rem;
   margin: 6px 4px 4px 0px;
   padding: 4px 16px;
+}
+
+.about-section {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid #222222;
+}
+
+.about-nav {
+  background-color: #0a0a0a;
+  padding: 1rem;
 }
 
 /*# sourceMappingURL=main.css.map */

@@ -10,13 +10,14 @@
               <ul>
                 <li><a href="{{ url_for('main.home') }}">Home</a></li>
                 <li><a href="{{ url_for('asset.assets') }}">Assets</a></li>
+                <li><a href="{{ url_for('main.about') }}">About</a></li>
                 <!-- <li><a href="{{ url_for('portfolio.portfolio_dash') }}">Portfolio</a></li> -->
               </ul>
             </div>
             <div class="col-6"  style="border-left: 1px solid #222222;">
               <h5>What is Minance?</h5>
-              <p>Cryptowatch is a real-time crypto markets platform.<br><br>
-              We connect you to the global crypto markets with tools that enable research, analysis, monitoring and order execution.</p>
+              <p>Minance is a real-time Hypixel Skyblock bazaar tracker.<br><br>
+              Minance monitors every item on the bazaar with updates every fifteen seconds, Minance won't miss a crash or rally.</p>
             </div>
           </div>
         </div>
@@ -33,6 +34,7 @@
     <ul class="navbar">
       <li class="nav-item {{ 'active' if active_page == 'index' else '' }}"><a href="{{ url_for('main.home') }}">Home</a></li>
       <li class="nav-item {{ 'active' if active_page == 'assets' else '' }}"><a href="{{ url_for('asset.assets') }}">Assets</a></li>
+      <li class="nav-item {{ 'active' if active_page == 'about' else '' }}"><a href="{{ url_for('main.about') }}">About</a></li>
       <!-- <li class="nav-item {{ 'active' if active_page == 'portfolio' else '' }}"><a href="{{ url_for('portfolio.portfolio_dash') }}">Simulation</a></li> -->
     </ul>
   </div>
