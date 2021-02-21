@@ -30,14 +30,22 @@ def test_client():
     with flask_app.app_context():
       yield test_client
 
+@pytest.fixture(scope="module")
+def init_database(test_client):
+  db.create_all()
+
+  yield
+
+  db.drop_all()
+
 # @pytest.fixture(scope="module")
 # def init_database(test_client):
-  # Launch a new PostgreSQL server
-  # with testing.postgresql.Postgresql(name="minancedb", port=5432, base_dir="/tmp/test_db") as postgresql:
-    # conn = psycopg2.connect(**postgresql.dsn())
-    # conn.autocommit = True
-    # cursor = conn.cursor()
-    # cursor.execute("CREATE DATABASE minancedb")
-    # db.create_all()
+#   # Launch a new PostgreSQL server
+#   with testing.postgresql.Postgresql(name="minancedb", port=5432, base_dir="/tmp/test_db") as postgresql:
+#     conn = psycopg2.connect(**postgresql.dsn())
+#     conn.autocommit = True
+#     cursor = conn.cursor()
+#     # cursor.execute("CREATE DATABASE minancedb")
+#     db.create_all()
 
-    # yield
+#     yield

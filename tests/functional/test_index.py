@@ -1,6 +1,6 @@
 from minance import create_app
 
-def test_index_page(test_client):
+def test_index_page(test_client, init_database):
   """
   GIVEN a Flask application configured for testing
   WHEN the '/' page is requested (GET)
