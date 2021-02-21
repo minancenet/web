@@ -2,7 +2,7 @@ import pickle
 import logging
 from datetime import datetime, timedelta
 
-from minance import app, db
+from minance import db
 from minance.models import Asset, Candle
 
 def prepXMinOHLC(minutes):

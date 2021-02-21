@@ -1,4 +1,3 @@
-from minance import app
+from minance import create_app
 
-if __name__ == "__main__":
-  app.run(debug=app.config.get("DEBUG"))
+app = create_app("flask.cfg")
