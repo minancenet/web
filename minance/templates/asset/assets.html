@@ -62,21 +62,37 @@
           <td class="number-td">{{ round(asset.buyPrice, 2) }}</td>
           <td class="number-td">{{ round(asset.margin, 2) }}%</td>
           <td class="number-td">{{ asset.volumeAbr }}</td>
-          {% if asset.movingValue > 0 %}
-            <td class="number-td green">{{ asset.movingValue }}%</td>
-            <td class="number-td green">{{ asset.movingValue }}%</td>
-            <td class="number-td green">{{ asset.movingValue }}%</td>
-            <td class="number-td green">{{ asset.movingValue }}%</td>
-          {% elif asset.movingValue < 0 %}
-            <td class="number-td red">{{ asset.movingValue }}%</td>
-            <td class="number-td red">{{ asset.movingValue }}%</td>
-            <td class="number-td red">{{ asset.movingValue }}%</td>
-            <td class="number-td red">{{ asset.movingValue }}%</td>
+
+          {% if asset.change30M > 0 %}
+            <td class="number-td green">{{ asset.change30M }}%</td>
+          {% elif asset.change30M < 0 %}
+            <td class="number-td red">{{ asset.change30M }}%</td>
           {% else %}
-            <td class="number-td grey">{{ asset.movingValue }}%</td>
-            <td class="number-td grey">{{ asset.movingValue }}%</td>
-            <td class="number-td grey">{{ asset.movingValue }}%</td>
-            <td class="number-td grey">{{ asset.movingValue }}%</td>
+            <td class="number-td grey">{{ (asset.change30M|string).replace("-", "") }}%</td>
+          {% endif %}
+
+          {% if asset.change24H > 0 %}
+            <td class="number-td green">{{ asset.change24H }}%</td>
+          {% elif asset.change24H < 0 %}
+            <td class="number-td red">{{ asset.change24H }}%</td>
+          {% else %}
+            <td class="number-td grey">{{ (asset.change24H|string).replace("-", "") }}%</td>
+          {% endif %}
+
+          {% if asset.change7D > 0 %}
+            <td class="number-td green">{{ asset.change7D }}%</td>
+          {% elif asset.change7D < 0 %}
+            <td class="number-td red">{{ asset.change7D }}%</td>
+          {% else %}
+            <td class="number-td grey">{{ (asset.change7D|string).replace("-", "") }}%</td>
+          {% endif %}
+
+          {% if asset.change30D > 0 %}
+            <td class="number-td green">{{ asset.change30D }}%</td>
+          {% elif asset.change30D < 0 %}
+            <td class="number-td red">{{ asset.change30D }}%</td>
+          {% else %}
+            <td class="number-td grey">{{ (asset.change30D|string).replace("-", "") }}%</td>
           {% endif %}
         </tr>
       {% endfor %}

@@ -6,6 +6,5 @@ venv/
 API_KEY
 
 logs/
-tests/
 
 .pytest_cache/

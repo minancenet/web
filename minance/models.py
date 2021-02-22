@@ -157,3 +157,81 @@ class Asset(db.Model):
   @property
   def prettyName(self):
     return self.name.title().replace("_", " ")
+
+  @property
+  def change30M(self):
+    sell = pickle.loads(self.sellPrices)
+    buy = pickle.loads(self.buyPrices)
+
+    perChange = 0
+
+    sellChange = 0
+    if 0 <= 120 < len(sell):
+      if sell[-120][1] != 0:
+        sellChange = (sell[-120][1] - sell[-1][1]) / sell[-120][1]
+
+    buyChange = 0
+    if 0 <= 120 < len(buy):
+      if buy[-120][1] != 0:
+        buyChange = (buy[-120][1] - buy[-1][1]) / buy[-120][1]
+
+    perChange = round((buyChange + sellChange) / 2, 2)
+
+    return perChange
+
+  @property
+  def change24H(self):
+    sell = pickle.loads(self.sellPrices)
+    buy = pickle.loads(self.buyPrices)
+
+    perChange = 0
+
+    sellChange = 0
+    if 0 <= 5760 < len(sell):
+      sellChange = (sell[-5760][1] - sell[-1][1]) / sell[-5760][1]
+
+    buyChange = 0
+    if 0 <= 5760 < len(buy):
+      buyChange = (buy[-5760][1] - buy[-1][1]) / buy[-5760][1]
+
+    perChange = round((buyChange + sellChange) / 2, 2)
+
+    return perChange
+
+  @property
+  def change7D(self):
+    sell = pickle.loads(self.sellPrices)
+    buy = pickle.loads(self.buyPrices)
+
+    perChange = 0
+
+    sellChange = 0
+    if 0 <= 40320 < len(sell):
+      sellChange = (sell[-40320][1] - sell[-1][1]) / sell[-40320][1]
+
+    buyChange = 0
+    if 0 <= 40320 < len(buy):
+      buyChange = (buy[-40320][1] - buy[-1][1]) / buy[-40320][1]
+
+    perChange = round((buyChange + sellChange) / 2, 2)
+
+    return perChange
+
+  @property
+  def change30D(self):
+    sell = pickle.loads(self.sellPrices)
+    buy = pickle.loads(self.buyPrices)
+
+    perChange = 0
+
+    sellChange = 0
+    if 0 <= 175320 < len(sell):
+      sellChange = (sell[-175320][1] - sell[-1][1]) / sell[-175320][1]
+
+    buyChange = 0
+    if 0 <= 175320 < len(buy):
+      buyChange = (buy[-175320][1] - buy[-1][1]) / buy[-175320][1]
+
+    perChange = round((buyChange + sellChange) / 2, 2)
+
+    return perChange

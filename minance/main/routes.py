@@ -47,9 +47,8 @@ def search():
 
   if request.method == "POST":
     query = request.form["query"]
-    query = query.replace(" ", "_")
-    asset = Asset.query.filter(Asset.name.ilike(query)).first()
+    asset = Asset.query.filter(Asset.name.ilike(query.replace(" ", "_").upper())).first()
     if asset:
       return redirect(url_for("asset.specific_asset", asset_name=asset.name))
     else:
-      return redirect (next_page) if next_page else redirect(url_for("main.home"))
+      return redirect(url_for("asset.filterAssets", search=query))
