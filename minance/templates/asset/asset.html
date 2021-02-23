@@ -3,236 +3,149 @@
 <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
 <script src="{{ url_for('static', filename='js/charts.js') }}"></script>
 
-<div class="tabs-alt tabs">
-  <button class="tablink-alt tablink" onclick="openTab(event, 'sell')">Sell Candlestick Chart</button>
-  <button class="tablink-alt tablink" onclick="openTab(event, 'buy')">Buy Candlestick Chart</button>
-  <div class="outerdrop dropdown dropbtn" onclick="dropdown('timeFrameDropdown')">
-    <button class="tablink-alt tablink dropbtn"><span class="dropbtn" id="timeFrameDisplay" style="font-family: 'Iosevka'; padding-right: 0.2rem;">5M</span><i class="fas fa-chevron-down dropbtn" style="font-size: 0.6rem;"></i></button>  
-    <div id="timeFrameDropdown" class="dropdown-content alt">
-      <ul>
-        <li onclick="changeTimeFrame(1, '1M')">1M</li>
-        <li onclick="changeTimeFrame(3, '3M')">3M</li>
-        <li onclick="changeTimeFrame(5, '5M')">5M</li>
-        <li onclick="changeTimeFrame(15, '15M')">15M</li>
-        <li onclick="changeTimeFrame(30, '30M')">30M</li>
-        <li onclick="changeTimeFrame(60, '1H')">1H</li>
-        <li onclick="changeTimeFrame(120, '2H')">2H</li>
-        <li onclick="changeTimeFrame(240,'4H')">4H</li>
-        <li onclick="changeTimeFrame(360, '6H')">6H</li>
-        <li onclick="changeTimeFrame(720, '12H')">12H</li>
-        <li onclick="changeTimeFrame(1440, '1D')">1D</li>
-        <li onclick="changeTimeFrame(4320, '3D')">3D</li>
-        <li onclick="changeTimeFrame(10080, '1W')">1W</li>
-      </ul>
+<div class="row">
+  <div class="col-6 no-gutter">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-button tablink" onclick="openTab(event, 'sell')">Sell Candlestick Chart</div>
+        <div class="section-button tablink" onclick="openTab(event, 'buy')">Buy Candlestick Chart</div>
+        <div class="section-button tablink" onclick="openTab(event, 'topOrders')">Top Orders Chart</div>
+        <div class="section-button outerdrop dropdown dropbtn" onclick="dropdown('timeFrameDropdown')">
+          <div class="dropbtn">
+            <span class="dropbtn" id="timeFrameDisplay">
+              5M
+            </span>
+            <i class="fas fa-chevron-down dropbtn"></i>
+          </div>  
+          <div id="timeFrameDropdown" class="dropdown-content alt">
+            <ul>
+              <li onclick="changeTimeFrame(1, '1M')">1M</li>
+              <li onclick="changeTimeFrame(3, '3M')">3M</li>
+              <li onclick="changeTimeFrame(5, '5M')">5M</li>
+              <li onclick="changeTimeFrame(15, '15M')">15M</li>
+              <li onclick="changeTimeFrame(30, '30M')">30M</li>
+              <li onclick="changeTimeFrame(60, '1H')">1H</li>
+              <li onclick="changeTimeFrame(120, '2H')">2H</li>
+              <li onclick="changeTimeFrame(240,'4H')">4H</li>
+              <li onclick="changeTimeFrame(360, '6H')">6H</li>
+              <li onclick="changeTimeFrame(720, '12H')">12H</li>
+              <li onclick="changeTimeFrame(1440, '1D')">1D</li>
+              <li onclick="changeTimeFrame(4320, '3D')">3D</li>
+              <li onclick="changeTimeFrame(10080, '1W')">1W</li>
+            </ul>
+          </div>
+        </div>  
+      </div>
+      <div class="section-body">
+        <div id="sell" class="tabcontent tabcontent-alt" style="display: block;">
+          <div id="sellChart"></div>
+        </div>
+        <div id="buy" class="tabcontent tabcontent-alt">
+          <div id="buyChart"></div>
+        </div>
+        <div id="topOrders" class="tabcontent tabcontent-alt">
+          <div id="lineChart"></div>
+        </div>    
+      </div>
     </div>
   </div>
-</div>
-
-<div class="row border-bottom">
-  <div class="col-6 border-right">
-    <div id="sell" class="tabcontent tabcontent-alt" style="display: block;">
-      <div id="sellChart"></div>
-    </div>
-    <div id="buy" class="tabcontent tabcontent-alt">
-      <div id="buyChart"></div>
-    </div>
-  </div>
-  <div class="col-6">
-    <div id="lineChart"></div>
-  </div>
-</div>
-<div class="row border-bottom" style="margin-top: 0;">
-  <div class="stats-section">
-    <div class="row" style="display: flex;">
-      <div class="col-4 border-right">
-        <h5 class="section-header">Latest Orders</h5>
+  <div class="col-3 no-gutter">
+    <div class="section">
+      <div class="section-header">
+        <h5 class="section-title">Statistics</h5>
+        <h5 class="section-alt"><a href="#">Buy</a> | <a href="#">Sell</a></h5>
+      </div>
+      <div class="section-body w-pad statistics">
         <div class="row">
           <div class="col-6">
-            <h5 class="section-subheader">Ask</h5>
-            <table class="assets-table alt">
-              <tr>
-                <th class="letter-td">Unit Price</th>
-                <th class="number-td">Amount</th>
-                <th class="number-td">Orders</th>
-              </tr>
-              {% for order in pickle.loads(asset.sellOrders) %}
-                <tr>
-                  <a href="#"><td class="letter-td">{{ order[1] }}</td></a>
-                  <td class="number-td">{{ order[0] }}</td>
-                  <td class="number-td">{{ order[2] }}</td>
-                </tr>
-              {% endfor %}
-            </table>            
+            <p>Margin: <span>45.5%</span></p>
+            <p>Total Volume: <span>45.5%</span></p>
+            <p>Sell Movement: <span>45.5%</span></p>
+            <p>Buy Movement: <span>45.5%</span></p>
           </div>
           <div class="col-6">
-            <h5 class="section-subheader">Bid</h5>
-            <table class="assets-table alt">
-              <tr>
-                <th class="letter-td">Unit Price</th>
-                <th class="number-td">Amount</th>
-                <th class="number-td">Orders</th>
-              </tr>
-              {% for order in pickle.loads(asset.buyOrders) %}
-                <tr>
-                  <a href="#"><td class="letter-td">{{ order[1] }}</td></a>
-                  <td class="number-td">{{ order[0] }}</td>
-                  <td class="number-td">{{ order[2] }}</td>
-                </tr>
-              {% endfor %}
-            </table>            
+            <p>BFPM: <span>45.5%</span></p>
+            <p>Total Volume: <span>45.5%</span></p>
+            <p>Margin: <span>45.5%</span></p>
+            <p>Buy Movement: <span>45.5%</span></p>
           </div>
         </div>
       </div>
-      <div class="col-4 border-right">
-        <h5 class="section-header">Statistics</h5>
-        <div class="data-table">
-          <div class="entry">
-            <span class="entry-label">Sell Volume:</span> <span class="entry-data">{{ asset.sellVolume }}</span>
+    </div>
+    <div class="section">
+      <div class="section-body">
+        <div class="row">
+          <div class="col-6 no-gutter w-r-border">
+            <span class="askBid-label">Buy</span>
+            <div class="ask"></div>
+            <span class="ask-label">Ask</span>
           </div>
-          <div class="entry">
-            <span class="entry-label">Sell Orders:</span> <span class="entry-data">{{ asset.sellOrderAmount }}</span>
-          </div>
-          <div class="entry">
-            <span class="entry-label">Sell Moving Week:</span> <span class="entry-data">{{ asset.sellMovingWeek }}</span>
-          </div>
-        </div>
-        <div class="data-table">
-          <div class="entry">
-            <span class="entry-label">Buy Volume:</span> <span class="entry-data">{{ asset.buyVolume }}</span>
-          </div>
-          <div class="entry">
-            <span class="entry-label">Buy Orders:</span> <span class="entry-data">{{ asset.buyOrderAmount }}</span>
-          </div>
-          <div class="entry">
-            <span class="entry-label">Buy Moving Week:</span> <span class="entry-data">{{ asset.buyMovingWeek }}</span>
+          <div class="col-6 no-gutter">
+            <div class="bid"></div>
           </div>
         </div>
       </div>
-      <div class="col-4">
-        <h5 class="section-header">Trading</h5>
+    </div>
+  </div>
+  <div class="col-3 no-gutter">
+    <div class="section">
+      <div class="section-header">
+        <h5 class="section-title">Trading</h5>
+      </div>
+      <div class="section-body w-pad">
         <form method="POST" action="">
           {{ form.hidden_tag() }}
           <div class="form-group">
             <div class="form-label">
-              <p>Purchase Time</p>
+              <p>Action</p>
             </div>
             <div class="form-field">
-              {% if form.purchaseDate.errors %}
-              {{ form.purchaseDate(class="invalid") }}
-              <div class="invalid-feedback">
-                  {% for error in form.purchaseDate.errors %}
-                    <span>{{ error }}</span>
-                  {% endfor %}
-              </div>
-            {% else %}
-              {{ form.purchaseDate(class="") }}
-            {% endif %}
-            {% if form.purchaseTime.errors %}
-              {{ form.purchaseTime(class="invalid") }}
-              <div class="invalid-feedback">
-                  {% for error in form.purchaseTime.errors %}
-                    <span>{{ error }}</span>
-                  {% endfor %}
-              </div>
-            {% else %}
-              {{ form.purchaseTime(class="") }}
-            {% endif %}  
+              <button class="form-btn active">Buy</button>
+              <button class="form-btn">Sell</button>
             </div>
           </div>
           <div class="clear"></div>
           <div class="form-group">
             <div class="form-label">
-              <p>Sell Time</p>
+              <p>Type</p>
             </div>
             <div class="form-field">
-              {% if form.sellDate.errors %}
-              {{ form.sellDate(class="invalid") }}
-              <div class="invalid-feedback">
-                  {% for error in form.sellDate.errors %}
-                    <span>{{ error }}</span>
-                  {% endfor %}
-              </div>
-            {% else %}
-              {{ form.sellDate(class="") }}
-            {% endif %}
-            {% if form.sellTime.errors %}
-              {{ form.sellTime(class="invalid") }}
-              <div class="invalid-feedback">
-                  {% for error in form.sellTime.errors %}
-                    <span>{{ error }}</span>
-                  {% endfor %}
-              </div>
-            {% else %}
-              {{ form.sellTime(class="") }}
-            {% endif %}  
+              <select>
+                <option>Top Order</option>
+                <option>Top Order +0.1</option>
+                <option>Spread (5%)</option>
+              </select>
             </div>
           </div>
           <div class="clear"></div>
           <div class="form-group">
             <div class="form-label">
-              <p>Purchase Type</p>
+              <p>Time</p>
             </div>
             <div class="form-field">
-              {% if form.purchaseType.errors %}
-              {{ form.purchaseType(class="invalid") }}
-              <div class="invalid-feedback">
-                  {% for error in form.purchaseType.errors %}
-                    <span>{{ error }}</span>
-                  {% endfor %}
-              </div>
-            {% else %}
-              {{ form.purchaseType(class="") }}
-            {% endif %}
+              <input type="text" class="field-half">
+              <input type="text" class="field-half">
             </div>
           </div>
           <div class="clear"></div>
           <div class="form-group">
             <div class="form-label">
-              <p>Sell Type</p>
+              <p>Quantity</p>
             </div>
             <div class="form-field">
-              {% if form.sellType.errors %}
-              {{ form.sellType(class="invalid") }}
-              <div class="invalid-feedback">
-                  {% for error in form.sellType.errors %}
-                    <span>{{ error }}</span>
-                  {% endfor %}
-              </div>
-            {% else %}
-              {{ form.sellType(class="") }}
-            {% endif %}  
+              <input type="text">
             </div>
           </div>
-          <div class="clear">
-          <div class="form-group" style="margin-top: 1rem;">
-            {% if session["margin"] %}
-              <div class="trade-output">
-                <p>{{ session["margin"] }}</p>
-              </div>
-            {% endif %}
+          <div class="clear"></div>
+          <div class="form-group">
+            <div class="form-label">
+              <p>Total</p>
+            </div>
+            <div class="form-field">
+              <input type="text">
+            </div>
           </div>
-          <div class="form-group form-buttons">
-            {% if form.reset.errors %}
-              {{ form.reset(class="invalid") }}
-              <div class="invalid-feedback">
-                  {% for error in form.reset.errors %}
-                    <span>{{ error }}</span>
-                  {% endfor %}
-              </div>
-            {% else %}
-              {{ form.reset(class="reset-btn") }}
-            {% endif %}
-            {% if form.check.errors %}
-              {{ form.check(class="invalid") }}
-              <div class="invalid-feedback">
-                  {% for error in form.check.errors %}
-                    <span>{{ error }}</span>
-                  {% endfor %}
-              </div>
-            {% else %}
-              {{ form.check(class="check-btn") }}
-            {% endif %}
-          </div>
+          <div class="clear"></div>
         </form>
       </div>
     </div>

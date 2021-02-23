@@ -25,6 +25,9 @@ function createChart(chartType, timeFrame, assetName) {
       low: l,
       close: c, 
     
+      increasing: {line: {color: '#05FFA1'}}, 
+      decreasing: {line: {color: '#333333'}},
+
       line: {color: 'rgba(31,119,180,1)'}, 
   
       type: 'candlestick', 
@@ -90,7 +93,7 @@ function createBuySellChart(assetName) {
       y: sell,
       name: "Sell Price",
     
-      line: {color: 'rgba(31,119,180,1)'}, 
+      line: {color: '#05DB89'}, 
       fill: 'tozeroy',
 
       type: 'scatter', 
@@ -137,6 +140,10 @@ function createBuySellChart(assetName) {
       paper_bgcolor: "rgb(0,0,0)"
     };
 
-    Plotly.newPlot('lineChart', data, layout);
+    var config = {
+      responsive: true
+    }
+  
+    Plotly.newPlot('lineChart', data, layout, config);
   })
 }

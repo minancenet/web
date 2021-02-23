@@ -1,18 +1,18 @@
-<div id="myModal" class="modal">
+<div id="authModal" class="modal">
   <!-- Modal content -->
   <div class="modal-content">   
-    <span class="close">&times;</span>
+    <span onclick="closeModal('authModal')" class="close">&times;</span>
     <div class="modal-content-inner">
       <div class="row auth-headers">
         <div class="col-6">
-          <h5 onclick="openCity(event, 'register')" class="tablinks active">Create Account</h5>
+          <h5 onclick="openAuthTab(event, 'register')" class="auth-tablinks active">Create Account</h5>
         </div>
         <div class="col-6">
-          <h5 onclick="openCity(event, 'login')" class="tablinks">Sign in</h5>
+          <h5 onclick="openAuthTab(event, 'login')" class="auth-tablinks">Sign in</h5>
         </div>
       </div>  
-      <div id="register" class="tabcontent" style="display: block;">
-        <hr style="width: 80%;">
+      <div id="register" class="auth-tabcontent" style="display: block;">
+        <hr style="width: 80%; margin-bottom: 1rem;">
         <p class="auth-text">Create an account to gain access to dozens of free features</p>
         <form method="POST" action="{{ url_for('auth.register') }}" class="auth-form">
           {{ registrationForm.hidden_tag() }}
@@ -62,7 +62,7 @@
         </form>
       </div>
       
-      <div id="login" class="tabcontent" style="display: none;">
+      <div id="login" class="auth-tabcontent" style="display: none;">
         <hr style="width: 80%;">
         <form method="POST" action="{{ url_for('auth.login') }}" class="auth-form">
           {{ loginForm.hidden_tag() }}

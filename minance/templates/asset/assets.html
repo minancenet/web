@@ -61,38 +61,38 @@
           <td class="number-td">{{ round(asset.sellPrice, 2) }}</td>
           <td class="number-td">{{ round(asset.buyPrice, 2) }}</td>
           <td class="number-td">{{ round(asset.margin, 2) }}%</td>
-          <td class="number-td">{{ asset.volumeAbr }}</td>
+          <td class="number-td">{{ asset.prettyVolume() }}</td>
 
-          {% if asset.change30M > 0 %}
-            <td class="number-td green">{{ asset.change30M }}%</td>
-          {% elif asset.change30M < 0 %}
-            <td class="number-td red">{{ asset.change30M }}%</td>
+          {% if asset.changeOverX(120) > 0 %}
+            <td class="number-td green">{{ asset.changeOverX(120) }}%</td>
+          {% elif asset.changeOverX(120) < 0 %}
+            <td class="number-td red">{{ asset.changeOverX(120) }}%</td>
           {% else %}
-            <td class="number-td grey">{{ (asset.change30M|string).replace("-", "") }}%</td>
+            <td class="number-td grey">{{ (asset.changeOverX(120)|string).replace("-", "") }}%</td>
           {% endif %}
 
-          {% if asset.change24H > 0 %}
-            <td class="number-td green">{{ asset.change24H }}%</td>
-          {% elif asset.change24H < 0 %}
-            <td class="number-td red">{{ asset.change24H }}%</td>
+          {% if asset.changeOverX(5760) > 0 %}
+            <td class="number-td green">{{ asset.changeOverX(5760) }}%</td>
+          {% elif asset.changeOverX(5760) < 0 %}
+            <td class="number-td red">{{ asset.changeOverX(5760) }}%</td>
           {% else %}
-            <td class="number-td grey">{{ (asset.change24H|string).replace("-", "") }}%</td>
+            <td class="number-td grey">{{ (asset.changeOverX(5760)|string).replace("-", "") }}%</td>
           {% endif %}
 
-          {% if asset.change7D > 0 %}
-            <td class="number-td green">{{ asset.change7D }}%</td>
-          {% elif asset.change7D < 0 %}
-            <td class="number-td red">{{ asset.change7D }}%</td>
+          {% if asset.changeOverX(40320) > 0 %}
+            <td class="number-td green">{{ asset.changeOverX(40320) }}%</td>
+          {% elif asset.changeOverX(40320) < 0 %}
+            <td class="number-td red">{{ asset.changeOverX(40320) }}%</td>
           {% else %}
-            <td class="number-td grey">{{ (asset.change7D|string).replace("-", "") }}%</td>
+            <td class="number-td grey">{{ (asset.changeOverX(40320)|string).replace("-", "") }}%</td>
           {% endif %}
 
-          {% if asset.change30D > 0 %}
-            <td class="number-td green">{{ asset.change30D }}%</td>
-          {% elif asset.change30D < 0 %}
-            <td class="number-td red">{{ asset.change30D }}%</td>
+          {% if asset.changeOverX(175320) > 0 %}
+            <td class="number-td green">{{ asset.changeOverX(175320) }}%</td>
+          {% elif asset.changeOverX(175320) < 0 %}
+            <td class="number-td red">{{ asset.changeOverX(175320) }}%</td>
           {% else %}
-            <td class="number-td grey">{{ (asset.change30D|string).replace("-", "") }}%</td>
+            <td class="number-td grey">{{ (asset.changeOverX(175320)|string).replace("-", "") }}%</td>
           {% endif %}
         </tr>
       {% endfor %}

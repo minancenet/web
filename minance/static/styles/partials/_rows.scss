@@ -41,3 +41,17 @@ $grid-spacing: 1%;
 .col-10 { width: (100% / 1.2) - ($grid-spacing); }
 .col-11 { width: (100% / 1.090909090909091) - ($grid-spacing); }
 .col-12 { width: 100%; }
+
+.col-6 {
+  &.no-gutter {
+    width: 50%;
+    margin-right: 0;
+  }
+}
+
+.col-3 {
+  &.no-gutter {
+    width: 25%;
+    margin-right: 0;
+  }
+}

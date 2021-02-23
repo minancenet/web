@@ -37,8 +37,8 @@
       <!-- <li class="nav-item {{ 'active' if active_page == 'portfolio' else '' }}"><a href="{{ url_for('portfolio.portfolio_dash') }}">Simulation</a></li> -->
     </ul>
   </div>
-  <!-- <div class="header-section right">
-    <a id="myBtn" style="color: #FFFFFF; text-decoration: none;">
+  <div class="header-section right">
+    <a onclick="openModal('authModal')" style="color: #FFFFFF; text-decoration: none; cursor: pointer;">
       <div class="logo-info">
         <i class="fas fa-user auth-icon"></i>
         <span class="auth-plus">+</span>
@@ -52,7 +52,7 @@
         <span class="portfolio">Portfolio</span>
       </div>
     </a>
-  </div> -->
+  </div>
 </div>
 <div class="tcontainer"><div class="ticker-wrap"><div class="ticker-move">
   {% for asset in random_assets %}
@@ -72,7 +72,7 @@
     {% for category, message in messages %}
       <div class="main-flashes">
           <div class="flash-message flash-{{category}}">
-              <p>{{ message }}</p>
+            <p>{{ message }}</p>
           </div>
       </div>
     {% endfor %}

@@ -38,10 +38,10 @@
             <span class="top-stock-volume-title">Volume</span>
             <div class="row">
               <div class="col-6">
-                <span class="top-stock-volume"><span class="top-stock-volume-label">Buy</span> {{ asset.volumeAbr }}</span>
+                <span class="top-stock-volume"><span class="top-stock-volume-label">Buy</span> {{ asset.prettyVolume("buy") }}</span>
               </div>
               <div class="col-6">
-                <span class="top-stock-volume"><span class="top-stock-volume-label">Sell</span> {{ asset.volumeAbr }}</span>
+                <span class="top-stock-volume"><span class="top-stock-volume-label">Sell</span> {{ asset.prettyVolume("sell") }}</span>
               </div>
             </div>
           </div>

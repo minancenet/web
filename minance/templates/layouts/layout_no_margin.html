@@ -16,14 +16,8 @@
       {% include "auth/auth.html" %}
       {% block auth %} {% endblock auth %}
 
-      <div class="main-wrapper-alt bg">
-        {% block content %}
-        {% endblock content %}
-      </div>
+      {% block content %}
+      {% endblock content %}
     </main>
-    <footer>
-      {% include "layouts/footer.html" %}
-      {% block footer %} {% endblock footer %}
-    </footer>
   </body>
 </html>

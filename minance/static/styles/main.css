@@ -67,6 +67,125 @@
   width: 100%;
 }
 
+.col-6.no-gutter {
+  width: 50%;
+  margin-right: 0;
+}
+
+.col-3.no-gutter {
+  width: 25%;
+  margin-right: 0;
+}
+
+.section {
+  height: 100%;
+  width: 100%;
+  border-right: 1px solid #2e2e2e;
+}
+
+.section-header {
+  margin-top: 0 !important;
+  border-bottom: 1px solid #2e2e2e;
+  height: 1.8rem;
+  line-height: 1.8rem;
+  vertical-align: middle;
+  padding: 0rem 1rem;
+}
+.section-header .section-title {
+  color: #d3d3d3;
+  font-size: 0.78rem;
+  font-weight: lighter;
+  display: inline-block;
+}
+.section-header .section-alt {
+  color: #d3d3d3;
+  font-size: 0.76rem;
+  font-weight: lighter;
+  display: inline-block;
+  float: right;
+}
+.section-header .section-alt a {
+  cursor: pointer;
+  text-decoration: none;
+  padding: 0rem 0.5rem;
+  color: #05DB89;
+}
+.section-header .section-button {
+  float: left;
+  font-size: 0.78rem;
+  padding: 0rem 0.8rem;
+  border-right: 1px solid #2e2e2e;
+  cursor: pointer;
+}
+.section-header .section-button.dropbtn {
+  width: 50px;
+  padding: 0 !important;
+  text-align: center;
+}
+.section-header .section-button.dropbtn span {
+  margin-right: 0.1rem;
+}
+.section-header .section-button:first-child {
+  padding-left: 0;
+}
+
+.section-body {
+  border-bottom: 1px solid #2e2e2e;
+}
+.section-body.w-pad {
+  padding: 0.5rem 1rem;
+}
+
+.statistics .col-6 {
+  padding: 0rem 0.5rem;
+}
+.statistics p {
+  color: #bababa;
+  font-size: 0.8rem;
+  font-family: "Iosevka";
+  margin-bottom: 1rem;
+}
+.statistics p span {
+  float: right;
+  color: #dfdfdf;
+}
+
+.askBid-label {
+  margin-left: 0.75rem;
+  margin-top: 1rem;
+  color: #d3d3d3;
+  font-family: "Iosevka";
+  font-size: 0.8rem;
+}
+
+.ask {
+  height: 20px;
+  width: 75%;
+  background-color: #05DB89;
+  border: 1px solid #05DB89;
+  border-right: none;
+  float: right;
+  margin: 4rem 0rem;
+}
+
+.ask-label {
+  margin-top: -5rem;
+  margin-left: 25%;
+}
+
+.bid {
+  height: 20px;
+  width: 20%;
+  background-color: rgba(0, 0, 0, 0);
+  border: 1px solid #05DB89;
+  border-left: none;
+  margin: 4rem 0rem;
+}
+
+.w-r-border {
+  border-right: 1px solid #2e2e2e;
+}
+
 html,
 body {
   margin: 0;
@@ -77,6 +196,7 @@ body {
   overflow-x: hidden;
   background-color: #000000;
   scroll-behavior: smooth;
+  height: 100%;
 }
 
 h1,
@@ -383,6 +503,10 @@ header {
   width: 18rem;
 }
 
+.search-field:focus {
+  outline-width: 0;
+}
+
 .light {
   color: #d3d3d3;
   font-size: 0.9rem;
@@ -531,8 +655,8 @@ footer hr {
 .modal-content {
   background-color: #000000;
   margin: auto;
-  border: 1px solid #888;
-  width: 28%;
+  border: 1px solid #6f6f6f;
+  width: 25%;
   padding: 4px 12px;
   color: #d3d3d3;
 }
@@ -555,18 +679,22 @@ footer hr {
 }
 .auth-headers h5:hover {
   cursor: pointer;
+  color: #FFFFFF;
 }
 
 .auth-form {
-  text-align: center;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 }
 
 .auth-field {
   font-family: "Iosevka";
   background-color: #0a1336;
   color: #fcfcfc;
-  padding: 8px 12px;
-  width: 80%;
+  padding: 6px 6px;
+  width: 100%;
   margin: 4px 0px;
   font-size: 0.78rem;
   border: none;
@@ -574,25 +702,25 @@ footer hr {
 }
 
 .auth-field:focus {
-  border: 1px solid #0e1844;
+  outline-width: 0;
+  border: 1px solid #12205d;
+  background-color: #0e1844;
 }
 
 .auth-button {
   margin-top: 12px;
   font-family: "Iosevka";
+  font-size: 0.85rem;
   border: none;
-  border: 1px solid #afafaf;
   color: #afafaf;
-  background-color: #2b2b2b;
-  width: 82%;
-  padding: 8px 0px;
+  background-color: #0a1336;
+  padding: 6px 8px;
 }
 
 .auth-bottom {
   font-size: 0.72rem;
   font-family: "Iosevka";
   text-align: left;
-  width: 80%;
   margin-left: auto;
   margin-right: auto;
   display: block;
@@ -609,9 +737,9 @@ footer hr {
   margin-right: auto;
   display: block;
   width: 70%;
-  font-size: 0.86rem;
+  font-size: 0.84rem;
   text-align: center;
-  padding: 6px 0px;
+  padding: 8px 0px;
 }
 
 /* The Close Button */
@@ -632,15 +760,6 @@ footer hr {
 
 .tablinks.active {
   color: #FFF;
-}
-
-.dropbtn {
-  cursor: pointer;
-  font-family: "DM Sans Bold";
-}
-
-.dropbtn:hover, .dropbtn:focus {
-  color: #06e791;
 }
 
 .dropdown {
@@ -675,7 +794,7 @@ footer hr {
 .dropdown-content.main li {
   padding: 0.2rem 0;
   margin: 0;
-  font-size: 0.71rem;
+  font-size: 0.76rem;
   font-family: "DM Sans";
 }
 .dropdown-content.main li a {
@@ -696,14 +815,14 @@ footer hr {
   background-color: #000000;
   border: 1px solid #222222;
   border-top: 1px solid #2e2e2e;
-  left: -5px;
+  left: -1px;
   overflow: auto;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 100;
   line-height: normal;
   cursor: auto;
   font-family: "Iosevka";
-  width: 49px;
+  width: 50px;
   overflow: hidden;
 }
 .dropdown-content.alt ul {
@@ -714,7 +833,7 @@ footer hr {
 }
 .dropdown-content.alt ul li {
   color: #d3d3d3;
-  font-size: 0.76rem;
+  font-size: 0.75rem;
   font-family: "Iosevka";
   padding: 0.2rem 0.6rem;
 }
@@ -759,7 +878,7 @@ footer hr {
   border-bottom: 1px solid #2e2e2e;
 }
 .tabs-alt .tablink-alt {
-  padding: 0.4rem 0.6rem;
+  padding: 0.25rem 0.5rem;
   margin: 0;
   background: rgba(0, 0, 0, 0);
   border: none;
@@ -774,10 +893,15 @@ footer hr {
 .tabs-alt .tablink-alt:focus {
   border: none;
   border-right: 1px solid #2e2e2e;
+  outline-width: 0;
 }
 
 .tabcontent-alt {
   max-width: 100%;
+  display: none;
+}
+
+.tabcontent {
   display: none;
 }
 
@@ -831,16 +955,50 @@ footer hr {
   float: left;
 }
 .form-label p {
-  font-size: 0.85rem;
+  font-size: 0.78rem;
+  font-family: "Iosevka";
+  display: inline-block;
 }
 
 .form-field {
   float: right;
-  font-size: 0.7rem;
+}
+.form-field input[type=text] {
+  font-size: 0.84rem;
+  background-color: #00130B;
+  border: none;
+  color: #d3d3d3;
+  padding: 0.3rem 0.6rem;
+}
+.form-field input[type=text] {
+  outline-width: 0;
+}
+.form-field select {
+  font-size: 0.84rem;
+  background-color: #00130B;
+  border: none;
+  color: #d3d3d3;
+  padding: 0.3rem 0.6rem;
+  width: 12.5rem;
+}
+.form-field .field-half {
+  width: 4.93rem;
 }
 
 .clear {
   clear: both;
+}
+
+.form-btn {
+  background-color: #000E08;
+  color: #fcfcfc;
+  padding: 0.25rem 2.3rem;
+  border: none;
+  cursor: pointer;
+}
+
+.form-btn.active {
+  background-color: #00130B;
 }
 
 .check-btn {
