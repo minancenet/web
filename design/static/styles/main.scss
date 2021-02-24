@@ -1,0 +1,170 @@
+@import "partials/colors";
+@import "partials/grids";
+
+$-WIDTH-mobile: 640px; // Or less
+$--WIDTH-tablet: 641px; // 641 - 1007
+$--WIDTH-desktop: 1008px; // Or greater
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+
+  color: $--COLOR-text;
+  font-family: "Iosevka";
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+h1, h2, h3, h4, h5, h6, p, span {
+  padding: 0;
+  margin: 0;
+}
+
+input:focus {
+  outline-width: 0;
+}
+
+.main-wrapper {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+
+  header {
+    flex: 0 1 auto;
+    /* The above is shorthand for:
+    flex-grow: 0,
+    flex-shrink: 1,
+    flex-basis: auto
+    */
+  }
+
+  main {
+    flex: 1 1 auto;
+  }
+}
+
+.navbar {
+  height: 2.6rem;
+  background-color: $--COLOR-bg;
+  border-bottom: 1px solid #383838;
+  vertical-align: middle;
+  white-space: nowrap;
+
+  .nav-sec {
+    display: inline-block;
+    height: 2.6rem;
+    padding: 0rem 1rem;
+    border-right: 1px solid $--COLOR-border;
+    line-height: 2.6rem;
+  }
+
+  .nav-logo-helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+  }
+
+  .nav-logo {
+    vertical-align: middle;
+    height: 1.28rem;
+    width: 1.38rem;
+    margin-right: 0.4rem;
+  }
+
+  .nav-text {
+    font-family: "DM Sans Bold";
+    color: $--COLOR-pop;
+    line-height: 2.6rem;
+  }
+
+  .search-bar {
+    border: 1px solid $--COLOR-border;
+    padding: 0rem 0.4rem;
+    width: 25vw;
+    display: inline-block;
+    line-height: 1.8rem;
+
+    i {
+      font-size: 0.8rem;
+    }
+
+    .search-field {
+      background-color: $--COLOR-clear;
+      border: none;
+      color: $--COLOR-text;
+      padding: 0.2rem 0rem;
+      font-size: 0.84rem;
+      // box-sizing: border-box;
+      width: 94%;
+    }
+  }
+}
+
+.l-main {
+  @extend %clearfix;
+  height: 100%;
+
+  .grid-item {
+    height: 100%;
+    padding: 10px;
+    float: left;
+  }
+
+  .l-charts {
+    display: none;
+    height: 100%;
+
+    @media (min-width: $--WIDTH-tablet) {
+      width: percentage(12/12);
+      height: 50%;
+      display: inline-block;
+    }
+
+    @media (min-width: $--WIDTH-desktop) {
+      display: inline-block;
+      height: 100%;
+      width: percentage(6/12);
+    }
+  }
+  .l-stats {
+    display: none;
+    height: 100%;
+
+    @media (min-width: $--WIDTH-tablet) {
+      display: inline-block;
+      height: 50%;
+      width: percentage(6/12);
+    }
+
+    @media (min-width: $--WIDTH-desktop) {
+      display: inline-block;
+      height: 100%;
+      width: percentage(3/12);
+    }
+  }
+  .l-trading {
+    width: percentage(12/12);
+    height: 100%;
+
+    @media (min-width: $--WIDTH-tablet) {
+      display: inline-block;
+      height: 50%;
+      width: percentage(6/12);
+    }
+
+    @media (min-width: $--WIDTH-desktop) {
+      display: inline-block;
+      height: 100%;
+      width: percentage(3/12);
+    }
+  }
+}

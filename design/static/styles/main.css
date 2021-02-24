@@ -1,0 +1,272 @@
+.l-main:after, .row:after {
+  display: block;
+  clear: both;
+  content: "";
+}
+
+.row + .row {
+  margin-top: 1%;
+}
+.row.no-gutters .col-1 {
+  width: 8.3333333333%;
+}
+.row.no-gutters .col-2 {
+  width: 16.6666666667%;
+}
+.row.no-gutters .col-3 {
+  width: 25%;
+}
+.row.no-gutters .col-4 {
+  width: 33.3333333333%;
+}
+.row.no-gutters .col-5 {
+  width: 41.6666666667%;
+}
+.row.no-gutters .col-6 {
+  width: 50%;
+}
+.row.no-gutters .col-7 {
+  width: 58.3333333333%;
+}
+.row.no-gutters .col-8 {
+  width: 66.6666666667%;
+}
+.row.no-gutters .col-9 {
+  width: 75%;
+}
+.row.no-gutters .col-10 {
+  width: 83.3333333333%;
+}
+.row.no-gutters .col-11 {
+  width: 91.6666666667%;
+}
+.row.no-gutters .col-12 {
+  width: 100%;
+}
+.row.no-gutters [class^=col-] {
+  float: left;
+  margin-right: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.row.no-gutters [class^=col-]:last-child {
+  margin-right: 0;
+  float: right;
+}
+
+[class^=col-] {
+  float: left;
+  margin-right: 1%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+[class^=col-]:last-child {
+  margin-right: 0%;
+}
+
+.col-1 {
+  width: 7.3333333333%;
+}
+
+.col-2 {
+  width: 15.6666666667%;
+}
+
+.col-3 {
+  width: 24%;
+}
+
+.col-4 {
+  width: 32.3333333333%;
+}
+
+.col-5 {
+  width: 40.6666666667%;
+}
+
+.col-6 {
+  width: 49%;
+}
+
+.col-7 {
+  width: 57.3333333333%;
+}
+
+.col-8 {
+  width: 65.6666666667%;
+}
+
+.col-9 {
+  width: 74%;
+}
+
+.col-10 {
+  width: 82.3333333333%;
+}
+
+.col-11 {
+  width: 90.6666666667%;
+}
+
+.col-12 {
+  width: 100%;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #C8C8C8;
+  font-family: "Iosevka";
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+h1, h2, h3, h4, h5, h6, p, span {
+  padding: 0;
+  margin: 0;
+}
+
+input:focus {
+  outline-width: 0;
+}
+
+.main-wrapper {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+}
+.main-wrapper header {
+  flex: 0 1 auto;
+  /* The above is shorthand for:
+  flex-grow: 0,
+  flex-shrink: 1,
+  flex-basis: auto
+  */
+}
+.main-wrapper main {
+  flex: 1 1 auto;
+}
+
+.navbar {
+  height: 2.6rem;
+  background-color: #000000;
+  border-bottom: 1px solid #383838;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+.navbar .nav-sec {
+  display: inline-block;
+  height: 2.6rem;
+  padding: 0rem 1rem;
+  border-right: 1px solid #383838;
+  line-height: 2.6rem;
+}
+.navbar .nav-logo-helper {
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+.navbar .nav-logo {
+  vertical-align: middle;
+  height: 1.28rem;
+  width: 1.38rem;
+  margin-right: 0.4rem;
+}
+.navbar .nav-text {
+  font-family: "DM Sans Bold";
+  color: #05FFA1;
+  line-height: 2.6rem;
+}
+.navbar .search-bar {
+  border: 1px solid #383838;
+  padding: 0rem 0.4rem;
+  width: 25vw;
+  display: inline-block;
+  line-height: 1.8rem;
+}
+.navbar .search-bar i {
+  font-size: 0.8rem;
+}
+.navbar .search-bar .search-field {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  color: #C8C8C8;
+  padding: 0.2rem 0rem;
+  font-size: 0.84rem;
+  width: 94%;
+}
+
+.l-main {
+  height: 100%;
+}
+.l-main .grid-item {
+  height: 100%;
+  padding: 10px;
+  float: left;
+}
+.l-main .l-charts {
+  display: none;
+  height: 100%;
+}
+@media (min-width: 641px) {
+  .l-main .l-charts {
+    width: 100%;
+    height: 50%;
+    display: inline-block;
+  }
+}
+@media (min-width: 1008px) {
+  .l-main .l-charts {
+    display: inline-block;
+    height: 100%;
+    width: 50%;
+  }
+}
+.l-main .l-stats {
+  display: none;
+  height: 100%;
+}
+@media (min-width: 641px) {
+  .l-main .l-stats {
+    display: inline-block;
+    height: 50%;
+    width: 50%;
+  }
+}
+@media (min-width: 1008px) {
+  .l-main .l-stats {
+    display: inline-block;
+    height: 100%;
+    width: 25%;
+  }
+}
+.l-main .l-trading {
+  width: 100%;
+  height: 100%;
+}
+@media (min-width: 641px) {
+  .l-main .l-trading {
+    display: inline-block;
+    height: 50%;
+    width: 50%;
+  }
+}
+@media (min-width: 1008px) {
+  .l-main .l-trading {
+    display: inline-block;
+    height: 100%;
+    width: 25%;
+  }
+}
+
+/*# sourceMappingURL=main.css.map */
