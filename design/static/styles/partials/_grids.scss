@@ -66,3 +66,15 @@ $grid-spacing: 1%;
 .col-10 { width: (100% / 1.2) - ($grid-spacing); }
 .col-11 { width: (100% / 1.090909090909091) - ($grid-spacing); }
 .col-12 { width: 100%; }
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.flex-col {
+  flex-grow: 1;
+  flex-basis: 50%;
+}

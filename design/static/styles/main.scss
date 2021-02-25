@@ -393,13 +393,21 @@ footer {
 }
 
 .section {
+  &.border-b { border-bottom: 1px solid $--COLOR-border; }
+
+  &.stat-0-section {
+    height: 100%;
+
+    @media (min-width: $--WIDTH-desktop) {
+      height: 50%;
+    }
+  }
+
   .section-header {
     border-bottom: 1px solid $--COLOR-border;
     padding: 0.4rem 0.6rem;
 
-    &.no-pad {
-      padding: 0rem 0.1rem;
-    }
+    &.no-pad { padding: 0rem 0.1rem; }
 
     .section-title {
       font-size: 0.72rem;
@@ -411,10 +419,33 @@ footer {
       display: flex;
 
       li {
-        font-size: 0.7rem;
+        font-size: 0.72rem;
         border-right: 1px solid $--COLOR-border;
         padding: 0.4rem;
+        cursor: pointer;
+
+        i {
+          font-size: 0.55rem;
+        }
       }
     }
+  }
+
+  .section-content {
+    padding: 0.8rem;
+  }
+}
+
+.stat {
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+  padding: 0rem 0.4rem;
+  white-space: nowrap;
+
+  display: flex;
+  justify-content: space-between;
+
+  .stat-data {
+    margin-left: 0.4rem;
   }
 }

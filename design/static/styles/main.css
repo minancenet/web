@@ -114,6 +114,18 @@
   width: 100%;
 }
 
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.flex-col {
+  flex-grow: 1;
+  flex-basis: 50%;
+}
+
 html, body {
   height: 100%;
   margin: 0;
@@ -499,6 +511,17 @@ footer {
   }
 }
 
+.section.border-b {
+  border-bottom: 1px solid #292929;
+}
+.section.stat-0-section {
+  height: 100%;
+}
+@media (min-width: 1008px) {
+  .section.stat-0-section {
+    height: 50%;
+  }
+}
 .section .section-header {
   border-bottom: 1px solid #292929;
   padding: 0.4rem 0.6rem;
@@ -515,9 +538,28 @@ footer {
   display: flex;
 }
 .section .section-header .section-header-tabs li {
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   border-right: 1px solid #292929;
   padding: 0.4rem;
+  cursor: pointer;
+}
+.section .section-header .section-header-tabs li i {
+  font-size: 0.55rem;
+}
+.section .section-content {
+  padding: 0.8rem;
+}
+
+.stat {
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+  padding: 0rem 0.4rem;
+  white-space: nowrap;
+  display: flex;
+  justify-content: space-between;
+}
+.stat .stat-data {
+  margin-left: 0.4rem;
 }
 
 /*# sourceMappingURL=main.css.map */
