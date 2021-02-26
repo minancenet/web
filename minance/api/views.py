@@ -2,7 +2,12 @@ import json
 import pickle
 from datetime import datetime
 
-from flask import Blueprint, render_template, abort, Response
+from flask import (
+  Blueprint,
+  render_template,
+  abort,
+  Response
+)
 
 from minance.models import Asset, Candle
 

@@ -1,5 +1,6 @@
-{% extends "layouts/layout.html" %}
+{% extends "layouts/layout-alt.html" %}
 {% block content %}
+
 <h3 class="b">Top Hypixel Assets</h3>
 <p class="light">By Margin (%) Descending</p>
 <br>
@@ -52,4 +53,5 @@
   {% endfor %}
 </div>
 <a href="{{ url_for('asset.assets') }}" style="text-decoration: none;"><button class="asset-btn"><i class="fas fa-bars" style="margin-right: 0.2rem;"></i> View Asset List</button></a>
+
 {% endblock content %}

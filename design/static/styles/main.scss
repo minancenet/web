@@ -25,19 +25,23 @@ html, body {
   box-sizing: inherit;
 }
 
-h1, h2, h3, h4, h5, h6, p, span, ul, li {
+h1, h2, h3, h4, h5, h6, p, span, ul, li, table, tr, th, td {
   padding: 0;
   margin: 0;
 }
 
 input:focus { outline-width: 0; }
 .pop { color: $--COLOR-pop; }
-.border-r { border-right: 1px solid $--COLOR-border; }
+.pop-alt { color: $--COLOR-pop-alt; }
+.border-t { border-top: 1px solid $--COLOR-border; }
+.border-d { border-bottom: 1px solid $--COLOR-border; }
 .border-l { border-left: 1px solid $--COLOR-border; }
+.border-r { border-right: 1px solid $--COLOR-border; }
 
 .l-root {
   @extend %clearfix;
   height: 100%;
+  overflow: hidden;
 
   .grid-item {
     height: 100%;
@@ -175,14 +179,14 @@ input:focus { outline-width: 0; }
     padding: 0rem 0.4rem;
     display: inline-block;
     line-height: 1.8rem;
-    width: 50vw;
+    width: 40vw;
 
     @media (min-width: $--WIDTH-tablet) {
       width: 25vw;
     }
 
     @media (min-width: $--WIDTH-desktop) {
-      width: 40vw;
+      width: 30vw;
     }
 
     i {
@@ -393,19 +397,32 @@ footer {
 }
 
 .section {
-  &.border-b { border-bottom: 1px solid $--COLOR-border; }
+  overflow-y: scroll;
 
-  &.stat-0-section {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  
+  &.stat-section, &.order-section{
     height: 100%;
 
     @media (min-width: $--WIDTH-desktop) {
-      height: 50%;
+      max-height: 50%;
     }
   }
 
   .section-header {
     border-bottom: 1px solid $--COLOR-border;
     padding: 0.4rem 0.6rem;
+
+    z-index: 1;
+    background-color: $--COLOR-bg;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
 
     &.no-pad { padding: 0rem 0.1rem; }
 
@@ -437,7 +454,7 @@ footer {
 }
 
 .stat {
-  font-size: 0.8rem;
+  font-size: 0.74rem;
   margin-bottom: 1rem;
   padding: 0rem 0.4rem;
   white-space: nowrap;
@@ -447,5 +464,43 @@ footer {
 
   .stat-data {
     margin-left: 0.4rem;
+  }
+}
+
+.order-section {
+  display: none;
+
+  @media(min-width: $--WIDTH-desktop) {
+    display: block;
+  }
+}
+
+.orders-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.order-col {
+  flex-grow: 1;
+  flex-basis: 33%;
+}
+
+.order-table {
+  width: 100%;
+
+  th, td {
+    text-align: left;
+  }
+
+  th {
+    font-size: 0.74rem;
+    color: $--COLOR-text-alt;
+    padding: 0.4rem 0rem;
+  }
+
+  td {
+    font-size: 0.72rem;
   }
 }

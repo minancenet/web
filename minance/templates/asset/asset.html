@@ -1,153 +1,161 @@
-{% extends "layouts/layout_no_margin.html" %} {% block content %}
+{% extends "layouts/layout.html" %}
+{% block content %}
+
+<link rel="stylesheet" text="text/css" href="{{ url_for('static', filename='styles/panel.css') }}" />
 
 <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
 <script src="{{ url_for('static', filename='js/charts.js') }}"></script>
 
-<div class="row">
-  <div class="col-6 no-gutter">
-    <div class="section">
-      <div class="section-header">
-        <div class="section-button tablink" onclick="openTab(event, 'sell')">Sell Candlestick Chart</div>
-        <div class="section-button tablink" onclick="openTab(event, 'buy')">Buy Candlestick Chart</div>
-        <div class="section-button tablink" onclick="openTab(event, 'topOrders')">Top Orders Chart</div>
-        <div class="section-button outerdrop dropdown dropbtn" onclick="dropdown('timeFrameDropdown')">
-          <div class="dropbtn">
-            <span class="dropbtn" id="timeFrameDisplay">
-              5M
-            </span>
-            <i class="fas fa-chevron-down dropbtn"></i>
-          </div>  
-          <div id="timeFrameDropdown" class="dropdown-content alt">
-            <ul>
-              <li onclick="changeTimeFrame(1, '1M')">1M</li>
-              <li onclick="changeTimeFrame(3, '3M')">3M</li>
-              <li onclick="changeTimeFrame(5, '5M')">5M</li>
-              <li onclick="changeTimeFrame(15, '15M')">15M</li>
-              <li onclick="changeTimeFrame(30, '30M')">30M</li>
-              <li onclick="changeTimeFrame(60, '1H')">1H</li>
-              <li onclick="changeTimeFrame(120, '2H')">2H</li>
-              <li onclick="changeTimeFrame(240,'4H')">4H</li>
-              <li onclick="changeTimeFrame(360, '6H')">6H</li>
-              <li onclick="changeTimeFrame(720, '12H')">12H</li>
-              <li onclick="changeTimeFrame(1440, '1D')">1D</li>
-              <li onclick="changeTimeFrame(4320, '3D')">3D</li>
-              <li onclick="changeTimeFrame(10080, '1W')">1W</li>
-            </ul>
-          </div>
-        </div>  
-      </div>
-      <div class="section-body">
-        <div id="sell" class="tabcontent tabcontent-alt" style="display: block;">
-          <div id="sellChart"></div>
-        </div>
-        <div id="buy" class="tabcontent tabcontent-alt">
-          <div id="buyChart"></div>
-        </div>
-        <div id="topOrders" class="tabcontent tabcontent-alt">
-          <div id="lineChart"></div>
-        </div>    
+<div class="l-charts grid-item">
+  <div class="section chart-section">
+    <div class="section-header no-pad">
+      <ul class="section-header-tabs">
+        <li>Buy Candlestick Chart</li>
+        <li>Sell Candlestick Chart</li>
+        <li>Top Orders Chart</li>
+        <li>5M <i class="fas fa-chevron-down arrow-down"></i></li>
+      </ul>
+    </div>
+    <div class="section-content">
+      <div id="sell" style="display: block;">
+        <div id="sellChart"></div>
       </div>
     </div>
   </div>
-  <div class="col-3 no-gutter">
-    <div class="section">
-      <div class="section-header">
-        <h5 class="section-title">Statistics</h5>
-        <h5 class="section-alt"><a href="#">Buy</a> | <a href="#">Sell</a></h5>
-      </div>
-      <div class="section-body w-pad statistics">
-        <div class="row">
-          <div class="col-6">
-            <p>Margin: <span>45.5%</span></p>
-            <p>Total Volume: <span>45.5%</span></p>
-            <p>Sell Movement: <span>45.5%</span></p>
-            <p>Buy Movement: <span>45.5%</span></p>
-          </div>
-          <div class="col-6">
-            <p>BFPM: <span>45.5%</span></p>
-            <p>Total Volume: <span>45.5%</span></p>
-            <p>Margin: <span>45.5%</span></p>
-            <p>Buy Movement: <span>45.5%</span></p>
-          </div>
-        </div>
-      </div>
+</div>
+<div class="l-stats grid-item">
+  <div class="section stat-section">
+    <div class="section-header">
+      <h5 class="section-title">Statistics</h5>
     </div>
-    <div class="section">
-      <div class="section-body">
-        <div class="row">
-          <div class="col-6 no-gutter w-r-border">
-            <span class="askBid-label">Buy</span>
-            <div class="ask"></div>
-            <span class="ask-label">Ask</span>
-          </div>
-          <div class="col-6 no-gutter">
-            <div class="bid"></div>
-          </div>
+    <div class="section-content">
+      <div class="flex-row">
+        <div class="flex-col">
+          <p class="stat">
+            <span>Top Bid:</span>
+            <span class="stat-data pop">{{ pickle.loads(asset.sellOrders)[0][1] }}</span>
+          </p>
+        </div>
+        <div class="flex-col">
+          <p class="stat">
+            <span>Top Ask:</span>
+            <span class="stat-data pop">{{ pickle.loads(asset.buyOrders)[0][1] }}</span>
+          </p>
+        </div>
+        <div class="flex-col">
+          <p class="stat">
+            <span>Sell Price:</span>
+            <span class="stat-data pop">{{ asset.sellPrice }}</span>
+          </p>
+        </div>
+        <div class="flex-col">
+          <p class="stat">
+            <span>Buy Price:</span>
+            <span class="stat-data pop">{{ asset.buyPrice }}</span>
+          </p>
+        </div>
+        <div class="flex-col">
+          <p class="stat">
+            <span>Margin:</span>
+            <span class="stat-data pop">{{ "%.2f%%"|format(asset.margin) }}</span>
+          </p>
+        </div>
+        <div class="flex-col">
+          <p class="stat">
+            <span>Total Volume:</span>
+            <span class="stat-data pop">{{ asset.prettyVolume() }}</span>
+          </p>
+        </div>
+        <div class="flex-col">
+          <p class="stat">
+            <span>Sell Volume:</span>
+            <span class="stat-data pop">{{ asset.prettyVolume("sell") }}</span>
+          </p>
+        </div>
+        <div class="flex-col">
+          <p class="stat">
+            <span>Buy Volume:</span>
+            <span class="stat-data pop">{{ asset.prettyVolume("buy") }}</span>
+          </p>
+        </div>
+        <div class="flex-col">
+          <p class="stat">
+            <span>Sell Movement:</span>
+            <span class="stat-data pop">{{ asset.sellMovingWeek }}</span>
+          </p>
+        </div>
+        <div class="flex-col">
+          <p class="stat">
+            <span>Buy Movement:</span>
+            <span class="stat-data pop">{{ asset.buyMovingWeek }}</span>
+          </p>
+        </div>
+        <div class="flex-col">
+          <p class="stat">
+            <span>BFPM:</span>
+            <span class="stat-data pop">57.4%</span>
+          </p>
+        </div>
+        <div class="flex-col">
+          <p class="stat">
+            <span>BFPH:</span>
+            <span class="stat-data pop">57.4%</span>
+          </p>
         </div>
       </div>
     </div>
   </div>
-  <div class="col-3 no-gutter">
-    <div class="section">
-      <div class="section-header">
-        <h5 class="section-title">Trading</h5>
+  <div class="section order-section">
+    <div class="section-header border-t">
+      <h5 class="section-title">Orders</h5>
+    </div>
+    <div class="section-content">
+      <div class="flex-row">
+        <div class="flex-col">
+          <h5>Bid</h5>
+          <table class="order-table">
+            <tr>
+              <th class="letter-td">Price</th>
+              <th class="number-td">Amount</th>
+              <th class="number-td">Orders</th>
+            </tr>
+            {% for order in pickle.loads(asset.sellOrders) %}
+              <tr>
+                <td class="letter-td pop">{{ order[1] }}</td>
+                <td class="number-td">{{ order[0] }}</td>
+                <td class="number-td">{{ order[2] }}</td>
+              </tr>
+            {% endfor %}
+          </table>
+        </div>
+        <div class="flex-col">
+          <h5>Ask</h5>
+          <table class="order-table">
+            <tr>
+              <th class="letter-td">Price</th>
+              <th class="number-td">Amount</th>
+              <th class="number-td">Orders</th>
+            </tr>
+            {% for order in pickle.loads(asset.buyOrders) %}
+              <tr>
+                <td class="letter-td pop">{{ order[1] }}</td>
+                <td class="number-td">{{ order[0] }}</td>
+                <td class="number-td">{{ order[2] }}</td>
+              </tr>
+            {% endfor %}
+          </table>
+        </div>
       </div>
-      <div class="section-body w-pad">
-        <form method="POST" action="">
-          {{ form.hidden_tag() }}
-          <div class="form-group">
-            <div class="form-label">
-              <p>Action</p>
-            </div>
-            <div class="form-field">
-              <button class="form-btn active">Buy</button>
-              <button class="form-btn">Sell</button>
-            </div>
-          </div>
-          <div class="clear"></div>
-          <div class="form-group">
-            <div class="form-label">
-              <p>Type</p>
-            </div>
-            <div class="form-field">
-              <select>
-                <option>Top Order</option>
-                <option>Top Order +0.1</option>
-                <option>Spread (5%)</option>
-              </select>
-            </div>
-          </div>
-          <div class="clear"></div>
-          <div class="form-group">
-            <div class="form-label">
-              <p>Time</p>
-            </div>
-            <div class="form-field">
-              <input type="text" class="field-half">
-              <input type="text" class="field-half">
-            </div>
-          </div>
-          <div class="clear"></div>
-          <div class="form-group">
-            <div class="form-label">
-              <p>Quantity</p>
-            </div>
-            <div class="form-field">
-              <input type="text">
-            </div>
-          </div>
-          <div class="clear"></div>
-          <div class="form-group">
-            <div class="form-label">
-              <p>Total</p>
-            </div>
-            <div class="form-field">
-              <input type="text">
-            </div>
-          </div>
-          <div class="clear"></div>
-        </form>
-      </div>
+    </div>
+  </div>
+</div>
+<div class="l-trading grid-item">
+  <div class="section">
+    <div class="section-header">
+      <h5 class="section-title">Trading</h5>
+    </div>
+    <div class="section-content">
+
     </div>
   </div>
 </div>

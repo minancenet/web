@@ -144,7 +144,7 @@ html, body {
   box-sizing: inherit;
 }
 
-h1, h2, h3, h4, h5, h6, p, span, ul, li {
+h1, h2, h3, h4, h5, h6, p, span, ul, li, table, tr, th, td {
   padding: 0;
   margin: 0;
 }
@@ -157,16 +157,29 @@ input:focus {
   color: #05FFA1;
 }
 
-.border-r {
-  border-right: 1px solid #292929;
+.pop-alt {
+  color: #04B16F;
+}
+
+.border-t {
+  border-top: 1px solid #292929;
+}
+
+.border-d {
+  border-bottom: 1px solid #292929;
 }
 
 .border-l {
   border-left: 1px solid #292929;
 }
 
+.border-r {
+  border-right: 1px solid #292929;
+}
+
 .l-root {
   height: 100%;
+  overflow: hidden;
 }
 .l-root .grid-item {
   height: 100%;
@@ -296,7 +309,7 @@ input:focus {
   padding: 0rem 0.4rem;
   display: inline-block;
   line-height: 1.8rem;
-  width: 50vw;
+  width: 40vw;
 }
 @media (min-width: 641px) {
   .navbar .search-bar {
@@ -305,7 +318,7 @@ input:focus {
 }
 @media (min-width: 1008px) {
   .navbar .search-bar {
-    width: 40vw;
+    width: 30vw;
   }
 }
 .navbar .search-bar i {
@@ -511,20 +524,30 @@ footer {
   }
 }
 
-.section.border-b {
-  border-bottom: 1px solid #292929;
+.section {
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
-.section.stat-0-section {
+.section::-webkit-scrollbar {
+  display: none;
+}
+.section.stat-section, .section.order-section {
   height: 100%;
 }
 @media (min-width: 1008px) {
-  .section.stat-0-section {
-    height: 50%;
+  .section.stat-section, .section.order-section {
+    max-height: 50%;
   }
 }
 .section .section-header {
   border-bottom: 1px solid #292929;
   padding: 0.4rem 0.6rem;
+  z-index: 1;
+  background-color: #000000;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
 }
 .section .section-header.no-pad {
   padding: 0rem 0.1rem;
@@ -551,7 +574,7 @@ footer {
 }
 
 .stat {
-  font-size: 0.8rem;
+  font-size: 0.74rem;
   margin-bottom: 1rem;
   padding: 0rem 0.4rem;
   white-space: nowrap;
@@ -560,6 +583,42 @@ footer {
 }
 .stat .stat-data {
   margin-left: 0.4rem;
+}
+
+.order-section {
+  display: none;
+}
+@media (min-width: 1008px) {
+  .order-section {
+    display: block;
+  }
+}
+
+.orders-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.order-col {
+  flex-grow: 1;
+  flex-basis: 33%;
+}
+
+.order-table {
+  width: 100%;
+}
+.order-table th, .order-table td {
+  text-align: left;
+}
+.order-table th {
+  font-size: 0.74rem;
+  color: #F2F2F2;
+  padding: 0.4rem 0rem;
+}
+.order-table td {
+  font-size: 0.72rem;
 }
 
 /*# sourceMappingURL=main.css.map */

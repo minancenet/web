@@ -1,0 +1,38 @@
+<div class="navbar">
+  <div class="nav-sec border-r">
+    <span class="nav-logo-helper"></span><img class="nav-logo" src="{{ url_for('static', filename='img/logo.png') }}" alt="logo image"/><span class="nav-text">Minance <i class="fas fa-chevron-down arrow-down"></i></span>
+  </div>
+  <div class="nav-sec">
+    <form>
+      <div class="search-bar">
+        <i class="fas fa-search"></i>
+        <form method="POST" action="{{ url_for('main.search') }}">
+          {{ searchForm.hidden_tag() }}
+          
+          {{ searchForm.query(class="search-field", placeholder="Search") }}
+        </form>
+      </div>
+    </form>
+  </div>
+  <div class="nav-sec link-sec">
+    <ul class="nav-links">
+      <li class="nav-item"><a href="{{ url_for('main.home') }}">Home</a></li>
+      <li class="nav-item"><a href="{{ url_for('asset.assets') }}">Assets</a></li>
+    </ul>
+  </div>
+  <div class="nav-sec right border-l padding-alt">
+    <ul class="nav-links">
+      <li class="nav-item icon"><a href="#"><i class="fas fa-user auth-icon"> <span class="pop">+</span></i></a></li>
+    </ul>
+  </div>
+</div>
+<div class="ticker">
+  {% for asset in random_assets %}
+    <span class="ticker-item">
+      <span class="ticker-img-helper"></span>
+      <img class="ticker-img" src="static/img/stock_of_stonks.webp" />
+      {{ asset.prettyName }}
+      <span class="ticker-item-price">$15402</span>
+    </span>
+  {% endfor %}
+</div>

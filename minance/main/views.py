@@ -3,7 +3,6 @@ import logging
 
 from sqlalchemy.sql.expression import func
 
-from minance import socketio
 from flask import Blueprint, render_template, request, redirect, url_for
 
 from minance.models import Asset
@@ -43,8 +42,6 @@ def guides():
 
 @main.route("/search", methods=["POST"])
 def search():
-  next_page = request.args.get("next")
-
   if request.method == "POST":
     query = request.form["query"]
     asset = Asset.query.filter(Asset.name.ilike(query.replace(" ", "_").upper())).first()

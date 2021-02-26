@@ -1,6 +1,15 @@
-$--COLOR-text: #d3d3d3;
-$--COLOR-text-alt: #fcfcfc;
-$--COLOR-bg: #0d0d0d;
+$--COLOR-bg: #000000;
+$--COLOR-bg-alt: #000D07;
+$--COLOR-bg-pop: #00080A;
+$--COLOR-bg-pop-pop: #000D10;
+$--COLOR-clear: rgba(0,0,0,0);
+
+$--COLOR-text: #C8C8C8;
+$--COLOR-text-alt: #F2F2F2;
+$--COLOR-text-dark: #4B4B4B;
+$--COLOR-pop: #05FFA1;
+$--COLOR-pop-alt: #04B16F;
+
 $--COLOR-long: #00aa40;
 $--COLOR-long-alt: rgba(0, 51, 19, 1);
 $--COLOR-long-bg: rgba(0, 17, 6, 1);
@@ -10,10 +19,5 @@ $--COLOR-short-bg: #170106;
 $--COLOR-neutral: #2b2b2b;
 $--COLOR-neutral-alt: rgb(46, 46, 46);
 $--COLOR-neutral-bg: rgb(19, 19, 19);
-$--COLOR-cta: rgb(5, 10, 31);
-$--COLOR-cta-alt: rgb(10, 19, 54);
-$--COLOR-cta-lighter: rgb(14, 24, 68);
-$--COLOR-cta-light: rgb(18, 32, 93);
-$--COLOR-cta-darker: rgb(4, 7, 20);
-$--COLOR-highlighted: #05ffa1;
-$--COLOR-highlighted-alt: #06e791;
+
+$--COLOR-border: #292929;

@@ -1,0 +1,131 @@
+.assets-table {
+  border-collapse: collapse;
+  width: 100%;
+  color: $--COLOR-text;
+  margin-top: 1.5rem;
+
+  tr:first-child {
+    &:hover {
+      background-color: #000000;
+    }
+  }
+
+  td, th {
+    border-top: 1px solid #383838;
+    font-size: 0.78rem;
+  }
+
+  .letter-td {
+    text-align: left;
+    cursor: pointer;
+
+    a {
+      color: $--COLOR-text;
+    }
+  }
+
+  .number-td {
+    text-align: right;
+    cursor: pointer;
+
+    a {
+      color: $--COLOR-text;
+    }
+  }
+
+  td {
+    padding: 8px;
+  }
+
+  th {
+    cursor: auto;
+    font-family: "DM Sans"!important;
+    padding: 10px;
+  }
+
+  tr:nth-child(even) {
+    background-color: $--COLOR-bg-pop;
+  }
+
+  tr:hover {
+    background-color: $--COLOR-bg-pop-pop;
+  }
+}
+
+.assets-pagination {
+  text-align: center;
+  margin-top: 1rem;
+
+  li {
+    display: inline-block;
+    padding: 1px 5px;
+    font-size: 0.8rem;
+
+    a {
+      text-decoration: none;
+      color: $--COLOR-text;
+    }
+
+    &.active {
+      border: 1px solid $--COLOR-pop-alt;
+      
+      a {
+        color: $--COLOR-text-alt;
+      }
+    }
+  }
+}
+
+.pagination-key {
+  font-size: 0.74rem;
+}
+
+.filters {
+  padding: 0.5rem;
+  margin-top: 1rem;
+
+  label {
+    font-size: 0.88rem;
+    color: $--COLOR-text;
+  }
+
+  select {
+    background-color: #030303;
+    color: #bebebe;  
+    border: 1px solid #222222;
+    margin: 6px 4px 8px 0px;
+    padding: 4px 6px;
+    width: 100%;
+    font-size: 0.85rem;
+    -moz-appearance:none; /* Firefox */
+    -webkit-appearance:none; /* Safari and Chrome */
+    appearance:none;
+  }
+}
+
+
+.filter-field {
+  width: 100%;
+}
+
+.filter-field[type=text] {
+  margin: 6px 4px 8px 0px;
+  padding: 4px 6px;
+  border-radius: none;
+  font-size: 0.85rem;
+  border: 1px solid #222222;
+  background-color: #030303;
+  color: #bebebe;
+  display: inline-block;
+  width: 91.5%;
+}
+
+.filter-btn {
+  background-color: #030303;
+  border: 1px solid $--COLOR-bg-pop;
+  color: #bebebe;
+  border-radius: none;
+  font-size: 0.85rem;
+  margin: 6px 4px 4px 0px;
+  padding: 4px 16px;
+}
