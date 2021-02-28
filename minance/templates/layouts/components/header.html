@@ -1,7 +1,7 @@
 <div class="navbar">
   <div class="nav-sec border-r dropbtn" onclick="dropdown('arbitrageDropdown')">
-    <span class="nav-logo-helper"></span><img class="nav-logo" src="{{ url_for('static', filename='img/logo.png') }}" alt="logo image"/><span class="nav-text">Minance <i class="fas fa-chevron-down arrow-down"></i></span>
-    <div id="arbitrageDropdown" class="dropdown-content">
+    <span class="nav-logo-helper dropbtn"></span><img class="nav-logo dropbtn" src="{{ url_for('static', filename='img/logo.png') }}" alt="logo image" onerror="this.onerror=null; this.src='../../static/img/skyblock/NULL.webp'"/><span class="nav-text dropbtn">Minance <i class="fas fa-chevron-down arrow-down dropbtn"></i></span>
+    <div id="arbitrageDropdown" class="dropdown-content d-none">
       <div class="row">
         <div class="col-6">
           <h5>Market data</h5>
@@ -21,14 +21,12 @@
     </div>
   </div>
   <div class="nav-sec">
-    <form>
+    <form method="POST" action="{{ url_for('main.search') }}">
       <div class="search-bar">
         <i class="fas fa-search"></i>
-        <form method="POST" action="{{ url_for('main.search') }}">
           {{ searchForm.hidden_tag() }}
           
-          {{ searchForm.query(class="search-field", placeholder="Search") }}
-        </form>
+          {{ searchForm.query(class="search-field invalid", placeholder="Search") }}
       </div>
     </form>
   </div>

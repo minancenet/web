@@ -39,9 +39,9 @@ h1, h2, h3, h4, h5, h6, p, span, ul, li, table, tr, th, td {
 
 input:focus { outline-width: 0; }
 
-.dropdown-content { display: none; }
+.d-none { display: none; }
 .dropbtn { cursor: pointer; }
-.show { display: block!important; }
+.show { display: block; }
 
 .pop { color: $--COLOR-pop; }
 .bold { font-family: "DM Sans Bold"; }
@@ -254,6 +254,52 @@ input:focus { outline-width: 0; }
   }
 }
 
+#chartDropdown {
+  position: absolute;
+  background-color: $--COLOR-bg;
+  border: 1px solid $--COLOR-border;
+  border-top: none;
+  margin-top: 2px;
+  margin-left: -1px;
+  overflow: auto;
+  z-index: 3;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  white-space: normal;
+  line-height: normal;
+  cursor: auto;
+  width: 175.5px;
+
+  ul li {
+    border-right: none;
+    padding: 0.2rem 0.64rem;
+  }
+}
+
+#timeFrameDisplay {
+  width: 49px;
+}
+
+#timeDropdown {
+  position: absolute;
+  background-color: $--COLOR-bg;
+  border: 1px solid $--COLOR-border;
+  border-top: none;
+  margin-top: 2px;
+  margin-left: -1px;
+  overflow: auto;
+  z-index: 3;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  white-space: normal;
+  line-height: normal;
+  cursor: auto;
+  width: 49px;
+
+  ul li {
+    border-right: none;
+    padding: 0.2rem 0.64rem;
+  }
+}
+
 #arbitrageDropdown {
   position: absolute;
   background-color: $--COLOR-bg;
@@ -313,7 +359,7 @@ input:focus { outline-width: 0; }
   white-space: nowrap;
   overflow: hidden;
   width: 100%;
-  padding: 0rem 2rem;
+  padding: 0rem 0.5rem;
 
   .ticker-item {
     font-size: 0.7rem;
@@ -580,6 +626,14 @@ footer {
         i {
           font-size: 0.55rem;
         }
+
+        &.dropbtn {
+          padding: 0;
+        }
+
+        .inner-li {
+          padding: 0.4rem;
+        }
       }
     }
   }
@@ -790,4 +844,26 @@ footer {
   color: #FFF;
   font-size: 0.88rem;
   font-family: "DM Sans Medium";
+}
+
+.form-label {
+  font-size: 0.8rem;
+}
+
+.form-group {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.reset-btn {
+  width: 30%;
+}
+
+.order-btn {
+  width: 60%;
+}
+
+.chart {
+  display: none;
 }

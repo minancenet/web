@@ -10,7 +10,8 @@ from minance.extensions import (
   login_manager,
   socketio,
   migrate,
-  scheduler
+  scheduler,
+  csrf
 )
 
 def create_app(config_filename="flask.cfg"):
@@ -32,6 +33,7 @@ def initialize_extensions(app):
   login_manager.init_app(app)
   socketio.init_app(app)
   migrate.init_app(app, db)
+  csrf.init_app(app)
 
 def register_scheduler(app):
   """Registering Flask scheduler tasks"""

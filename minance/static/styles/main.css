@@ -237,12 +237,11 @@
   background-color: #030303;
   color: #bebebe;
   display: inline-block;
-  width: 91.5%;
 }
 
 .filter-btn {
   background-color: #030303;
-  border: 1px solid #000D10;
+  border: 1px solid #001216;
   color: #bebebe;
   border-radius: none;
   font-size: 0.85rem;
@@ -349,7 +348,7 @@ input:focus {
   outline-width: 0;
 }
 
-.dropdown-content {
+.d-none {
   display: none;
 }
 
@@ -358,7 +357,7 @@ input:focus {
 }
 
 .show {
-  display: block !important;
+  display: block;
 }
 
 .pop {
@@ -582,6 +581,50 @@ input:focus {
   color: #F2F2F2;
 }
 
+#chartDropdown {
+  position: absolute;
+  background-color: #000000;
+  border: 1px solid #292929;
+  border-top: none;
+  margin-top: 2px;
+  margin-left: -1px;
+  overflow: auto;
+  z-index: 3;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  white-space: normal;
+  line-height: normal;
+  cursor: auto;
+  width: 175.5px;
+}
+#chartDropdown ul li {
+  border-right: none;
+  padding: 0.2rem 0.64rem;
+}
+
+#timeFrameDisplay {
+  width: 49px;
+}
+
+#timeDropdown {
+  position: absolute;
+  background-color: #000000;
+  border: 1px solid #292929;
+  border-top: none;
+  margin-top: 2px;
+  margin-left: -1px;
+  overflow: auto;
+  z-index: 3;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  white-space: normal;
+  line-height: normal;
+  cursor: auto;
+  width: 49px;
+}
+#timeDropdown ul li {
+  border-right: none;
+  padding: 0.2rem 0.64rem;
+}
+
 #arbitrageDropdown {
   position: absolute;
   background-color: #000000;
@@ -635,7 +678,7 @@ input:focus {
   white-space: nowrap;
   overflow: hidden;
   width: 100%;
-  padding: 0rem 2rem;
+  padding: 0rem 0.5rem;
 }
 .ticker .ticker-item {
   font-size: 0.7rem;
@@ -894,6 +937,12 @@ footer {
 .section .section-header .section-header-tabs li i {
   font-size: 0.55rem;
 }
+.section .section-header .section-header-tabs li.dropbtn {
+  padding: 0;
+}
+.section .section-header .section-header-tabs li .inner-li {
+  padding: 0.4rem;
+}
 .section .section-content {
   padding: 0.8rem;
 }
@@ -1074,6 +1123,28 @@ footer {
   color: #FFF;
   font-size: 0.88rem;
   font-family: "DM Sans Medium";
+}
+
+.form-label {
+  font-size: 0.8rem;
+}
+
+.form-group {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.reset-btn {
+  width: 30%;
+}
+
+.order-btn {
+  width: 60%;
+}
+
+.chart {
+  display: none;
 }
 
 /*# sourceMappingURL=main.css.map */

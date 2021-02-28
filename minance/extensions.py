@@ -5,6 +5,7 @@ from flask_apscheduler import APScheduler
 from flask_socketio import SocketIO
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
+from flask_wtf.csrf import CSRFProtect
 
 db = SQLAlchemy()
 bcrypt = Bcrypt()
@@ -14,3 +15,4 @@ login_manager.login_message_category = "alert"
 socketio = SocketIO()
 migrate = Migrate()
 scheduler = APScheduler()
+csrf = CSRFProtect()

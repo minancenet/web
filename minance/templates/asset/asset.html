@@ -11,16 +11,54 @@
     <div class="section-header no-pad">
       <ul class="section-header-tabs">
         <li class="pop bold">{{ asset.prettyName }}</li>
-        <li>Buy Candlestick Chart</li>
-        <li>Sell Candlestick Chart</li>
-        <li>Top Orders Chart</li>
-        <li>5M <i class="fas fa-chevron-down arrow-down"></i></li>
+        <li class="dropbtn" onclick="dropdown('chartDropdown')">
+          <div class="inner-li dropbtn">
+            Sell Candlestick Chart
+            <i class="fas fa-chevron-down arrow-down "></i>  
+          </div>
+          <div id="chartDropdown" class="dropdown-content d-none">
+            <ul>
+              <li onclick="openTab(event, 'sell')">Sell Candlestick Chart</li>
+              <li onclick="openTab(event, 'buy')">Buy Candlestick Chart</li>
+              <li onclick="openTab(event, 'topOrders')">Top Orders Chart</li>
+            </ul>
+          </div>  
+        </li>
+        <li class="dropbtn" onclick="dropdown('timeDropdown')">
+          <div class="inner-li dropbtn" style="width: 47.2px; text-align: center;">
+            <span id="timeFrameDisplay" class="dropbtn">5M</span>
+            <i class="fas fa-chevron-down arrow-down dropbtn"></i>  
+          </div>
+          <div id="timeDropdown" class="dropdown-content d-none">
+            <ul>
+              <li onclick="changeTimeFrame(1, '1M')">1M</li>
+              <li onclick="changeTimeFrame(3, '3M')">3M</li>
+              <li onclick="changeTimeFrame(5, '5M')">5M</li>
+              <li onclick="changeTimeFrame(15, '15M')">15M</li>
+              <li onclick="changeTimeFrame(30, '30M')">30M</li>
+              <li onclick="changeTimeFrame(60, '1H')">1H</li>
+              <li onclick="changeTimeFrame(120, '2H')">2H</li>
+              <li onclick="changeTimeFrame(240,'4H')">4H</li>
+              <li onclick="changeTimeFrame(360, '6H')">6H</li>
+              <li onclick="changeTimeFrame(720, '12H')">12H</li>
+              <li onclick="changeTimeFrame(1440, '1D')">1D</li>
+              <li onclick="changeTimeFrame(4320, '3D')">3D</li>
+              <li onclick="changeTimeFrame(10080, '1W')">1W</li>
+            </ul>
+          </div>  
+        </li>
       </ul>
     </div>
     <div class="section-content no-pad">
-      <div id="sell" style="display: block;">
+      <div id="sell" class="chart" style="display: block;">
         <div id="sellChart"></div>
       </div>
+      <div id="buy" class="chart">
+        <div id="buyChart"></div>
+      </div>
+      <div id="topOrders" class="chart">
+        <div id="lineChart"></div>
+      </div>    
     </div>
   </div>
 </div>
@@ -156,7 +194,48 @@
       <h5 class="section-title">Trading</h5>
     </div>
     <div class="section-content">
-
+      <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+          <p class="form-label">Action</p>
+          <div class="form-field">
+            <button class="form-btn">Buy</button>
+            <button class="form-btn">Sell</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <p class="form-label">Type</p>
+          <div class="form-field">
+            <select>
+              <option>Top Order +0.1</option>
+              <option>Match Top Order</option>
+              <option>5% Spread</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <p class="form-label">Time</p>
+          <div class="form-field">
+            <input type="text">
+          </div>
+        </div>
+        <div class="form-group">
+          <p class="form-label">Quantity</p>
+          <div class="form-field">
+            <input type="text">
+          </div>
+        </div>
+        <div class="form-group">
+          <p class="form-label">Total</p>
+          <div class="form-field">
+            <input type="text">
+          </div>
+        </div>
+        <div class="form-group">
+          <button class="reset-btn">Reset</button>
+          <button class="order-btn">Place Order</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
@@ -172,7 +251,7 @@
     timeFrameDisplay.innerHTML = abbr
 
     createChart("sell", timeFrame, "{{ asset.name }}")
-    createChart("buy", timeFrame, "{{ asset.name }}")  
+    createChart("buy", timeFrame, "{{ asset.name }}")
   }
 </script>
 
