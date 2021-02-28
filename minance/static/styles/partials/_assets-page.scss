@@ -50,6 +50,17 @@
   tr:hover {
     background-color: $--COLOR-bg-pop-pop;
   }
+
+  .asset-img-helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+  }
+
+  .asset-img {
+    height: 1rem;
+    width: 1rem;
+  }
 }
 
 .assets-pagination {

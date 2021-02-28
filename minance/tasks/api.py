@@ -56,7 +56,6 @@ def genThreeDayOHLC():
 def genOneWeekOHLC():
   prepXMinOHLC(10080)
 
-
 def getHigh(candlePrices):
   """
   Get highest value from nested list for insertion into Candle object

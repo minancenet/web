@@ -4,6 +4,7 @@ from flask_bcrypt import Bcrypt
 from flask_apscheduler import APScheduler
 from flask_socketio import SocketIO
 from flask_migrate import Migrate, MigrateCommand
+from flask_script import Manager
 
 db = SQLAlchemy()
 bcrypt = Bcrypt()

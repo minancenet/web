@@ -15,12 +15,11 @@
           <div class="l-main main-pad">
             {% block content %}
             {% endblock content %}
+
+            {% include "layouts/components/footer-alt.html" %}
+            {% block footer %} {% endblock footer %}  
           </div>
         </main>
-        <footer>
-          {% include "layouts/components/footer-alt.html" %}
-          {% block footer %} {% endblock footer %}
-        </footer>
       </div>
       <div class="l-toolbar grid-item border-l">
         {% include "layouts/components/toolbar.html" %}

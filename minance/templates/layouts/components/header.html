@@ -1,6 +1,24 @@
 <div class="navbar">
-  <div class="nav-sec border-r">
+  <div class="nav-sec border-r dropbtn" onclick="dropdown('arbitrageDropdown')">
     <span class="nav-logo-helper"></span><img class="nav-logo" src="{{ url_for('static', filename='img/logo.png') }}" alt="logo image"/><span class="nav-text">Minance <i class="fas fa-chevron-down arrow-down"></i></span>
+    <div id="arbitrageDropdown" class="dropdown-content">
+      <div class="row">
+        <div class="col-6">
+          <h5>Market data</h5>
+          <ul>
+            <li><a href="{{ url_for('main.home') }}">Home</a></li>
+            <li><a href="{{ url_for('asset.assets') }}">Assets</a></li>
+            <li><a href="{{ url_for('main.about') }}">About</a></li>
+            <!-- <li><a href="{{ url_for('portfolio.portfolio_dash') }}">Portfolio</a></li> -->
+          </ul>
+        </div>
+        <div class="col-6"  style="border-left: 1px solid #222222;">
+          <h5>What is Minance?</h5>
+          <p>Minance is a real-time Hypixel Skyblock bazaar tracker.<br><br>
+          Minance monitors every item on the bazaar with updates every fifteen seconds, Minance won't miss a crash or rally.</p>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="nav-sec">
     <form>
@@ -30,9 +48,9 @@
   {% for asset in random_assets %}
     <span class="ticker-item">
       <span class="ticker-img-helper"></span>
-      <img class="ticker-img" src="static/img/stock_of_stonks.webp" />
+      <img class="ticker-img" src="{{ url_for('static', filename='img/skyblock/' + asset.name + '.webp') }}" />
       {{ asset.prettyName }}
-      <span class="ticker-item-price">$15402</span>
+      <span class="ticker-item-price">${{ "%.2f%%"|format(asset.margin) }}</span>
     </span>
   {% endfor %}
 </div>

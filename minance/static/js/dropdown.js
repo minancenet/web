@@ -6,7 +6,8 @@ function dropdown(dropdown) {
 
 // Close the dropdown if the user clicks outside of it
 window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
+  var dropdownBtns = document.getElementsByClassName("dropbtn");
+  if (!event.target.matches(dropdownBtns)) {
     var dropdowns = document.getElementsByClassName("dropdown-content");
     var i;
     for (i = 0; i < dropdowns.length; i++) {
