@@ -347,6 +347,9 @@
   animation-play-state: paused;
   text-align: left;
   display: flex;
+  align-items: center;
+  white-space: normal;
+  word-break: break-all;
   max-width: 25vw;
   position: relative;
   right: 0;
