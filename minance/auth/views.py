@@ -20,7 +20,7 @@ def login():
     else:
       flash("Invalid credentials.", "error")
 
-  return redirect (next_page) if next_page else redirect(url_for("main.home"))
+  return redirect (next_page) if next_page else redirect(url_for("user.dashboard"))
 
 @auth.route("/auth/logout", methods=["POST"])
 def logout():

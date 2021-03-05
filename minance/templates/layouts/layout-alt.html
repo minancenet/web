@@ -19,8 +19,10 @@
             {% include "layouts/components/notifications.html" %}
             {% block notifications %} {% endblock notifications %}
 
-            {% block content %}
-            {% endblock content %}
+            <div class="content">
+              {% block content %}
+              {% endblock content %}  
+            </div>
 
             {% include "layouts/components/footer-alt.html" %}
             {% block footer %} {% endblock footer %}  

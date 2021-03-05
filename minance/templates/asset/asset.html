@@ -189,7 +189,15 @@
   </div>
 </div>
 <div class="l-trading grid-item">
-  <div class="section">
+  <div class="section" style="position: relative;">
+    {% if not current_user.is_authenticated %}
+      <div class="restricted">
+        <div class="restricted-content">
+          <p>Please <span class="btn-alt">Login</span><br><br>
+          to start trading</p>
+        </div>
+      </div>
+    {% endif %}
     <div class="section-header">
       <h5 class="section-title">Trading</h5>
     </div>
@@ -199,36 +207,38 @@
         <div class="form-group">
           <p class="form-label">Action</p>
           <div class="form-field">
-            <button class="form-btn">Buy</button>
-            <button class="form-btn">Sell</button>
+            <button class="form-btn two">Buy</button>
+            <button class="form-btn two">Sell</button>
           </div>
         </div>
         <div class="form-group">
           <p class="form-label">Type</p>
           <div class="form-field">
-            <select>
+            <select class="form-select one">
               <option>Top Order +0.1</option>
               <option>Match Top Order</option>
-              <option>5% Spread</option>
+              <option>5% Spread (Buy Only)</option>
+              <option>10% Spread (Sell Only)</option>
             </select>
           </div>
         </div>
-        <div class="form-group">
+        <!-- <div class="form-group">
           <p class="form-label">Time</p>
           <div class="form-field">
-            <input type="text">
+            <input class="form-input two" type="text">
+            <input class="form-input two" type="text">
           </div>
-        </div>
+        </div> -->
         <div class="form-group">
           <p class="form-label">Quantity</p>
           <div class="form-field">
-            <input type="text">
+            <input class="form-input one" type="text">
           </div>
         </div>
         <div class="form-group">
           <p class="form-label">Total</p>
           <div class="form-field">
-            <input type="text">
+            <input class="form-input one" type="text">
           </div>
         </div>
         <div class="form-group">

@@ -8,7 +8,7 @@ function openTab(evt, tabName, tabContainerName, tabLinkName) {
   for (i = 0; i < tablinks.length; i++) {
     tablinks[i].className = tablinks[i].className.replace(" active", "");
   }
-  document.getElementById(tabName).style.display = "inline-block";
+  document.getElementById(tabName).style.display = "block";
   document.getElementById(tabName).style.width = "100%";
   evt.currentTarget.className += " active";
 }

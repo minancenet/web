@@ -36,13 +36,9 @@ def home():
 def about():
   return render_template("main/about.html", active_page="about", title="About")
 
-@main.route("/tos")
-def tos():
-  return render_template("main/tos.html", title="TOS")
-
-@main.route("/guides")
-def guides():
-  return render_template("main/guides.html", title="Guides")
+@main.route("/bazaar")
+def bazaar():
+  return render_template("main/bazaar.html", active_page="bazaar", title="Bazaar")
 
 @main.route("/search", methods=["POST"])
 def search():

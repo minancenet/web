@@ -21,6 +21,27 @@ html, body {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 
+  /* Works on Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #2e2e2e rgba(0,0,0,0);
+  }
+
+  /* Works on Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0);
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,0);;
+    border-radius: 20px;
+    border: 3px solid #2e2e2e;
+  }
+
   color: $--COLOR-text;
   background-color: $--COLOR-bg;
 
@@ -53,6 +74,7 @@ input:focus { outline-width: 0; }
 .border-d { border-bottom: 1px solid $--COLOR-border; }
 .border-l { border-left: 1px solid $--COLOR-border; }
 .border-r { border-right: 1px solid $--COLOR-border; }
+.a-center { text-align: center; }
 
 .green { color: $--COLOR-long; }
 .red { color: $--COLOR-short; }
@@ -142,13 +164,13 @@ input:focus { outline-width: 0; }
   main {
     flex: 0 10 auto;
     overflow-y: scroll;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
   
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+    // -ms-overflow-style: none;
+    // scrollbar-width: none;
+
+    .content {
+      min-height: 60vh;
+    }
   }
 
   .footer {
@@ -720,10 +742,6 @@ footer {
 .section {
   overflow-y: scroll;
 
-  &::-webkit-scrollbar {
-    display: none;
-  }
-
   -ms-overflow-style: none;
   scrollbar-width: none;
   
@@ -995,14 +1013,105 @@ footer {
   margin-bottom: 1rem;
 }
 
+.form-field {
+  display: flex;
+  width: 70%;
+  justify-content: space-between;
+
+  .two {
+    flex-basis: 48%;
+  }
+
+  .one {
+    flex-basis: 100%;
+  }
+}
+
+.form-btn {
+  background-color: rgba(0,0,0,0);
+  color: #C4C4C4;
+  border: 1px solid $--COLOR-border;
+  padding: 0.25rem 0rem;
+  cursor: pointer;
+}
+
+.form-select {
+  background-color: rgba(0,0,0,0);
+  color: #C4C4C4;
+  border: 1px solid $--COLOR-border;
+  padding: 0.25rem 0.4rem;
+
+  -moz-appearance:none; /* Firefox */
+  -webkit-appearance:none; /* Safari and Chrome */
+  appearance:none;
+}
+
+.form-input {
+  background-color: rgba(0,0,0,0);
+  color: #C4C4C4;
+  border: 1px solid $--COLOR-border;
+  padding: 0.25rem 0.4rem;
+  width: 100%;
+}
+
 .reset-btn {
   width: 30%;
+  background-color: #141414;
+  border: 1px solid #656565;
+  color: #C4C4C4;
+  padding: 0.25rem 0rem;
+  cursor: pointer;
 }
 
 .order-btn {
-  width: 60%;
+  width: 65%;
+  background-color: #2D2D2D;
+  border: 1px solid #656565;
+  color: #C4C4C4;
+  padding: 0.25rem 0rem;
+  cursor: pointer;
 }
 
 .chart {
   display: none;
+}
+
+.restricted {
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  background-color: rgba(0,0,0,0.65)!important;
+
+  .restricted-content {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    display: flex;
+    align-items: center;
+
+    p {
+      font-size: 0.74rem;
+    }
+  }
+}
+
+.btn-alt {
+  background-color: $--COLOR-pop-alt;
+  color: $--COLOR-text-alt;
+  padding: 0.1rem 0.3rem;
+}
+
+.btn {
+  border: 1px solid $--COLOR-border;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  background-color: $--COLOR-clear;
+  color: $--COLOR-text;
+  padding: 0.2rem 0.4rem;
+  margin-top: 1rem;
 }

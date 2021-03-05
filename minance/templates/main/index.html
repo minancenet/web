@@ -4,9 +4,9 @@
 <h3 class="b">Top Hypixel Assets</h3>
 <p class="light">By Margin (%) Descending</p>
 <br>
-<div class="row">
+<div class="row-stocks">
   {% for count, asset in enumerate(assets) %}
-    <div class="col-3" style="margin-bottom: 1rem;">
+    <div class="col-c" style="margin-bottom: 1rem;">
       <a href="{{ url_for('asset.specific_asset', asset_name=asset.name) }}" style="text-decoration: none;">
         {% if asset.movingValue  == 0 %}
           <div class="top-stock neutral">
@@ -52,6 +52,7 @@
     </div>
   {% endfor %}
 </div>
-<a href="{{ url_for('asset.assets') }}" style="text-decoration: none;"><button class="asset-btn"><i class="fas fa-bars" style="margin-right: 0.2rem;"></i> View Asset List</button></a>
+
+<button class="btn"><i class="fas fa-bars" style="margin-right: 0.2rem;"></i> View Asset List</button>
 
 {% endblock content %}
