@@ -13,6 +13,12 @@
         </header>
         <main>
           <div class="l-main">
+            {% include "layouts/components/auth.html" %}
+            {% block auth %} {% endblock auth %}
+
+            {% include "layouts/components/notifications.html" %}
+            {% block notifications %} {% endblock notifications %}      
+
             {% block content %}
             {% endblock content %}
           </div>

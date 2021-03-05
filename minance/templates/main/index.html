@@ -26,7 +26,7 @@
             </h2>
           </div>
           <div>
-            <span class="top-stock-price">${{ round(asset.sellPrice, 2) }}</span>
+            <span class="top-stock-price">${{ "%.2f%%"|format(asset.sellPrice) }}</span>
             {% if asset.movingValue == 0 %}
               <span class="top-stock-movement">{{ asset.movingValue }}%</span>
             {% elif asset.movingValue > 0 %}

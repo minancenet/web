@@ -32,13 +32,18 @@
   </div>
   <div class="nav-sec link-sec">
     <ul class="nav-links">
-      <li class="nav-item"><a href="{{ url_for('main.home') }}">Home</a></li>
-      <li class="nav-item"><a href="{{ url_for('asset.assets') }}">Assets</a></li>
+      <li class="nav-item"><a href="{{ url_for('main.home') }}" class="{{ 'pop-alt' if active_page == 'index' else '' }}">Home</a></li>
+      <li class="nav-item"><a href="{{ url_for('asset.assets') }}" class="{{ 'pop-alt' if active_page == 'assets' else '' }}">Assets</a></li>
     </ul>
   </div>
   <div class="nav-sec right border-l padding-alt">
     <ul class="nav-links">
-      <li class="nav-item icon"><a href="#"><i class="fas fa-user auth-icon"> <span class="pop">+</span></i></a></li>
+      {% if current_user.is_authenticated %}
+        <li class="nav-item pop">{{ current_user.username }}</li>
+        <li class="nav-item icon"><a href="{{ url_for('user.dashboard') }}"><i class="fas fa-user auth-icon"></i></a></li>
+      {% else %}
+        <li class="nav-item icon" onclick="openModal('authModal')"><a href="#"><i class="fas fa-user auth-icon"> <span class="pop">+</span></i></a></li>
+      {% endif %}
     </ul>
   </div>
 </div>
@@ -46,9 +51,20 @@
   {% for asset in random_assets %}
     <span class="ticker-item">
       <span class="ticker-img-helper"></span>
-      <img class="ticker-img" src="{{ url_for('static', filename='img/skyblock/' + asset.name + '.webp') }}" />
+      <img class="ticker-img" src="{{ url_for('static', filename='img/skyblock/' + asset.name + '.webp') }}" alt="{{ asset.name }}" onerror="this.onerror=null; this.src='../../../static/img/skyblock/NULL.webp'"/>
       {{ asset.prettyName }}
       <span class="ticker-item-price">${{ "%.2f%%"|format(asset.margin) }}</span>
     </span>
   {% endfor %}
 </div>
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="main-flashes">
+          <div class="flash-message flash-{{category}}">
+            <p>{{ message }}</p>
+          </div>
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}

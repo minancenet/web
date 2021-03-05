@@ -18,7 +18,7 @@ def login():
     if user and bcrypt.check_password_hash(user.password, request.form["password"]):
       login_user(user)
     else:
-      flash("Invalid credentials.", "alert")
+      flash("Invalid credentials.", "error")
 
   return redirect (next_page) if next_page else redirect(url_for("main.home"))
 
@@ -38,10 +38,12 @@ def register():
     user = User(
       username=request.form["username"],
       email=request.form["email"],
-      password=bcrypt.generate_password_hash(request.form["password"])
+      password=bcrypt.generate_password_hash(request.form["password"]).decode("utf-8")
     )
 
     db.session.add(user)
     db.session.commit()
+
+    flash("Account created successfully.", "success")
 
   return redirect (next_page) if next_page else redirect(url_for("main.home"))

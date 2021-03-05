@@ -49,11 +49,9 @@ function createChart(chartType, timeFrame, assetName) {
       xaxis: {
         autorange: true, 
         rangeslider: {}, 
-        title: 'Date', 
         type: 'date'
       }, 
       yaxis: {
-        title: chartType.replace(/^\w/, (c) => c.toUpperCase()) + " Price",
         autorange: true, 
         type: 'linear'
       },
@@ -128,11 +126,9 @@ function createBuySellChart(assetName) {
       xaxis: {
         autorange: true, 
         rangeslider: {}, 
-        title: 'Date', 
         type: 'date'
       }, 
       yaxis: {
-        title: "Price",
         autorange: true, 
         type: 'linear'
       },

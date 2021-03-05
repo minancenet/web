@@ -15,6 +15,14 @@ class RegistrationForm(FlaskForm):
     if user:
       raise ValidationError("That username is taken. Please choose a different one.")
 
+  def validate_email(self, email):
+    user = User.query.filter_by(email=email.data).first()
+    if user:
+      raise ValidationError("That email is taken. Please choose a different one.")
+    
+    if "@" not in email.data:
+      raise ValidationError("Not a valid email address.")
+
 class LoginForm(FlaskForm):
   username = StringField("Username", validators=[DataRequired()])
   password = PasswordField("Password", validators=[DataRequired()])

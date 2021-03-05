@@ -6,6 +6,7 @@ from flask_socketio import SocketIO
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
 from flask_wtf.csrf import CSRFProtect
+from flask_cors import CORS
 
 db = SQLAlchemy()
 bcrypt = Bcrypt()
@@ -16,3 +17,4 @@ socketio = SocketIO()
 migrate = Migrate()
 scheduler = APScheduler()
 csrf = CSRFProtect()
+cor = CORS()

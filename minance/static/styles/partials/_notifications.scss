@@ -1,0 +1,64 @@
+@keyframes notification-slide {
+  0% {
+    right: -350px;
+  }
+  
+  100% {
+    right: 0;
+  }
+}
+
+.notifications {
+  position: fixed;
+  z-index: 100;
+  top: 20px;
+  right: 0;
+}
+
+.notification {
+  background-color: rgba(3, 110, 69, 0.92);
+  border: 1px solid $--COLOR-bg-pop-pop;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  transition-timing-function: ease-in;
+  animation: notification-slide 1s normal;
+  animation-play-state: paused;
+  text-align: left;
+  display: flex;
+  max-width: 25vw;
+
+  position: relative;
+  right: 0;
+
+  i {
+    font-size: 2rem;
+    margin-right: 1rem;
+    float: left;
+  }
+
+  .notification-body {
+    float: right;
+  }
+
+  .notification-title {
+    font-family: "DM Sans Bold";
+    font-size: 0.8rem;
+  }
+
+  .notification-content {
+    font-size: 0.75rem;
+    color: $--COLOR-text;
+  }
+
+  .exit {
+    position: absolute;
+    top: 2px;
+    right: 8px;
+  }
+
+  .exit:hover {
+    cursor: pointer;
+  }
+}

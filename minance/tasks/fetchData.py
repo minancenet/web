@@ -103,7 +103,7 @@ def oneMinuteTasks():
       if len(sell) > 0:
         historicSellOrders.append([datetime.utcnow(), sell[0]["amount"], sell[0]["pricePerUnit"], sell[0]["orders"]])
 
-      if len(buy) > 0 and buy[0]["pricePerUnit"] != 0:
+      if len(buy) > 0 and buy[0]["pricePerUnit"] != 0 and len(sell) > 0:
         dbAsset.margin = ((1 - (sell[0]["pricePerUnit"] / buy[0]["pricePerUnit"]))*100)
 
       dbAsset.historicBuyOrders = historicBuyOrders

@@ -1,10 +1,10 @@
-function openTab(evt, tabName) {
+function openTab(evt, tabName, tabContainerName, tabLinkName) {
   var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("chart");
+  tabcontent = document.getElementsByClassName(tabContainerName);
   for (i = 0; i < tabcontent.length; i++) {
     tabcontent[i].style.display = "none";
   }
-  tablinks = document.getElementsByClassName("tablink");
+  tablinks = document.getElementsByClassName(tabLinkName);
   for (i = 0; i < tablinks.length; i++) {
     tablinks[i].className = tablinks[i].className.replace(" active", "");
   }
