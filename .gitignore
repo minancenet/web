@@ -4,4 +4,4 @@ __pycache__/
 venv/
 .vscode
 
-API_KEY
+secrets.py
