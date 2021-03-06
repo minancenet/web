@@ -14,7 +14,7 @@
         <li class="dropbtn" onclick="dropdown('chartDropdown')">
           <div class="inner-li dropbtn">
             Sell Candlestick Chart
-            <i class="fas fa-chevron-down arrow-down "></i>  
+            <i class="fas fa-chevron-down arrow-down dropbtn"></i>  
           </div>
           <div id="chartDropdown" class="dropdown-content d-none">
             <ul>
@@ -193,7 +193,7 @@
     {% if not current_user.is_authenticated %}
       <div class="restricted">
         <div class="restricted-content">
-          <p>Please <span class="btn-alt">Login</span><br><br>
+          <p>Please <span class="btn-alt" onclick="openModal('authModal')">Login</span><br><br>
           to start trading</p>
         </div>
       </div>

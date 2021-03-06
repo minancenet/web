@@ -15,7 +15,7 @@ def login():
   
   if request.method == "POST":
     user = User.query.filter_by(username=request.form["username"]).first()
-    if user and bcrypt.check_password_hash(user.password, request.form["password"]):
+    if user and user.checkPassword(request.form["password"]):
       login_user(user)
     else:
       flash("Invalid credentials.", "error")
@@ -46,4 +46,4 @@ def register():
 
     flash("Account created successfully.", "success")
 
-  return redirect (next_page) if next_page else redirect(url_for("main.home"))
+  return redirect (next_page) if next_page else redirect(url_for("user.dashboard"))
