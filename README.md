@@ -6,6 +6,13 @@
   <i>Simple data visualization, analysis and simulation for the Hypixel Skyblock bazaar.</i>
 </p>
 
+<p align="center">
+  <img src="https://img.shields.io/github/workflow/status/minancenet/web/Python%20application" />
+  <img src="https://img.shields.io/github/license/minancenet/web" />
+  <img src="https://img.shields.io/discord/807853309338714132" />
+  <img src="https://img.shields.io/github/issues/minancenet/web" />
+</p>
+
 <h3 align="center">  
   <a href="https://github.com/minancenet/web/blob/master/CONTRIBUTING.md">Contribute</a>
   <span> · </span>
