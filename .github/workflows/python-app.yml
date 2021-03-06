@@ -30,7 +30,7 @@ jobs:
         # Version of PostgreSQL to use
         # postgresql version: # optional, default is latest
         # POSTGRES_DB - name for the default database that is created
-        postgresql db: minanceTestDB 
+        postgresql db: minance_test 
         # POSTGRES_USER - create the specified user with superuser power
         postgresql user: postgres 
         # POSTGRES_PASSWORD - superuser password
