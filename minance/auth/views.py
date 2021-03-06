@@ -22,7 +22,7 @@ def login():
 
   return redirect (next_page) if next_page else redirect(url_for("user.dashboard"))
 
-@auth.route("/auth/logout", methods=["POST"])
+@auth.route("/auth/logout", methods=["GET", "POST"])
 def logout():
   logout_user()
   return redirect(url_for("auth.login"))
@@ -35,11 +35,7 @@ def register():
     return redirect (next_page) if next_page else redirect(url_for("main.home"))
 
   if request.method == "POST":
-    user = User(
-      username=request.form["username"],
-      email=request.form["email"],
-      password=bcrypt.generate_password_hash(request.form["password"]).decode("utf-8")
-    )
+    user = User(request.form["username"], request.form["email"], request.form["password"])
 
     db.session.add(user)
     db.session.commit()

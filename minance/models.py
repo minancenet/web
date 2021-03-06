@@ -19,6 +19,11 @@ class User(db.Model, UserMixin):
 
   assets = db.relationship("UserAsset", backref="holder", lazy=True)
 
+  def __init__(self, username, email, password):
+    self.username = username
+    self.email = email
+    self.password = bcrypt.generate_password_hash(password).decode("utf-8")
+
   def setPassword(self, password):
     """Set user password."""
     self.password = bcrypt.generate_password_hash(password).decode("utf-8")
