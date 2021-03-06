@@ -1,7 +1,5 @@
 import pytest
 
-from minance import bcrypt
-
 def test_new_user(new_user):
   """
   Given a User model
