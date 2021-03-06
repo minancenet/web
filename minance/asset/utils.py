@@ -1,3 +1,5 @@
+from minance.models import Asset
+
 def findProfitMargin(assetName, purchaseTime, sellTime):
   asset = Asset.query.filter_by(name=assetName).first()
 
