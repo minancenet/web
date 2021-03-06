@@ -1,3 +1,6 @@
+import pickle
+from datetime import datetime, timedelta
+
 from minance.models import Asset
 
 def findProfitMargin(assetName, purchaseTime, sellTime):
