@@ -6,6 +6,13 @@
   <i>Simple data visualization, analysis and simulation for the Hypixel Skyblock bazaar.</i>
 </p>
 
+<h3 align="center">  
+  <a href="https://github.com/minancenet/web/CONTRIBUTING.md">Contribute</a>
+  <span> · </span>
+  <a href="https://discord.gg/ERRDyRZ7dR">Community</a>
+  <span> · </span>
+  <a href="#">Documentation</a>
+</h3>
 <p align="center"><b>https://minance.net/</b></p>
 
 <hr>
@@ -27,6 +34,12 @@ See the [open issues](https://github.com/minancenet/web/issues) for a list of pr
 ## Contributing
 
 Minance is open to contributions, but I recommend creating an issue or replying in a comment to let me know what you are working on first that way we don't overwrite each other.
+
+Please read [CONTRIBUTING.md](https://github.com/minancenet/web/CONTRIBUTING.md) for details on this project.
+
+## Code of Conduct
+
+Please read [CODE_OF_CONDUCT.md](https://github.com/minancenet/web/CODE_OF_CONDUCT.md) for details on our code of conduct.
 
 ## Social
 
