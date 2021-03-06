@@ -5,7 +5,6 @@ from sqlalchemy.sql.expression import func
 
 from flask import Blueprint, render_template, request, redirect, url_for, current_app
 
-from minance.extensions import socketio
 from minance.models import Asset
 from minance.main.forms import SearchForm
 from minance.auth.forms import RegistrationForm, LoginForm
@@ -26,9 +25,6 @@ def processor():
 @main.route("/")
 @main.route("/home")
 def home():
-  with current_app.app_context():
-    socketio.emit('test', 'scheduled emission')
-    
   assets = Asset.query.order_by(Asset.margin.desc()).limit(24)
   return render_template("main/index.html", assets=assets, active_page="index", pickle=pickle, enumerate=enumerate, title="Home")
 
