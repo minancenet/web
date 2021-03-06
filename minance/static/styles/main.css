@@ -610,7 +610,7 @@ input:focus {
   */
 }
 .main-wrapper main {
-  flex: 0 10 auto;
+  flex: 10 10 auto;
   overflow-y: scroll;
 }
 .main-wrapper main .content {

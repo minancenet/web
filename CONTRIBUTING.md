@@ -20,7 +20,7 @@ All change happen through pull requests. We actively welcome your pull requests 
 
 Install Flask:
 
-- **All**: Run `pip install flask` or `pip3 install flask`.
+- **All**: Run `pip install flask` or `pip3 install flask` depending on your systems configuration.
 
 #### SASS/ SCSS
 
