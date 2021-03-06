@@ -20,7 +20,7 @@ All change happen through pull requests. We actively welcome your pull requests 
 
 Install Flask:
 
-- **All**: Run `pip install flask` or `pip3 install flask`.
+- **All**: Run `pip install flask` or `pip3 install flask` depending on your systems configuration.
 
 #### SASS/ SCSS
 
@@ -63,5 +63,7 @@ postgres=# CREATE DATABASE minancedb;
 
 API_KEY="INSERT_API_KEY_HERE"
 ```
-2. Install python requirements via `pip install -r requirements.txt`.
-3. Run `python run.py` from the root project directory.
+2. Specify the postgres password in `instance/flask.cfg`.
+3. Setup a virtual environment `python -m venv venv` from the root directory and active it `source venv/bin/activate`.
+4. Install python requirements via `pip install -r requirements.txt`.
+5. Run `python run.py` from the root project directory.
