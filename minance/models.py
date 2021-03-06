@@ -4,7 +4,7 @@ from datetime import datetime
 
 from flask_login import UserMixin, current_user
 
-from minance import db, login_manager
+from minance import db, bcrypt, login_manager
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -18,6 +18,14 @@ class User(db.Model, UserMixin):
   join_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
 
   assets = db.relationship("UserAsset", backref="holder", lazy=True)
+
+  def setPassword(self, password):
+    """Set user password."""
+    self.password = bcrypt.generate_password_hash(password).decode("utf-8")
+
+  def checkPassword(self, value):
+    """Check password."""
+    return bcrypt.check_password_hash(self.password, value)
 
 class UserAsset(db.Model):
   id = db.Column(db.Integer(), primary_key=True)
