@@ -16,3 +16,11 @@ def new_user():
   user = User("user001", "user001@minance.net", "goodPassword")
   
   return user
+
+@pytest.fixture(scope="module")
+def init_database(test_client):
+  db.create_all()
+
+  yield
+
+  db.drop_all()
