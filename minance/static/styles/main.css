@@ -463,6 +463,11 @@ h1, h2, h3, h4, h5, h6, p, span, ul, li, table, tr, th, td {
   outline: none;
 }
 
+a {
+  color: #C8C8C8;
+  text-decoration: none;
+}
+
 input:focus {
   outline: none;
   outline-width: 0;
@@ -487,6 +492,9 @@ input:focus {
 .pop {
   color: #05FFA1 !important;
 }
+.pop a {
+  color: #05FFA1;
+}
 
 .bold {
   font-family: "DM Sans Bold";
@@ -494,6 +502,11 @@ input:focus {
 
 .pop-alt {
   color: #04B16F !important;
+}
+
+.small {
+  font-size: 0.7rem;
+  color: #C8C8C8;
 }
 
 .border-t {
@@ -514,6 +527,10 @@ input:focus {
 
 .a-center {
   text-align: center;
+}
+
+.mt-1 {
+  margin-top: 1rem;
 }
 
 .green {
@@ -1186,11 +1203,11 @@ footer {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
-.section.stat-section, .section.order-section {
+.section.stat-section, .section.order-section, .section.trade-section, .section.tri-section {
   height: 50%;
 }
 @media (min-width: 1008px) {
-  .section.stat-section, .section.order-section {
+  .section.stat-section, .section.order-section, .section.trade-section, .section.tri-section {
     max-height: 100%;
   }
 }
@@ -1479,7 +1496,7 @@ footer {
   cursor: pointer;
 }
 
-.chart {
+.chart, .tri-tab {
   display: none;
 }
 
@@ -1520,6 +1537,25 @@ footer {
   color: #C8C8C8;
   padding: 0.2rem 0.4rem;
   margin-top: 1rem;
+}
+
+.recent-order {
+  width: 100%;
+  background-color: #111111;
+  padding: 0.6rem 0.6rem;
+  font-size: 0.78rem;
+  display: flex;
+  align-items: center;
+  white-space: normal;
+}
+.recent-order img {
+  float: left;
+  width: 2rem;
+  height: 2rem;
+  margin-right: 0.75rem;
+}
+.recent-order p {
+  float: right;
 }
 
 /*# sourceMappingURL=main.css.map */

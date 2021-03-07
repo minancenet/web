@@ -189,7 +189,7 @@
   </div>
 </div>
 <div class="l-trading grid-item">
-  <div class="section" style="position: relative;">
+  <div class="section trade-section" style="position: relative;">
     {% if not current_user.is_authenticated %}
       <div class="restricted">
         <div class="restricted-content">
@@ -245,7 +245,32 @@
           <button class="reset-btn">Reset</button>
           <button class="order-btn">Place Order</button>
         </div>
+        <p class="small mt-1">Edit your trading settings <span class="pop"><a href="#">here</a></span>.</p>
       </form>
+    </div>
+  </div>
+  <div class="section tri-section">
+    <div class="section-header border-t no-pad">
+      <ul class="section-header-tabs">
+        <!-- TODO Make these take up the entire header width -->
+        <li onclick="openTab(event, 'recent-trades', 'tri-tab', 'tablink')">Recent Trades</li>
+        <li onclick="openTab(event, 'chat', 'tri-tab', 'tablink')">Chat</li>
+        <li onclick="openTab(event, 'notes', 'tri-tab', 'tablink')">Notes</li>
+      </ul>
+    </div>
+    <div class="section-content">
+      <div id="recent-trades" class="tri-tab" style="display: block;">
+        <div class="recent-order">
+          <img src="{{ url_for('static', filename='img/skyblock/STOCK_OF_STONKS.webp') }}" />
+          <p>_L4N just placed an order for 1000x Stock of Stonks @ <span class="pop">$14,741</span> per.</p>
+        </div>
+      </div>
+      <div id="chat" class="tri-tab">
+        <p>Chat</p>
+      </div>
+      <div id="notes" class="tri-tab">
+        <p>Notes</p>
+      </div>
     </div>
   </div>
 </div>
