@@ -12,7 +12,7 @@
         </div>
       </div>  
       <div id="register" class="auth-tabcontent" style="display: block;">
-        <hr style="width: 80%; margin-bottom: 1rem;">
+        <hr>
         <form method="POST" action="{{ url_for('auth.register') }}" class="auth-form">
           {{ registrationForm.hidden_tag() }}
           {% if registrationForm.username.errors %}
@@ -63,7 +63,7 @@
       </div>
       
       <div id="login" class="auth-tabcontent" style="display: none;">
-        <hr style="width: 85%;">
+        <hr>
         <form method="POST" action="{{ url_for('auth.login') }}" class="auth-form">
           {{ loginForm.hidden_tag() }}
           {% if loginForm.username.errors %}

@@ -59,7 +59,11 @@ h1, h2, h3, h4, h5, h6, p, span, ul, li, table, tr, th, td {
   margin: 0;
 }
 
-input:focus { outline-width: 0; }
+*:focus {
+  outline: none;
+}
+
+input:focus { outline: none; outline-width: 0; }
 
 .d-none { display: none; }
 .tabcontent { display: none; }
@@ -415,7 +419,7 @@ input:focus { outline-width: 0; }
   background-color: #000000;
   margin: auto;
   border: 1px solid rgb(111, 111, 111);
-  width: 30%;
+  width: 28%;
   padding: 4px 12px;
 
   color: $--COLOR-text;
@@ -423,6 +427,15 @@ input:focus { outline-width: 0; }
 
 .modal-content-inner {
   padding: 28px 8px;
+}
+
+#register, #login {
+  hr {
+    width: 80%;
+    margin-bottom: 1rem;
+    border: none;
+    border-top: 1px solid $--COLOR-border;
+  }
 }
 
 .auth-headers {
@@ -454,30 +467,34 @@ input:focus { outline-width: 0; }
 
 .auth-field {
   font-family: "Iosevka";
-  background-color: $--COLOR-bg-pop;
+  background-color: $--COLOR-clear;
   color: $--COLOR-text-alt;
   padding: 6px 6px;
   width: 100%;
   margin: 4px 0px;
   font-size: 0.76rem;
-  border: none;
-  border: 1px solid rgba(0,0,0,0);
+  border: 1px solid $--COLOR-border;
 }
 
 .auth-field:focus {
   outline-width: 0;
-  border: 1px solid $--COLOR-bg-pop;
-  background-color: $--COLOR-bg-pop-pop;
+  border-radius: none;
+  border: 1px solid $--COLOR-text-dark;
+  background-color: $--COLOR-bg-alt;
 }
 
+.auth-field:required:invalid { outline: none; }
+
 .auth-button {
-  margin-top: 12px;
-  font-family: "Iosevka";
-  font-size: 0.8rem;
-  border: none;
-  color: #afafaf;
-  background-color: $--COLOR-bg-pop-pop;
-  padding: 6px 8px;
+  color: $--COLOR-text;
+  padding: 0.25rem 0.6rem;
+  margin-top: 0.5rem;
+  font-size: 0.82rem;
+  cursor: pointer;
+
+  background-color: #141414;
+  border: 1px solid $--COLOR-border;
+  color: #C4C4C4;
 }
 
 .auth-bottom {
