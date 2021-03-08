@@ -9,7 +9,9 @@
 <p align="center">
   <img src="https://img.shields.io/github/workflow/status/minancenet/web/Python%20application" />
   <img src="https://img.shields.io/github/license/minancenet/web" />
-  <img src="https://img.shields.io/discord/807853309338714132" />
+  <a href="https://discord.gg/swF76FAUVX">
+    <img src="https://img.shields.io/discord/807853309338714132" />
+  </a>
   <img src="https://img.shields.io/github/issues/minancenet/web" />
 </p>
 
@@ -51,7 +53,7 @@ Please read [CODE_OF_CONDUCT.md](https://github.com/minancenet/web/blob/master/C
 ## Social
 
 - Discord: https://discord.gg/ERRDyRZ7dR
-- Twitter: https://twitter.com/minance
+- Twitter: https://twitter.com/minancenet
 
 ## Acknowledgements
 

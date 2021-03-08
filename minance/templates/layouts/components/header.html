@@ -55,7 +55,7 @@
       <span class="ticker-img-helper"></span>
       <img class="ticker-img" src="{{ url_for('static', filename='img/skyblock/' + asset.name + '.webp') }}" alt="{{ asset.name }}" onerror="this.onerror=null; this.src='../../../static/img/skyblock/NULL.webp'"/>
       {{ asset.prettyName }}
-      <span class="ticker-item-price">${{ "%.2f%%"|format(asset.margin) }}</span>
+      <span class="ticker-item-price">${{ "%.2f"|format(asset.margin) }}</span>
     </span>
   {% endfor %}
 </div>
