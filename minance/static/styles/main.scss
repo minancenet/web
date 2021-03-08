@@ -1029,7 +1029,10 @@ footer {
 }
 
 .form-label {
-  font-size: 0.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.75rem;
 }
 
 .form-group {
@@ -1042,6 +1045,7 @@ footer {
   display: flex;
   width: 70%;
   justify-content: space-between;
+  font-size: 0.76rem;
 
   .two {
     flex-basis: 48%;
@@ -1064,7 +1068,7 @@ footer {
   background-color: rgba(0,0,0,0);
   color: #C4C4C4;
   border: 1px solid $--COLOR-border;
-  padding: 0.25rem 0.4rem;
+  padding: 0.2rem 0.35rem;
 
   -moz-appearance:none; /* Firefox */
   -webkit-appearance:none; /* Safari and Chrome */
@@ -1075,7 +1079,7 @@ footer {
   background-color: rgba(0,0,0,0);
   color: #C4C4C4;
   border: 1px solid $--COLOR-border;
-  padding: 0.25rem 0.4rem;
+  padding: 0.2rem 0.35rem;
   width: 100%;
 }
 
@@ -1084,7 +1088,7 @@ footer {
   background-color: #141414;
   border: 1px solid #656565;
   color: #C4C4C4;
-  padding: 0.25rem 0rem;
+  padding: 0.2rem 0rem;
   cursor: pointer;
 }
 
@@ -1093,7 +1097,7 @@ footer {
   background-color: #2D2D2D;
   border: 1px solid #656565;
   color: #C4C4C4;
-  padding: 0.25rem 0rem;
+  padding: 0.2rem 0rem;
   cursor: pointer;
 }
 
@@ -1144,12 +1148,13 @@ footer {
 
 .recent-order {
   width: 100%;
-  background-color: #111111;
+  background-color: #0c0c0c;
   padding: 0.6rem 0.6rem;
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   display: flex;
   align-items: center;
   white-space: normal;
+  margin-bottom: 1rem;
 
   img {
     float: left;
@@ -1160,5 +1165,54 @@ footer {
 
   p {
     float: right;
+  }
+}
+
+.chat {
+  display: flex;
+  flex-flow: column;
+  flex-direction: column;
+  height: 100%;
+  
+  .messages {
+    flex: 10 1 auto;
+    overflow-y: scroll;
+  }
+
+  .send-message {
+    flex: 1 0 2rem;
+  }
+}
+
+.message {
+  color: $--COLOR-text;
+  font-size: 0.75rem;
+  margin-bottom: 0.6rem;
+
+  .sender {
+    background-color: $--COLOR-text-alt;
+    padding: 0rem 0.4rem;
+    color: $--COLOR-bg;
+  }
+}
+
+.notes {
+  width: 100%;
+  height: 12rem;
+  padding: 0.4rem 0.5rem;
+  background-color: $--COLOR-clear;
+  border: 1px solid $--COLOR-border;
+  color: $--COLOR-text;
+}
+
+.send-message {
+  
+  .msg-content {
+    height: 100%;
+    background-color: $--COLOR-clear;
+    padding: 0.4rem 0.5rem;
+    border: 1px solid $--COLOR-border;
+    color: $--COLOR-text;
+    width: 100%;  
   }
 }

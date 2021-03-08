@@ -53,7 +53,7 @@ Please read [CODE_OF_CONDUCT.md](https://github.com/minancenet/web/blob/master/C
 ## Social
 
 - Discord: https://discord.gg/ERRDyRZ7dR
-- Twitter: https://twitter.com/minance
+- Twitter: https://twitter.com/minancenet
 
 ## Acknowledgements
 
