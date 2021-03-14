@@ -32,10 +32,6 @@ def home():
 def about():
   return render_template("main/about.html", active_page="about", title="About")
 
-@main.route("/bazaar")
-def bazaar():
-  return render_template("main/bazaar.html", active_page="bazaar", title="Bazaar")
-
 @main.route("/search", methods=["POST"])
 def search():
   if request.method == "POST":
