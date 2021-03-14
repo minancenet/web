@@ -280,7 +280,7 @@
 }
 
 .about-section {
-  width: 85%;
+  width: 90%;
   margin-left: auto;
   margin-right: auto;
   border: 1px solid #222222;
@@ -418,6 +418,205 @@
   cursor: pointer;
 }
 
+.mb-1 {
+  margin-bottom: 1rem;
+}
+
+.dashboard-left {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 95%;
+}
+.dashboard-left h4 a {
+  color: #05FFA1;
+  text-decoration: none;
+}
+.dashboard-left p {
+  font-size: 0.78rem;
+}
+
+.dashboard-right {
+  margin-left: auto;
+  margin-right: auto;
+  width: 95%;
+}
+
+.profile-pic {
+  border-radius: 50%;
+  width: 100%;
+}
+
+.outer-label {
+  color: #F2F2F2;
+  font-family: "Iosevka";
+}
+
+.bio-label {
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.biography {
+  width: 100%;
+  background-color: #050505;
+  border: 1px solid #292929;
+  resize: none;
+  height: 8rem;
+  color: #C8C8C8;
+  padding: 0.3rem 0.5rem;
+  margin-bottom: 1rem;
+  font-family: "Iosevka";
+  font-size: 0.82rem;
+  font-size: 0.8rem;
+}
+
+.dash-field {
+  background-color: #050505;
+  border: 1px solid #292929;
+  width: 100%;
+  padding: 0.3rem 0.5rem;
+  color: #C8C8C8;
+  margin-bottom: 1rem;
+  font-family: "Iosevka";
+  font-size: 0.8rem;
+}
+
+.pic-btns {
+  margin-top: 0.5rem;
+}
+
+.edit-img {
+  padding: 0rem 0.45rem 0.3rem 0.5rem;
+  border: 1px solid #292929;
+  display: inline-block;
+  cursor: pointer;
+}
+.edit-img i {
+  font-size: 0.75rem;
+}
+
+.trash-img {
+  padding: 0rem 0.5rem 0.3rem 0.5rem;
+  border: 1px solid #292929;
+  display: inline-block;
+  cursor: pointer;
+}
+.trash-img i {
+  font-size: 0.75rem;
+}
+
+.danger-zone {
+  color: #f85149;
+}
+
+.delete-account {
+  border-radius: 4px;
+  background-color: #000000;
+  padding: 0.6rem 1rem;
+  border: 1px solid #292929;
+  color: #f85149;
+}
+
+.dashboard-section {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+.dashboard-section h3 {
+  color: #F2F2F2;
+}
+.dashboard-section p {
+  font-size: 0.76rem;
+}
+
+.dashboard-nav-outer {
+  background-color: #050505;
+  border: 1px solid #292929;
+  border-radius: 8px;
+}
+
+.dashboard-nav {
+  padding: 1rem;
+}
+.dashboard-nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding-left: 0;
+}
+.dashboard-nav ul li {
+  font-size: 0.83rem;
+  font-family: "Iosevka";
+  padding-bottom: 0.7rem;
+  width: 100%;
+  transition-duration: 200ms;
+}
+
+.dashboard-inner-section {
+  background-color: #050505;
+  border: 1px solid #292929;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem 0rem;
+}
+.dashboard-inner-section.no-pad {
+  padding: 0;
+}
+
+.balance {
+  font-family: "Iosevka";
+  color: #F2F2F2;
+  font-size: 1.6rem;
+  letter-spacing: -2px;
+}
+
+.dash-table {
+  margin: 0;
+  padding: 0;
+}
+.dash-table th {
+  border-top: 0;
+}
+.dash-table button {
+  background-color: #05FFA1;
+  background-color: #02a063;
+  color: #FFF;
+  border: none;
+  border-radius: 4px;
+  padding: 0.2rem 0.4rem;
+}
+
+.dashboard-head-left {
+  float: left;
+}
+
+.dashboard-head-right {
+  float: right;
+  text-align: right;
+}
+
+.moving {
+  position: relative;
+  display: flex;
+  align-items: center;
+  letter-spacing: 6px;
+  color: #C8C8C8;
+  float: right;
+}
+.moving i {
+  color: #00aa40;
+  font-size: 0.8rem;
+  vertical-align: middle;
+}
+
+.status {
+  background-color: #04ac58;
+  padding: 0.1rem 0.2rem;
+  border-radius: 4px;
+  font-size: 0.72rem;
+}
+
 html, body {
   height: 100%;
   margin: 0;
@@ -475,6 +674,10 @@ input:focus {
 
 .d-none {
   display: none;
+}
+
+.tablink {
+  cursor: pointer;
 }
 
 .tabcontent {
@@ -1604,6 +1807,7 @@ footer {
   border: 1px solid #292929;
   color: #C8C8C8;
   width: 100%;
+  resize: none;
 }
 
 /*# sourceMappingURL=main.css.map */

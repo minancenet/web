@@ -1,0 +1,93 @@
+{% extends "layouts/layout-alt.html" %}
+{% block content %}
+
+<div class="about-section">
+  <div class="row" style="display: flex;">
+    <div class="col-2">
+      <div class="about-nav-outer">
+        <div class="about-nav">
+          <div class="tabs">
+            <ul>
+              <li class="tablink" onclick="openTab(event, 'about', 'tabcontent', 'tablink')">Profile</li>
+              <li class="tablink" onclick="openTab(event, 'guides', 'tabcontent', 'tablink')">Account</li>
+              <li class="tablink" onclick="openTab(event, 'tos', 'tabcontent', 'tablink')">Settings</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-10">
+      <div class="about-content">
+        <div id="about" class="tabcontent" style="display: block;">
+          <h2 class="mb-1">Profile</h2>
+          <div class="row">
+            <div class="col-3">
+              <div class="dashboard-left">
+                <img class="profile-pic" src="{{ url_for('static', filename='img/profile_pics/_L4N.jpg') }}" />
+                <div class="pic-btns">
+                  <div class="edit-img"><i class="fas fa-edit"></i></div>
+                  <div class="trash-img"><i class="fas fa-trash"></i></div>  
+                </div>
+                <h4><a href="#">_L4N</a></h4>
+                <p>ian.koide@protonmail.com</p>
+              </div>
+            </div>
+            <div class="col-9">
+              <div class="dashboard-right">
+                <p class="bio-label">Username</p>
+                <input class="dash-field" type="text">
+                <p class="bio-label">Biography</p>
+                <textarea class="biography"></textarea>
+                <p class="bio-label">Discord</p>
+                <input class="dash-field" type="text">
+
+                <button class="auth-button">Update</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="guides" class="tabcontent">
+          <h2 class="mb-1">Account</h2>
+          <div class="row">
+            <h4 class="outer-label">Change Password</h4>
+            <div class="col-4">
+              <p class="bio-label">Old Password</p>
+              <input class="dash-field" type="password">    
+            </div>
+            <div class="col-4">
+              <p class="bio-label">New Password</p>
+              <input class="dash-field" type="password">    
+            </div>
+            <div class="col-4">
+              <p class="bio-label">Confirm Password</p>
+              <input class="dash-field" type="password">    
+            </div>
+          </div>
+          <div class="row">
+            <h4 class="outer-label">Change Email</h4>
+            <div class="col-6">
+              <p class="bio-label">Current Email</p>
+              <input class="dash-field" type="text">    
+            </div>
+            <div class="col-6">
+              <p class="bio-label">New Email</p>
+              <input class="dash-field" type="text">    
+            </div>
+          </div>
+          <button class="auth-button">Update</button>
+          <div class="row">
+            <h4 class="outer-label danger-zone">Danger Zone</h4>
+            <button class="delete-account">Delete Account</button>
+          </div>
+        </div>
+        <div id="tos" class="tabcontent">
+          <h2>Settings</h2>
+          <h4 class="outer-label">Notification Settings</h4>
+          <p>Coming Soon</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

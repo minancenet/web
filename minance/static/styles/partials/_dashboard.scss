@@ -1,0 +1,216 @@
+.mb-1 {
+margin-bottom: 1rem;
+}
+
+.dashboard-left {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 95%;
+
+    h4 a {
+        color: $--COLOR-pop;
+        text-decoration: none;
+    }
+
+    p {
+        font-size: 0.78rem;
+    }
+}
+
+.dashboard-right {
+    margin-left: auto;
+    margin-right: auto;
+    width: 95%;
+}
+
+.profile-pic {
+    border-radius: 50%;
+    width: 100%;
+}
+
+.outer-label {
+    color: $--COLOR-text-alt;
+    font-family: "Iosevka";
+}
+
+.bio-label {
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.biography {
+    width: 100%;
+    background-color: #050505;
+    border: 1px solid $--COLOR-border;
+    resize: none;
+    height: 8rem;
+    color: $--COLOR-text;
+    padding: 0.3rem 0.5rem;
+    margin-bottom: 1rem;
+    font-family: "Iosevka";
+    font-size: 0.82rem;
+    font-size: 0.8rem;
+}
+
+.dash-field {
+    background-color: #050505;
+    border: 1px solid $--COLOR-border;
+    width: 100%;
+    padding: 0.3rem 0.5rem;
+    color: $--COLOR-text;
+    margin-bottom: 1rem;
+    font-family: "Iosevka";
+    font-size: 0.8rem;
+}
+
+.pic-btns {
+    margin-top: 0.5rem;
+}
+
+.edit-img {
+    padding: 0rem 0.45rem 0.3rem 0.5rem;
+    border: 1px solid $--COLOR-border;
+    display: inline-block;
+    cursor: pointer;
+
+    i {
+        font-size: 0.75rem;
+    }
+}
+
+.trash-img {
+    padding: 0rem 0.5rem 0.3rem 0.5rem;
+    border: 1px solid $--COLOR-border;
+    display: inline-block;
+    cursor: pointer;
+
+    i {
+        font-size: 0.75rem;
+    }
+}
+
+.danger-zone {
+    color: #f85149;
+}
+
+.delete-account {
+    border-radius: 4px;
+    background-color: $--COLOR-bg;
+    padding: 0.6rem 1rem;
+    border: 1px solid $--COLOR-border;
+    color: #f85149;
+}
+
+.dashboard-section {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+
+    h3 {
+        color: $--COLOR-text-alt;
+    }
+
+    p {
+        font-size: 0.76rem;
+    }
+}
+
+.dashboard-nav-outer {
+    background-color: #050505;
+    border: 1px solid $--COLOR-border;
+    border-radius: 8px;
+}
+
+.dashboard-nav {
+    padding: 1rem;
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding-left: 0;
+
+        li {
+            font-size: 0.83rem;
+            font-family: "Iosevka";
+            padding-bottom: 0.7rem;
+            width: 100%;
+            transition-duration: 200ms;
+        }
+    }
+}
+
+.dashboard-inner-section {
+    background-color: #050505;
+    border: 1px solid $--COLOR-border;
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 1rem 0rem;
+
+    &.no-pad {
+        padding: 0;
+    }
+}
+
+.balance {
+    font-family: "Iosevka";
+    color: $--COLOR-text-alt;
+    font-size: 1.6rem;
+    letter-spacing: -2px;
+}
+
+.dash-table {
+    margin: 0;
+    padding: 0;
+
+    th {
+        border-top: 0;
+    }
+
+    button {
+        background-color: $--COLOR-pop;
+        background-color: #02a063;
+        color: #FFF;
+        border: none;
+        border-radius: 4px;
+        padding: 0.2rem 0.4rem;
+    }
+}
+
+.portfolio-chart {
+    // margin-left: auto;
+    // margin-right: auto;
+    // display: block;
+}
+
+.dashboard-head-left {
+    float: left;
+}
+
+.dashboard-head-right {
+    float: right;
+    text-align: right;
+}
+
+.moving {
+    position: relative;
+    display: flex;
+    align-items: center;
+    letter-spacing: 6px;
+    color: $--COLOR-text;
+    float: right;
+    
+    i {
+        color: $--COLOR-long;
+        font-size: 0.8rem;
+        vertical-align: middle;
+    }
+}
+
+.status {
+    background-color: #04ac58;
+    padding: 0.1rem 0.2rem;
+    border-radius: 4px;
+    font-size: 0.72rem;
+}

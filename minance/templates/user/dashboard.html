@@ -1,7 +1,126 @@
 {% extends "layouts/layout-alt.html" %}
 {% block content %}
 
-<p class="a-center">Wow, it's pretty empty here...</p>
-<p class="a-center"><a href="#" class="pop">Development in Progress</a></p>
+<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+<script src="{{ url_for('static', filename='js/charts.js') }}"></script>
+
+<div class="dashboard-section">
+  <div class="row" style="display: flex;">
+    <div class="col-2">
+      <div class="dashboard-nav-outer">
+        <div class="dashboard-nav">
+          <div class="tabs">
+            <ul>
+              <li class="tablink" onclick="openTab(event, 'portfolio', 'tabcontent', 'tablink')">Portfolio</li>
+              <li class="tablink" onclick="openTab(event, 'trades', 'tabcontent', 'tablink')">Trades</li>
+              <li class="tablink" onclick="openTab(event, 'transactions', 'tabcontent', 'tablink')">Transactions</li>
+              <li class="tablink" onclick="openTab(event, 'earn', 'tabcontent', 'tablink')">Earn</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-10">
+      <div id="portfolio" class="tabcontent" style="display: block;">
+        <div class="dashboard-content">
+          <h3>Portfolio</h3>
+          <p>Here is the summary of your 18 assets.</p>
+          <div class="dashboard-inner-section">
+            <div class="dashboard-head-left">
+              <h2 class="balance">59,021,752.59 COINS</h2>
+              <p>Total Balance</p>  
+            </div>
+            <div class="dashboard-head-right">
+              <h3 class="moving"><i class="fas fa-chevron-up"></i>0%</h3>
+              <p class="moving-small">past week</p>
+            </div>
+            <div style="clear: both;"></div>
+            <div class="portoflio-chart">
+              <div id="lineChart"></div>
+            </div>
+          </div>
+        </div>
+        <h5>Your Assets</h5>
+        <div class="dashboard-inner-section no-pad">
+          <table class="assets-table dash-table">
+            <tr>
+              <th class="letter-td"></th>
+              <th class="letter-td">Name</th>
+              <th class="number-td">Available Balance</th>
+              <th class="number-td">Sell Price</th>
+              <th class="number-td">Buy Price</th>
+              <th class="number-td">Actions</th>
+            </tr>
+            {% for asset in random_assets %}
+              <tr onClick="window.location = '/asset/{{ asset.name }}';">
+                <td class="letter-td"><span class="asset-img-helper"></span><img src="{{ url_for('static', filename='img/skyblock/' + asset.name + '.webp') }}" class="asset-img" alt="{{ asset.name }}" onerror="this.onerror=null; this.src='../../static/img/skyblock/NULL.webp'"></td>
+                <a href="#"><td class="letter-td">{{ asset.name.title().replace("_", " ") }}</td></a>
+                <td class="number-td">432</td>
+                <td class="number-td">{{ "%.2f"|format(asset.sellPrice) }}</td>
+                <td class="number-td">{{ "%.2f"|format(asset.buyPrice) }}</td>
+                <td class="number-td"><button>Deposit</button> <button>Buy</button> <button>Sell</button></td>
+              </tr>
+            {% endfor %}
+          </table>    
+        </div>
+      </div>
+      <div id="trades" class="tabcontent">
+        <h3>Trades</h3>
+        <p>View or place new trades.</p>
+        <div class="row">
+          <div class="col-6">
+            <h5 style="margin-top: 1rem;">Buy</h5>
+            <div class="dashboard-inner-section">
+              
+            </div>
+          </div>
+          <div class="col-6">
+            <h5 style="margin-top: 1rem;">Sell</h5>
+            <div class="dashboard-inner-section">
+              
+            </div>
+          </div>
+        </div>
+        <h5 style="margin-top: 1rem;">History</h5>
+        <div class="dashboard-inner-section no-pad">
+          <table class="assets-table dash-table">
+            <tr>
+              <th class="letter-td"></th>
+              <th class="letter-td">Buy/Sell</th>
+              <th class="number-td">Fees (1.5%)</th>
+              <th class="number-td">Price Per Unit</th>
+              <th class="number-td">Status</th>
+              <th class="number-td">Date</th>
+            </tr>
+            {% for asset in random_assets %}
+              <tr onClick="window.location = '/asset/{{ asset.name }}';">
+                <td class="letter-td"><span class="asset-img-helper"></span><img src="{{ url_for('static', filename='img/skyblock/' + asset.name + '.webp') }}" class="asset-img" alt="{{ asset.name }}" onerror="this.onerror=null; this.src='../../static/img/skyblock/NULL.webp'"></td>
+                <a href="#"><td class="letter-td">9427 C ➠ 12 {{ asset.name.title().replace("_", " ") }}</td></a>
+                <td class="number-td">{{ "%.2f"|format((asset.sellPrice*12) * 0.015) }}</td>
+                <td class="number-td">{{ "%.2f"|format(asset.sellPrice) }}</td>
+                <td class="number-td"><span class="status">Completed</span></td>
+                <td class="number-td">Dec 13th, 2021</td>
+              </tr>
+            {% endfor %}
+          </table>    
+        </div>
+      </div>
+      <div id="transactions" class="tabcontent">
+        <h3>Transactions</h3>
+        <p>Trade assets with other Minance users.</p>
+      </div>
+      <div id="earn" class="tabcontent">
+        <h3>Earn</h3>
+        <p>Earn free Skyblock assets.</p>
+        <br>
+        <p>Coming soon...</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  createPortfolioChart()
+</script>
 
 {% endblock content %}

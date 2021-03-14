@@ -143,3 +143,64 @@ function createBuySellChart(assetName) {
     Plotly.newPlot('lineChart', data, layout, config);
   })
 }
+
+function createPortfolioChart() {
+  fetch("http://localhost:5000/api/v1/asset/COBBLESTONE/price") // Change to actual users portfolio later
+  .then(res => res.json())
+  .then((out) => {
+    var dates = []
+    var sell = []
+    var buy = []
+    
+    for (var i = 0; i < out["sell"].length; i++) {
+      dates.push(out["sell"][i][0]*1000)
+      sell.push(out["sell"][i][1])
+    }
+    
+    var trace1 = {
+  
+      x: dates, 
+      y: sell,
+      name: "Sell Price",
+    
+      line: {color: '#05DB89'}, 
+      fill: 'tozeroy',
+
+      type: 'scatter',
+      xaxis: 'x',
+      yaxis: 'y'
+    };
+
+    var data = [trace1];
+
+    var layout = {
+      height: 200,
+      dragmode: 'zoom', 
+      margin: {
+        r: 20,
+        t: 10,
+        b: 30,
+        l: 20,
+      },
+      showlegend: false, 
+      xaxis: {
+        autorange: true, 
+        rangeslider: false,
+        type: 'date'
+      }, 
+      yaxis: {
+        autorange: true, 
+        type: 'linear'
+      },
+      plot_bgcolor: "rgb(5,5,5)",
+      paper_bgcolor: "rgb(5,5,5)"
+    };
+
+    var config = {
+      responsive: true,
+      displayModeBar: false,
+    }
+  
+    Plotly.newPlot('lineChart', data, layout, config);
+  })
+}
