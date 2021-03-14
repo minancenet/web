@@ -1,7 +1,31 @@
 {% extends "layouts/layout-alt.html" %}
 {% block content %}
 
-<p class="a-center">Wow, it's pretty empty here...</p>
-<p class="a-center"><a href="#" class="pop">Development in Progress</a></p>
+<div class="about-section">
+  <div class="row" style="display: flex;">
+    <div class="col-2">
+      <div class="about-nav-outer">
+        <div class="about-nav">
+          <div class="tabs">
+            <ul>
+              <li class="tablink" onclick="openTab(event, 'about', 'tabcontent', 'tablink')">Assets</li>
+              <li class="tablink" onclick="openTab(event, 'guides', 'tabcontent', 'tablink')">Trades</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-10">
+      <div class="about-content">
+        <div id="about" class="tabcontent" style="display: block;">
+          <h2 class="mb-1">Assets</h2>
+        </div>
+        <div id="guides" class="tabcontent">
+          <h2 class="mb-1">Trades</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 {% endblock content %}

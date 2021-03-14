@@ -6,6 +6,7 @@
 @import "partials/panel-page";
 @import "partials/info-page";
 @import "partials/notifications";
+@import "partials/dashboard";
 
 $--WIDTH-mobile: 640px; // Or less
 $--WIDTH-tablet: 641px; // 641 - 1007
@@ -1214,5 +1215,6 @@ footer {
     border: 1px solid $--COLOR-border;
     color: $--COLOR-text;
     width: 100%;  
+    resize: none;
   }
 }

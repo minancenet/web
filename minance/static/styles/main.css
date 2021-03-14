@@ -280,7 +280,7 @@
 }
 
 .about-section {
-  width: 85%;
+  width: 90%;
   margin-left: auto;
   margin-right: auto;
   border: 1px solid #222222;
@@ -416,6 +416,106 @@
 }
 .notification .exit:hover {
   cursor: pointer;
+}
+
+.mb-1 {
+  margin-bottom: 1rem;
+}
+
+.dashboard-left {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 95%;
+}
+.dashboard-left h4 a {
+  color: #05FFA1;
+  text-decoration: none;
+}
+.dashboard-left p {
+  font-size: 0.78rem;
+}
+
+.dashboard-right {
+  margin-left: auto;
+  margin-right: auto;
+  width: 95%;
+}
+
+.profile-pic {
+  border-radius: 50%;
+  width: 100%;
+}
+
+.outer-label {
+  color: #F2F2F2;
+  font-family: "Iosevka";
+}
+
+.bio-label {
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.biography {
+  width: 100%;
+  background-color: #050505;
+  border: 1px solid #292929;
+  resize: none;
+  height: 8rem;
+  color: #C8C8C8;
+  padding: 0.3rem 0.5rem;
+  margin-bottom: 1rem;
+  font-family: "Iosevka";
+  font-size: 0.82rem;
+  font-size: 0.8rem;
+}
+
+.dash-field {
+  background-color: #050505;
+  border: 1px solid #292929;
+  width: 100%;
+  padding: 0.3rem 0.5rem;
+  color: #C8C8C8;
+  margin-bottom: 1rem;
+  font-family: "Iosevka";
+  font-size: 0.8rem;
+}
+
+.pic-btns {
+  margin-top: 0.5rem;
+}
+
+.edit-img {
+  padding: 0rem 0.45rem 0.3rem 0.5rem;
+  border: 1px solid #292929;
+  display: inline-block;
+  cursor: pointer;
+}
+.edit-img i {
+  font-size: 0.75rem;
+}
+
+.trash-img {
+  padding: 0rem 0.5rem 0.3rem 0.5rem;
+  border: 1px solid #292929;
+  display: inline-block;
+  cursor: pointer;
+}
+.trash-img i {
+  font-size: 0.75rem;
+}
+
+.danger-zone {
+  color: #f85149;
+}
+
+.delete-account {
+  border-radius: 4px;
+  background-color: #000000;
+  padding: 0.6rem 1rem;
+  border: 1px solid #292929;
+  color: #f85149;
 }
 
 html, body {
@@ -1604,6 +1704,7 @@ footer {
   border: 1px solid #292929;
   color: #C8C8C8;
   width: 100%;
+  resize: none;
 }
 
 /*# sourceMappingURL=main.css.map */

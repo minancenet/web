@@ -1,0 +1,103 @@
+.mb-1 {
+margin-bottom: 1rem;
+}
+
+.dashboard-left {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 95%;
+
+    h4 a {
+        color: $--COLOR-pop;
+        text-decoration: none;
+    }
+
+    p {
+        font-size: 0.78rem;
+    }
+}
+
+.dashboard-right {
+    margin-left: auto;
+    margin-right: auto;
+    width: 95%;
+}
+
+.profile-pic {
+    border-radius: 50%;
+    width: 100%;
+}
+
+.outer-label {
+    color: $--COLOR-text-alt;
+    font-family: "Iosevka";
+}
+
+.bio-label {
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.biography {
+    width: 100%;
+    background-color: #050505;
+    border: 1px solid $--COLOR-border;
+    resize: none;
+    height: 8rem;
+    color: $--COLOR-text;
+    padding: 0.3rem 0.5rem;
+    margin-bottom: 1rem;
+    font-family: "Iosevka";
+    font-size: 0.82rem;
+    font-size: 0.8rem;
+}
+
+.dash-field {
+    background-color: #050505;
+    border: 1px solid $--COLOR-border;
+    width: 100%;
+    padding: 0.3rem 0.5rem;
+    color: $--COLOR-text;
+    margin-bottom: 1rem;
+    font-family: "Iosevka";
+    font-size: 0.8rem;
+}
+
+.pic-btns {
+    margin-top: 0.5rem;
+}
+
+.edit-img {
+    padding: 0rem 0.45rem 0.3rem 0.5rem;
+    border: 1px solid $--COLOR-border;
+    display: inline-block;
+    cursor: pointer;
+
+    i {
+        font-size: 0.75rem;
+    }
+}
+
+.trash-img {
+    padding: 0rem 0.5rem 0.3rem 0.5rem;
+    border: 1px solid $--COLOR-border;
+    display: inline-block;
+    cursor: pointer;
+
+    i {
+        font-size: 0.75rem;
+    }
+}
+
+.danger-zone {
+    color: #f85149;
+}
+
+.delete-account {
+    border-radius: 4px;
+    background-color: $--COLOR-bg;
+    padding: 0.6rem 1rem;
+    border: 1px solid $--COLOR-border;
+    color: #f85149;
+}

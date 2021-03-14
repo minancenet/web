@@ -5,3 +5,5 @@ venv/
 .vscode
 
 secrets.py
+
+.DS_Store
