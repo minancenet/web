@@ -610,6 +610,13 @@
   vertical-align: middle;
 }
 
+.status {
+  background-color: #04ac58;
+  padding: 0.1rem 0.2rem;
+  border-radius: 4px;
+  font-size: 0.72rem;
+}
+
 html, body {
   height: 100%;
   margin: 0;
@@ -667,6 +674,10 @@ input:focus {
 
 .d-none {
   display: none;
+}
+
+.tablink {
+  cursor: pointer;
 }
 
 .tabcontent {
