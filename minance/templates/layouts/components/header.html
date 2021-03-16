@@ -9,7 +9,7 @@
             <li><a href="{{ url_for('main.home') }}">Home</a></li>
             <li><a href="{{ url_for('asset.assets') }}">Assets</a></li>
             <li><a href="{{ url_for('main.about') }}">About</a></li>
-            <!-- <li><a href="{{ url_for('portfolio.portfolio_dash') }}">Portfolio</a></li> -->
+            <!-- <li><a href="{{ url_for('user.dashboard') }}">Portfolio</a></li> -->
           </ul>
         </div>
         <div class="col-6"  style="border-left: 1px solid #222222;">
@@ -34,6 +34,7 @@
     <ul class="nav-links">
       <li class="nav-item"><a href="{{ url_for('main.home') }}" class="{{ 'pop-alt' if active_page == 'index' else '' }}">Home</a></li>
       <li class="nav-item"><a href="{{ url_for('asset.assets') }}" class="{{ 'pop-alt' if active_page == 'assets' else '' }}">Assets</a></li>
+      <li class="nav-item"><a href="#" class="{{ 'pop-alt' if active_page == 'runner' else '' }}">Runner</a></li>
     </ul>
   </div>
   <div class="nav-sec right border-l padding-alt">

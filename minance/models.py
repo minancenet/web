@@ -11,13 +11,24 @@ def load_user(user_id):
   return User.query.get(int(user_id))
 
 class User(db.Model, UserMixin):
+  """
+  Main user model.
+  """
   id = db.Column(db.Integer, primary_key=True)
   username = db.Column(db.String(16), unique=True, nullable=False)
   email = db.Column(db.String(64), unique=True, nullable=False)
   password = db.Column(db.String(128), nullable=False)
   join_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
 
-  assets = db.relationship("UserAsset", backref="holder", lazy=True)
+  runner = db.Column(db.Boolean(), nullable=False, default=False)
+  trust = db.Column(db.Integer(), nullable=False, default=0)
+
+  owner_id = db.Column(db.Integer(), db.ForeignKey("item.id"))
+  user_id = db.Column(db.Integer(), db.ForeignKey("item.id"))
+
+  assets = db.relationship("Item", backref="owner", foreign_keys=[owner_id], lazy=True)
+  items = db.relationship("Item", backref="userHolder", foreign_keys=[user_id], lazy=True)
+  orders = db.relationship("Order", backref="orderer", lazy=True)
 
   def __init__(self, username, email, password):
     self.username = username
@@ -32,44 +43,43 @@ class User(db.Model, UserMixin):
     """Check password."""
     return bcrypt.check_password_hash(self.password, value)
 
-class UserAsset(db.Model):
+class Faythe(db.Model):
+  """
+  A bot within Minecraft that holds user assets.
+  Needs substantial work, just create barbones initialization so I don't forgot.
+  """
   id = db.Column(db.Integer(), primary_key=True)
 
-  specific_values = db.Column(db.PickleType(), default=pickle.dumps([]))
-  # Example - List
-  # [
-  #   [datetime.utcnow(), amount]
-  # ]
+  items = db.relationship("Item", backref="botHolder", lazy=True)
 
-  user_id = db.Column(db.Integer(), db.ForeignKey("user.id"), nullable=False)
+class Order(db.Model):
+  """
+  Model containing data on a specific Minance users order.
+  """
+  id = db.Column(db.Integer(), primary_key=True)
+  status = db.Column(db.String(), nullable=False, default="pending")
+  method = db.Column(db.String(), nullable=False)
+  minimumTrust = db.Column(db.Integer(), nullable=False)
+  order_date = db.Column(db.DateTime(), nullable=False, default=datetime.utcnow())
+  fulfilled_date = db.Column(db.DateTime())
+
+  items = db.relationship("Item", backref="order", lazy=True)
+
+  user_id = db.Column(db.Integer(), db.ForeignKey("user.id"))
+
+  def calcOrderPrice(self):
+    pass
+
+class Item(db.Model):
+  """
+  Asset wrapper model for tracking global, in-game items.
+  """
+  id = db.Column(db.Integer(), primary_key=True)
+  amount = db.Column(db.Integer())
+
+  faythe_id = db.Column(db.Integer(), db.ForeignKey("faythe.id"))
+  order_id = db.Column(db.Integer(), db.ForeignKey("order.id"))
   asset_id = db.Column(db.Integer(), db.ForeignKey("asset.id"), nullable=False)
-
-  @property
-  def amount(self):
-    loaded = pickle.loads(self.specific_values)
-    totalAmount = 0
-    for i in loaded:
-      totalAmount += i[1]
-
-    return totalAmount
-
-  @property
-  def worth(self):
-    totalWorth = round((self.amount * self.asset.sellPrice), 4)
-
-    val = str(totalWorth)
-    if totalWorth > 1000000 and totalWorth < 10000000:
-      val = str(totalWorth)[0] + "." + str(totalWorth)[1] + "M"
-    elif totalWorth > 10000000 and totalWorth < 100000000:
-      val = str(totalWorth)[:2] + "M"
-    elif totalWorth > 100000000 and totalWorth < 1000000000:
-      val = str(totalWorth)[:3] + "M"
-    elif totalWorth > 1000000000 and totalWorth < 10000000000:
-      val = str(totalWorth)[0] + "." + str(totalWorth)[1] + "B"
-    else:
-      val = format(int(val), ",d")
-      
-    return val
 
 candles = db.Table("candles",
   db.Column("containee_id", db.Integer, db.ForeignKey("candle.id")),
@@ -77,6 +87,9 @@ candles = db.Table("candles",
 )
 
 class Candle(db.Model):
+  """
+  Candle model for open, high, low, close (OHLC) candles.
+  """
   id = db.Column(db.Integer(), primary_key=True)
   priceType = db.Column(db.String(), nullable=False)
   timeframe = db.Column(db.Integer(), nullable=False) # Type of candle in minutes
@@ -90,6 +103,7 @@ class Candle(db.Model):
 
   volume = db.Column(db.Integer(), nullable=False)
 
+  """Relation to allow a specific candle to point to other candle objects."""
   contains = db.relationship(
     "Candle", secondary=candles,
     primaryjoin=(candles.c.containee_id == id),
@@ -105,6 +119,9 @@ class Candle(db.Model):
     return [self.creationDate.timestamp(), self.open, self.high, self.low, self.close, self.volume]
 
 class Asset(db.Model):
+  """
+  Main asset class used for storing historical asset data.
+  """
   id = db.Column(db.Integer(), primary_key=True)
   name = db.Column(db.String(), nullable=False)
   lastUpdated = db.Column(db.DateTime(), nullable=False, default=datetime.utcnow())
@@ -128,8 +145,7 @@ class Asset(db.Model):
   margin = db.Column(db.Float(precision=2), nullable=False, default=0.0)
 
   ohlc = db.relationship("Candle", backref="asset", lazy=True)
-
-  userAssets = db.relationship("UserAsset", backref="asset", lazy=True)
+  items = db.relationship("Item", backref="asset", lazy=True)
 
   @property
   def updatePrices(self):
