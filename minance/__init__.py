@@ -51,7 +51,6 @@ def register_blueprints(app):
   from minance.main.views import main
   from minance.asset.views import asset
   from minance.auth.views import auth
-  from minance.portfolio.views import portfolio
   from minance.api.views import api
   from minance.user.views import user
   from minance.errors.handlers import errors
@@ -59,7 +58,6 @@ def register_blueprints(app):
   app.register_blueprint(main)
   app.register_blueprint(asset)
   app.register_blueprint(auth)
-  app.register_blueprint(portfolio)
   app.register_blueprint(api)
   app.register_blueprint(user)
   app.register_blueprint(errors)

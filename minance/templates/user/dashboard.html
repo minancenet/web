@@ -12,8 +12,8 @@
           <div class="tabs">
             <ul>
               <li class="tablink" onclick="openTab(event, 'portfolio', 'tabcontent', 'tablink')">Portfolio</li>
+              <li class="tablink" onclick="openTab(event, 'transactions', 'tabcontent', 'tablink')">Transaction</li>
               <li class="tablink" onclick="openTab(event, 'trades', 'tabcontent', 'tablink')">Trades</li>
-              <li class="tablink" onclick="openTab(event, 'transactions', 'tabcontent', 'tablink')">Transactions</li>
               <li class="tablink" onclick="openTab(event, 'earn', 'tabcontent', 'tablink')">Earn</li>
             </ul>
           </div>
@@ -64,20 +64,122 @@
           </table>    
         </div>
       </div>
-      <div id="trades" class="tabcontent">
-        <h3>Trades</h3>
+      <div id="transactions" class="tabcontent">
+        <h3>Transactions</h3>
         <p>View or place new trades.</p>
         <div class="row">
           <div class="col-6">
-            <h5 style="margin-top: 1rem;">Buy</h5>
+            <h5 style="margin-top: 1rem;">Place Order</h5>
             <div class="dashboard-inner-section">
-              
+              <form method="POST" action="">
+                {{ pOF.hidden_tag() }}
+
+                <div class="form-group">
+                  <p class="form-label">{{ pOF.orderType.label }}</p>
+
+                  <div class="form-field">
+                    {% if pOF.orderType.errors %}
+                    {{ pOF.orderType(class="form-select one invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in pOF.orderType.errors %}
+                          <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                  {% else %}
+                    {{ pOF.orderType(class="form-select one") }}
+                  {% endif %}  
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <p class="form-label">{{ pOF.orderMethod.label }}</p>
+
+                  <div class="form-field">
+                    {% if pOF.orderMethod.errors %}
+                    {{ pOF.orderMethod(class="form-select one invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in pOF.orderMethod.errors %}
+                          <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                  {% else %}
+                    {{ pOF.orderMethod(class="form-select one") }}
+                  {% endif %}  
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <p class="form-label">{{ pOF.asset.label }}</p>
+
+                  <div class="form-field">
+                    {% if pOF.asset.errors %}
+                    {{ pOF.asset(class="form-input one invalid", placeholder="Asset") }}
+                    <div class="invalid-feedback">
+                        {% for error in pOF.asset.errors %}
+                          <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                  {% else %}
+                    {{ pOF.asset(class="form-input one", placeholder="Asset") }}
+                  {% endif %}  
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <p class="form-label">{{ pOF.amount.label }}</p>
+
+                  <div class="form-field">
+                    {% if pOF.amount.errors %}
+                    {{ pOF.amount(class="form-input one invalid", placeholder="Amount") }}
+                    <div class="invalid-feedback">
+                        {% for error in pOF.amount.errors %}
+                          <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                  {% else %}
+                    {{ pOF.amount(class="form-input one", placeholder="Amount") }}
+                  {% endif %}  
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <p class="form-label">{{ pOF.fee.label }}/ {{ pOF.minimumTrust.label }}</p>
+
+                  <div class="form-field">
+                    {% if pOF.fee.errors %}
+                      {{ pOF.fee(class="form-select two invalid") }}
+                      <div class="invalid-feedback">
+                          {% for error in pOF.fee.errors %}
+                            <span>{{ error }}</span>
+                          {% endfor %}
+                      </div>
+                    {% else %}
+                      {{ pOF.fee(class="form-select two ") }}
+                    {% endif %}
+
+                    {% if pOF.minimumTrust.errors %}
+                      {{ pOF.minimumTrust(class="form-select two invalid") }}
+                      <div class="invalid-feedback">
+                          {% for error in pOF.minimumTrust.errors %}
+                            <span>{{ error }}</span>
+                          {% endfor %}
+                      </div>
+                    {% else %}
+                      {{ pOF.minimumTrust(class="form-select two ") }}
+                    {% endif %}
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <button class="reset-btn">Place Order</button>
+                </div>
+              </form>
             </div>
           </div>
           <div class="col-6">
-            <h5 style="margin-top: 1rem;">Sell</h5>
+            <h5 style="margin-top: 1rem;">Lorem</h5>
             <div class="dashboard-inner-section">
-              
+
             </div>
           </div>
         </div>
@@ -92,7 +194,7 @@
               <th class="number-td">Status</th>
               <th class="number-td">Date</th>
             </tr>
-            {% for asset in random_assets %}
+            {% for order in current_user.orders %}
               <tr onClick="window.location = '/asset/{{ asset.name }}';">
                 <td class="letter-td"><span class="asset-img-helper"></span><img src="{{ url_for('static', filename='img/skyblock/' + asset.name + '.webp') }}" class="asset-img" alt="{{ asset.name }}" onerror="this.onerror=null; this.src='../../static/img/skyblock/NULL.webp'"></td>
                 <a href="#"><td class="letter-td">9427 C ➠ 12 {{ asset.name.title().replace("_", " ") }}</td></a>
@@ -105,9 +207,11 @@
           </table>    
         </div>
       </div>
-      <div id="transactions" class="tabcontent">
-        <h3>Transactions</h3>
+      <div id="trades" class="tabcontent">
+        <h3>Trades</h3>
         <p>Trade assets with other Minance users.</p>
+        <br>
+        <p>Coming soon...</p>
       </div>
       <div id="earn" class="tabcontent">
         <h3>Earn</h3>
