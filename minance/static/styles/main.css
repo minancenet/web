@@ -575,9 +575,6 @@
   margin: 0;
   padding: 0;
 }
-.dash-table th {
-  border-top: 0;
-}
 .dash-table button {
   background-color: #05FFA1;
   background-color: #02a063;
@@ -1809,6 +1806,37 @@ footer {
   color: #C8C8C8;
   width: 100%;
   resize: none;
+}
+
+.order-status {
+  padding: 0.2rem 0.4rem;
+  color: #000000;
+  border-radius: 12px;
+  font-size: 0.76rem;
+}
+
+.order-pending {
+  background-color: #ffd166;
+}
+
+.order-processing {
+  background-color: #118ab2;
+}
+
+.order-failed {
+  background-color: #ef476f;
+}
+
+.order-success {
+  background-color: #06d6a0;
+}
+
+.visibility {
+  background-color: #F2F2F2;
+  color: #000000;
+  border-radius: 50%;
+  padding: 0.24rem;
+  font-size: 0.75rem;
 }
 
 /*# sourceMappingURL=main.css.map */

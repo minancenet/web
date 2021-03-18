@@ -1219,3 +1219,24 @@ footer {
     resize: none;
   }
 }
+
+.order-status {
+  padding: 0.2rem 0.4rem;
+  color: #000000;
+  border-radius: 12px;
+  font-size: 0.76rem;
+}
+
+.order-pending { background-color: #ffd166; }
+.order-processing { background-color: #118ab2; }
+.order-failed { background-color: #ef476f; }
+.order-success { background-color: #06d6a0; }
+// 073b4c
+
+.visibility {
+  background-color: $--COLOR-text-alt;
+  color: #000000;
+  border-radius: 50%;
+  padding: 0.24rem;
+  font-size: 0.75rem;
+}
