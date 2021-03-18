@@ -23,11 +23,7 @@ class User(db.Model, UserMixin):
   runner = db.Column(db.Boolean(), nullable=False, default=False)
   trust = db.Column(db.Integer(), nullable=False, default=0)
 
-  owner_id = db.Column(db.Integer(), db.ForeignKey("item.id"))
-  user_id = db.Column(db.Integer(), db.ForeignKey("item.id"))
-
-  assets = db.relationship("Item", backref="owner", foreign_keys=[owner_id], lazy=True)
-  items = db.relationship("Item", backref="userHolder", foreign_keys=[user_id], lazy=True)
+  items = db.relationship("Item", backref="holder", lazy=True)
   orders = db.relationship("Order", backref="orderer", lazy=True)
 
   def __init__(self, username, email, password):
@@ -42,44 +38,6 @@ class User(db.Model, UserMixin):
   def checkPassword(self, value):
     """Check password."""
     return bcrypt.check_password_hash(self.password, value)
-
-class Faythe(db.Model):
-  """
-  A bot within Minecraft that holds user assets.
-  Needs substantial work, just create barbones initialization so I don't forgot.
-  """
-  id = db.Column(db.Integer(), primary_key=True)
-
-  items = db.relationship("Item", backref="botHolder", lazy=True)
-
-class Order(db.Model):
-  """
-  Model containing data on a specific Minance users order.
-  """
-  id = db.Column(db.Integer(), primary_key=True)
-  status = db.Column(db.String(), nullable=False, default="pending")
-  method = db.Column(db.String(), nullable=False)
-  minimumTrust = db.Column(db.Integer(), nullable=False)
-  order_date = db.Column(db.DateTime(), nullable=False, default=datetime.utcnow())
-  fulfilled_date = db.Column(db.DateTime())
-
-  items = db.relationship("Item", backref="order", lazy=True)
-
-  user_id = db.Column(db.Integer(), db.ForeignKey("user.id"))
-
-  def calcOrderPrice(self):
-    pass
-
-class Item(db.Model):
-  """
-  Asset wrapper model for tracking global, in-game items.
-  """
-  id = db.Column(db.Integer(), primary_key=True)
-  amount = db.Column(db.Integer())
-
-  faythe_id = db.Column(db.Integer(), db.ForeignKey("faythe.id"))
-  order_id = db.Column(db.Integer(), db.ForeignKey("order.id"))
-  asset_id = db.Column(db.Integer(), db.ForeignKey("asset.id"), nullable=False)
 
 candles = db.Table("candles",
   db.Column("containee_id", db.Integer, db.ForeignKey("candle.id")),
@@ -145,8 +103,9 @@ class Asset(db.Model):
   margin = db.Column(db.Float(precision=2), nullable=False, default=0.0)
 
   ohlc = db.relationship("Candle", backref="asset", lazy=True)
-  items = db.relationship("Item", backref="asset", lazy=True)
 
+  items = db.relationship("Item", backref="asset", lazy=True)
+  
   @property
   def updatePrices(self):
     sellPrices = pickle.loads(self.sellPrices)
@@ -213,3 +172,45 @@ class Asset(db.Model):
     perChange = round((buyChange + sellChange) / 2, 2)
 
     return perChange
+
+class Item(db.Model):
+  """
+  Asset wrapper model for tracking global, in-game items.
+  """
+  id = db.Column(db.Integer(), primary_key=True)
+  amount = db.Column(db.Integer())
+
+  faythe_id = db.Column(db.Integer(), db.ForeignKey("faythe.id")) 
+  order_id = db.Column(db.Integer(), db.ForeignKey("order.id"))
+  user_id = db.Column(db.Integer(), db.ForeignKey("user.id"))
+  asset_id = db.Column(db.Integer(), db.ForeignKey("asset.id"))
+
+
+class Faythe(db.Model):
+  """
+  A bot within Minecraft that holds user assets.
+  Needs substantial work, just create barbones initialization so I don't forgot.
+  """
+  id = db.Column(db.Integer(), primary_key=True)
+
+  items = db.relationship("Item", backref="botHolder", lazy=True)
+
+class Order(db.Model):
+  """
+  Model containing data on a specific Minance users order.
+  """
+  id = db.Column(db.Integer(), primary_key=True)
+  status = db.Column(db.String(), nullable=False, default="pending")
+  method = db.Column(db.String(), nullable=False)
+  minimumTrust = db.Column(db.Integer(), nullable=False)
+  fee = db.Column(db.Float(), nullable=False)
+  visibility = db.Column(db.String(), nullable=False, default="private")
+  order_date = db.Column(db.DateTime(), nullable=False, default=datetime.utcnow())
+  fulfilled_date = db.Column(db.DateTime(), default=datetime.utcnow())
+
+  items = db.relationship("Item", backref="order", lazy=True)
+
+  user_id = db.Column(db.Integer(), db.ForeignKey("user.id"))
+
+  def calcOrderPrice(self):
+    pass

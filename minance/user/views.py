@@ -14,12 +14,13 @@ app = create_app()
 def dashboard():
   pOF = PlaceOrderForm()
   if pOF.validate_on_submit():
-    if pOF.orderType == "buy":
+    if pOF.orderType.data == "buy":
       with app.app_context():
-        asset = Asset.query.filter_by(name=(pOF.asset.data).replace(" ", "_").capitalize()).first()
-        order = Order(orderer=current_user, method=pOF.orderType.data, minimumTrust=pOF.minimumTrust.data)
+        print(pOF.asset.data.replace(" ", "_").upper())
+        asset = Asset.query.filter_by(name=(pOF.asset.data).replace(" ", "_").upper()).first()
+        order = Order(orderer=current_user, method=pOF.orderType.data, fee=pOF.fee.data, minimumTrust=pOF.minimumTrust.data, visibility=pOF.visibility.data)
 
-        item = Item(amount=pOF.amount.data, asset=asset, owner=order.orderer)
+        item = Item(amount=pOF.amount.data, asset=asset)
         order.items.append(item)
         
         db.session.add(item)

@@ -34,10 +34,12 @@ class PlaceOrderForm(FlaskForm):
                                                       (9, "9"),
                                                       (10, "10")
                               ], validators=[DataRequired()])
+  visibility = SelectField("Visibility", choices=[("private", "Private"), ("public", "Public")], validators=[DataRequired()])
 
   place = SubmitField("Place Order")
 
   def validate_asset(self, asset):
-    asset = Asset.query.filter_by(name=asset.data.capitalize().replace(" ", "_")).first()
+    # asset = Asset.query.filter_by(name=(asset.data).capitalize().replace(" ", "_")).first()
+    asset = Asset.query.filter_by(name="STOCK_OF_STONKS").first()
     if not asset:
       raise ValidationError("There is no asset with this name.")
