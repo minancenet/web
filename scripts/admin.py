@@ -24,6 +24,11 @@ def giveAsset(user, asset, amount):
 
     print(f"{amount} {asset} added to {user}.")
 
+def recreateDB():
+  app = create_app()
+  with app.app_context():
+    db.create_all()
+
 if __name__ == "__main__":
   if len(sys.argv) > 1:
     if sys.argv[1] == "-g" or sys.argv[1] == "--giveAsset":
@@ -32,3 +37,8 @@ if __name__ == "__main__":
       amount = input("Amount: ")
 
       giveAsset(username, asset, int(amount))
+    if sys.argv[1] == "-r" or sys.argv[1] == "--recreateDB":
+      recreateDB()
+      print("DB recreated.")
+  else:
+    print("No args presented.")
