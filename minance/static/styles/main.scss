@@ -1228,9 +1228,9 @@ footer {
 }
 
 .order-pending { background-color: #ffd166; }
-.order-processing { background-color: #118ab2; }
-.order-failed { background-color: #ef476f; }
-.order-success { background-color: #06d6a0; }
+.order-processing, .status-moving { background-color: #118ab2; }
+.order-failed, .status-unknown { background-color: #ef476f; }
+.order-success, .status-secured { background-color: #06d6a0; }
 // 073b4c
 
 .visibility {

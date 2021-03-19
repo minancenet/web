@@ -1819,15 +1819,15 @@ footer {
   background-color: #ffd166;
 }
 
-.order-processing {
+.order-processing, .status-moving {
   background-color: #118ab2;
 }
 
-.order-failed {
+.order-failed, .status-unknown {
   background-color: #ef476f;
 }
 
-.order-success {
+.order-success, .status-secured {
   background-color: #06d6a0;
 }
 

@@ -53,7 +53,7 @@ def register_blueprints(app):
   from minance.auth.views import auth
   from minance.api.views import api
   from minance.user.views import user
-  from minance.order.views import order
+  from minance.market.views import market
   from minance.errors.handlers import errors
 
   app.register_blueprint(main)
@@ -61,7 +61,7 @@ def register_blueprints(app):
   app.register_blueprint(auth)
   app.register_blueprint(api)
   app.register_blueprint(user)
-  app.register_blueprint(order)
+  app.register_blueprint(market)
   app.register_blueprint(errors)
 
 def configure_logger(app):

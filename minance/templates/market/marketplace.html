@@ -1,0 +1,51 @@
+{% extends "layouts/layout-alt.html" %}
+{% block content %}
+
+<h3 class="b">All Orders</h3>
+<p class="light">
+  By Date Descending
+</p>
+
+<div class="row">
+  <div class="col-2">
+    <div class="filters">
+      <h4>Filters</h4>
+      <hr style="height: 1px; background-color: #292929; border: none;">
+    </div>
+  </div>
+  <div class="col-10">
+    <table class="assets-table">
+      <tr>
+        <th class="letter-td"></th>
+        <th class="letter-td">Asset</th>
+        <th class="letter-td">Type</th>
+        <th class="number-td">Amount</th>
+        <th class="number-td">Rate (%)</th>
+        <th class="number-td">Cost</th>
+        <th class="number-td">Return</th>
+        <th class="number-td">Minimum Trust</th>
+        <th class="letter-td">Orderer</th>
+        <th class="letter-td">Date</th>
+      </tr>
+      {% for order in orders %}
+        <tr onClick="">
+          <td class="letter-td"><span class="asset-img-helper"></span><img src="{{ url_for('static', filename='img/skyblock/' + order.items[0].asset.name + '.webp') }}" class="asset-img" alt="{{ order.items[0].asset.name }}" onerror="this.onerror=null; this.src='../../static/img/skyblock/NULL.webp'"></td>
+          <a href="#"><td class="letter-td">{{ order.items[0].asset.prettyName }}</td></a>
+          <td class="letter-td">{{ order.method|capitalize }}</td>
+          <td class="number-td">{{ order.items[0].amount }}</td>
+          <td class="number-td">{{ order.fee }}%</td>
+          <td class="number-td">{{ order.calcPrice() }}</td>
+          <td class="number-td">{{ order.calcReturn() }}</td>
+          <td class="number-td">{{ order.minimumTrust }}</td>
+          {% if order.visibility == "public" %}
+            <td class="letter-td">{{ order.orderer.username }}</td>   
+          {% else %}
+            <td class="letter-td">Anonymous</td>
+          {% endif %}
+          <td class="letter-td">{{ order.order_date.strftime("%b %d, %y") }}</td>
+        </tr>
+      {% endfor %}
+    </table>    
+  </div>
+</div>
+{% endblock content %}

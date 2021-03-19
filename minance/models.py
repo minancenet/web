@@ -23,8 +23,14 @@ class User(db.Model, UserMixin):
   runner = db.Column(db.Boolean(), nullable=False, default=False)
   trust = db.Column(db.Integer(), nullable=False, default=0)
 
-  items = db.relationship("Item", backref="holder", lazy=True)
+  balance = db.Column(db.Float(precision=2), default=0, nullable=False)
+
+  items = db.relationship("Item", backref="holder", lazy="dynamic", foreign_keys="Item.user_id")
+  assets = db.relationship("Item", backref="owner", lazy="dynamic", foreign_keys="Item.owner_id")
+  
   orders = db.relationship("Order", backref="orderer", lazy=True)
+
+  portfolio = db.Column(db.PickleType(), default=pickle.dumps([]))
 
   def __init__(self, username, email, password):
     self.username = username
@@ -38,6 +44,9 @@ class User(db.Model, UserMixin):
   def checkPassword(self, value):
     """Check password."""
     return bcrypt.check_password_hash(self.password, value)
+
+  def prettyBalance(self):
+    return "{:,}".format(self.balance)
 
 candles = db.Table("candles",
   db.Column("containee_id", db.Integer, db.ForeignKey("candle.id")),
@@ -183,8 +192,29 @@ class Item(db.Model):
   faythe_id = db.Column(db.Integer(), db.ForeignKey("faythe.id")) 
   order_id = db.Column(db.Integer(), db.ForeignKey("order.id"))
   user_id = db.Column(db.Integer(), db.ForeignKey("user.id"))
+  owner_id = db.Column(db.Integer(), db.ForeignKey("user.id"))
   asset_id = db.Column(db.Integer(), db.ForeignKey("asset.id"))
 
+  def amendItem(self, user, action, amount=None, receiver=None):
+    if action == "append":
+      self.owner = user
+
+    elif action == "delete":
+      pass
+
+    elif action == "transfer":
+      pass
+
+  def status(self):
+    if self.botHolder != None:
+      return "secured"
+    elif self.holder != None:
+      return "moving"
+    else:
+      return "unknown"
+
+  def totalWorth(self):
+    return "{:,}".format(round(self.asset.sellPrice * self.amount), 2)
 
 class Faythe(db.Model):
   """
@@ -212,5 +242,11 @@ class Order(db.Model):
 
   user_id = db.Column(db.Integer(), db.ForeignKey("user.id"))
 
-  def calcOrderPrice(self):
-    pass
+  def calcPrice(self):
+    if self.method == "buy":
+      return "{:,}".format(round(self.items[0].asset.sellPrice * self.items[0].amount, 2))
+    else:
+      return 0
+
+  def calcReturn(self):
+    return "{:,}".format(round((self.items[0].asset.sellPrice * self.items[0].amount)*(self.fee/100), 2))
