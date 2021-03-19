@@ -4,5 +4,4 @@ __pycache__/
 venv/
 .vscode
 .DS_Store
-
-secrets.py
+.env
