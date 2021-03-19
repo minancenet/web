@@ -18,9 +18,9 @@
           <div>
             <h2 class="top-stock-name">
               {% if asset.name|length >= 20 %}
-                {{ asset.name.title().replace("_", " ")[:19] }}...
+                {{ asset.prettyName[:19] }}...
               {% else %}
-                {{ asset.name.title().replace("_", " ") }}
+                {{ asset.prettyName }}
               {% endif %}
               <span class="top-stock-position">#{{ count + 1 }}</span>
             </h2>

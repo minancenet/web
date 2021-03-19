@@ -7,6 +7,11 @@ from minance.models import User, Asset, Item
 
 app = create_app()
 
+"""
+Tools for making development faster.
+Remove for production environment.
+"""
+
 def giveAsset(user, asset, amount):
   with app.app_context():
     user = User.query.filter_by(username=user).first()
@@ -22,7 +27,19 @@ def giveAsset(user, asset, amount):
     db.session.add(item)
     db.session.commit()
 
-    print(f"{amount} {asset} added to {user}.")
+    print(f"{amount} {asset} added to {user.username}'s assets'.")
+
+def addBalance(user, amount):
+  with app.app_context():
+    user = User.query.filter_by(username=user).first()
+    if not user:
+      print("No user with supplied username.")
+
+    user.balance += amount
+
+    db.session.commit()
+
+    print(f"{amount} added to {user.username}'s balance.")
 
 def recreateDB():
   app = create_app()
@@ -35,8 +52,13 @@ if __name__ == "__main__":
       username = input("Username: ")
       asset = input("Asset Name: ")
       amount = input("Amount: ")
-
       giveAsset(username, asset, int(amount))
+
+    if sys.argv[1] == "-b" or sys.argv[1] == "--addBalance":
+      username = input("Username: ")
+      amount = input("Amount: ")
+      addBalance(username, int(amount))
+
     if sys.argv[1] == "-r" or sys.argv[1] == "--recreateDB":
       recreateDB()
       print("DB recreated.")

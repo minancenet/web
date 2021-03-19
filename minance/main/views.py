@@ -4,6 +4,7 @@ import logging
 from sqlalchemy.sql.expression import func
 
 from flask import Blueprint, render_template, request, redirect, url_for, current_app
+import jinja2
 
 from minance.models import Asset
 from minance.main.forms import SearchForm
@@ -22,11 +23,21 @@ def processor():
     loginForm=LoginForm()
   )
 
+@jinja2.contextfilter
+@main.app_template_filter()
+def convertObj(context, value):
+  return pickle.loads(value)
+
+@jinja2.contextfilter
+@main.app_template_filter()
+def prettyInt(context, value):
+  return "{:,}".format(round(value, 2))
+
 @main.route("/")
 @main.route("/home")
 def home():
   assets = Asset.query.order_by(Asset.margin.desc()).limit(24)
-  return render_template("main/index.html", assets=assets, active_page="index", pickle=pickle, enumerate=enumerate, title="Home")
+  return render_template("main/index.html", assets=assets, active_page="index", enumerate=enumerate, title="Home")
 
 @main.route("/about")
 def about():

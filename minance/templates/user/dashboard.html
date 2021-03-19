@@ -27,7 +27,7 @@
           <p>Here is the summary of your 18 assets.</p>
           <div class="dashboard-inner-section">
             <div class="dashboard-head-left">
-              <h2 class="balance">{{ current_user.prettyBalance() }} COINS</h2>
+              <h2 class="balance">{{ current_user.balance|prettyInt }} COINS</h2>
               <p>Total Balance</p>  
             </div>
             <div class="dashboard-head-right">
@@ -38,6 +38,7 @@
             <div class="portoflio-chart">
               <div id="lineChart"></div>
             </div>
+            {{ current_user.portfolio|convertObj }}
           </div>
         </div>
         <h5>Your Assets</h5>

@@ -44,10 +44,7 @@ class User(db.Model, UserMixin):
   def checkPassword(self, value):
     """Check password."""
     return bcrypt.check_password_hash(self.password, value)
-
-  def prettyBalance(self):
-    return "{:,}".format(self.balance)
-
+    
 candles = db.Table("candles",
   db.Column("containee_id", db.Integer, db.ForeignKey("candle.id")),
   db.Column("container_id", db.Integer, db.ForeignKey("candle.id"))

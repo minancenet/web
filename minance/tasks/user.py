@@ -1,0 +1,18 @@
+import pickle
+from datetime import datetime
+
+from minance import create_app, db
+from minance.models import User, Item
+
+app = create_app()
+
+def updatePortfolioGraphs():
+  """Function used for updating the balance portfolio graph on the user dashboard page."""
+  with app.app_context():
+    users = User.query.all()
+
+    for user in users:
+      portfolio = pickle.loads(user.portfolio)
+      portfolio.append([datetime.utcnow().timestamp(), user.balance])
+
+    db.session.commit()
