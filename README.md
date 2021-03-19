@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <i>Simple data visualization, analysis and simulation for the Hypixel Skyblock bazaar.</i>
+  <i>Minance functions as an external, peer-peer marketplace exchange for Hypixel Bazaar assets while also providing simple data visualization and analysis. </i>
 </p>
 
 <p align="center">

@@ -69,4 +69,4 @@ def specific_asset(asset_name):
   if form.reset.data and form.validate():
     session.pop("margin")
 
-  return render_template("asset/asset.html", asset=asset, form=form, title=asset.prettyName, pickle=pickle)
+  return render_template("asset/asset.html", asset=asset, form=form, title=asset.prettyName)

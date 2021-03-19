@@ -38,7 +38,6 @@
             <div class="portoflio-chart">
               <div id="lineChart"></div>
             </div>
-            {{ current_user.portfolio|convertObj }}
           </div>
         </div>
         <h5>Your Assets</h5>
@@ -252,7 +251,7 @@
 </div>
 
 <script>
-  createPortfolioChart()
+  createPortfolioChart({{ (current_user.portfolio|convertObj) | tojson }})
 </script>
 
 {% endblock content %}

@@ -14,5 +14,6 @@ def updatePortfolioGraphs():
     for user in users:
       portfolio = pickle.loads(user.portfolio)
       portfolio.append([datetime.utcnow().timestamp(), user.balance])
+      user.portfolio = pickle.dumps(portfolio)
 
     db.session.commit()

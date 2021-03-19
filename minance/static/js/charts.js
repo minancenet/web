@@ -144,63 +144,58 @@ function createBuySellChart(assetName) {
   })
 }
 
-function createPortfolioChart() {
-  fetch("http://localhost:5000/api/v1/asset/COBBLESTONE/price") // Change to actual users portfolio later
-  .then(res => res.json())
-  .then((out) => {
-    var dates = []
-    var sell = []
-    var buy = []
-    
-    for (var i = 0; i < out["sell"].length; i++) {
-      dates.push(out["sell"][i][0]*1000)
-      sell.push(out["sell"][i][1])
-    }
-    
-    var trace1 = {
+function createPortfolioChart(data) {
+  var dates = []
+  var sell = []
   
-      x: dates, 
-      y: sell,
-      name: "Sell Price",
-    
-      line: {color: '#05DB89'}, 
-      fill: 'tozeroy',
-
-      type: 'scatter',
-      xaxis: 'x',
-      yaxis: 'y'
-    };
-
-    var data = [trace1];
-
-    var layout = {
-      height: 200,
-      dragmode: 'zoom', 
-      margin: {
-        r: 20,
-        t: 10,
-        b: 30,
-        l: 20,
-      },
-      showlegend: false, 
-      xaxis: {
-        autorange: true, 
-        rangeslider: false,
-        type: 'date'
-      }, 
-      yaxis: {
-        autorange: true, 
-        type: 'linear'
-      },
-      plot_bgcolor: "rgb(5,5,5)",
-      paper_bgcolor: "rgb(5,5,5)"
-    };
-
-    var config = {
-      responsive: true,
-      displayModeBar: false,
-    }
+  for (var i = 0; i < data.length; i++) {
+    dates.push(data[i][0]*1000)
+    sell.push(data[i][1])
+  }
   
-    Plotly.newPlot('lineChart', data, layout, config);
-  })
+  var trace1 = {
+
+    x: dates, 
+    y: sell,
+    name: "Balance",
+  
+    line: {color: '#05DB89'}, 
+    fill: 'tozeroy',
+
+    type: 'scatter',
+    xaxis: 'x',
+    yaxis: 'y'
+  };
+
+  var data = [trace1];
+
+  var layout = {
+    height: 200,
+    dragmode: 'zoom', 
+    margin: {
+      r: 20,
+      t: 10,
+      b: 30,
+      l: 20,
+    },
+    showlegend: false, 
+    xaxis: {
+      autorange: true, 
+      rangeslider: false,
+      type: 'date'
+    }, 
+    yaxis: {
+      autorange: true, 
+      type: 'linear'
+    },
+    plot_bgcolor: "rgb(5,5,5)",
+    paper_bgcolor: "rgb(5,5,5)"
+  };
+
+  var config = {
+    responsive: true,
+    displayModeBar: false,
+  }
+
+  Plotly.newPlot('lineChart', data, layout, config);
 }
