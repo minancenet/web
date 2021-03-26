@@ -28,20 +28,74 @@
                   <div class="edit-img"><i class="fas fa-edit"></i></div>
                   <div class="trash-img"><i class="fas fa-trash"></i></div>  
                 </div>
-                <h4><a href="#">_L4N</a></h4>
-                <p>ian.koide@protonmail.com</p>
+                <h4><a href="#">{{ current_user.username }}</a></h4>
+                <p>{{ current_user.email }}</p>
               </div>
             </div>
             <div class="col-9">
               <div class="dashboard-right">
-                <p class="bio-label">Username</p>
-                <input class="dash-field" type="text">
-                <p class="bio-label">Biography</p>
-                <textarea class="biography"></textarea>
-                <p class="bio-label">Discord</p>
-                <input class="dash-field" type="text">
+                <form method="POST" action="">
+                  {{ form.hidden_tag() }}
 
-                <button class="auth-button">Update</button>
+                  <p class="bio-label">{{ form.username.label }}</p>
+                  {% if form.username.errors %}
+                    {{ form.username(class="dash-field invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.username.errors %}
+                          <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                  {% else %}
+                    {{ form.username(class="dash-field") }}
+                  {% endif %} 
+
+                  <p class="bio-label">{{ form.email.label }}</p>
+                  {% if form.email.errors %}
+                    {{ form.email(class="dash-field invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.email.errors %}
+                          <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                  {% else %}
+                    {{ form.email(class="dash-field") }}
+                  {% endif %} 
+
+                  <p class="bio-label">{{ form.biography.label }}</p>
+                  {% if form.biography.errors %}
+                    {{ form.biography(class="biography invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.biography.errors %}
+                          <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                  {% else %}
+                    {{ form.biography(class="biography") }}
+                  {% endif %} 
+
+                  <p class="bio-label">{{ form.discord.label }}</p>
+                  {% if form.discord.errors %}
+                    {{ form.discord(class="dash-field invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.discord.errors %}
+                          <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                  {% else %}
+                    {{ form.discord(class="dash-field") }}
+                  {% endif %}
+
+                  {% if form.update.errors %}
+                    {{ form.update(class="auth-button") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.update.errors %}
+                          <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                  {% else %}
+                    {{ form.update(class="auth-button") }}
+                  {% endif %}
+                </form>
               </div>
             </div>
           </div>

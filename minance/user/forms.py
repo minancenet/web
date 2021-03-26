@@ -1,8 +1,10 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField, SelectField, SubmitField
+from wtforms import StringField, IntegerField, SelectField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired, ValidationError, NumberRange
 
-from minance.models import Asset
+from flask_login import current_user
+
+from minance.models import Asset, User
 
 class PlaceOrderForm(FlaskForm):
   orderType = SelectField("Order Type", choices=[("buy", "Buy"), ("sell", "Sell")], validators=[DataRequired()])
@@ -43,3 +45,21 @@ class PlaceOrderForm(FlaskForm):
     asset = Asset.query.filter_by(name="STOCK_OF_STONKS").first()
     if not asset:
       raise ValidationError("There is no asset with this name.")
+
+class UpdateAccountForm(FlaskForm):
+  username = StringField("Username", validators=[DataRequired()])
+  email = StringField("Email", validators=[DataRequired()])
+  biography = TextAreaField("Biography")
+  discord = StringField("Discord", validators=[DataRequired()])
+
+  update = SubmitField("Update")
+
+  def validate_username(self, username):
+    user = User.query.filter_by(username=username.data).first()
+    if user and user != current_user:
+      raise ValidationError("That username is taken. Please choose a different one.")
+
+  def validate_email(self, email):
+    user = User.query.filter_by(email=email.data).first()
+    if user and user != current_user:
+      raise ValidationError("That email is taken. Please choose a different one.")

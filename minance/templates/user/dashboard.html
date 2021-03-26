@@ -175,15 +175,15 @@
 
                   <div class="form-field">
                     {% if pOF.visibility.errors %}
-                    {{ pOF.visibility(class="form-select one invalid") }}
-                    <div class="invalid-feedback">
-                        {% for error in pOF.visibility.errors %}
-                          <span>{{ error }}</span>
-                        {% endfor %}
-                    </div>
-                  {% else %}
-                    {{ pOF.visibility(class="form-select one") }}
-                  {% endif %}  
+                      {{ pOF.visibility(class="form-select one invalid") }}
+                      <div class="invalid-feedback">
+                          {% for error in pOF.visibility.errors %}
+                            <span>{{ error }}</span>
+                          {% endfor %}
+                      </div>
+                    {% else %}
+                      {{ pOF.visibility(class="form-select one") }}
+                    {% endif %}  
                   </div>
                 </div>
 

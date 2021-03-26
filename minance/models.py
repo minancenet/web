@@ -20,6 +20,9 @@ class User(db.Model, UserMixin):
   password = db.Column(db.String(128), nullable=False)
   join_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
 
+  biography = db.Column(db.String(512))
+  discord = db.Column(db.String(64))
+
   runner = db.Column(db.Boolean(), nullable=False, default=False)
   trust = db.Column(db.Integer(), nullable=False, default=0)
 

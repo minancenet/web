@@ -534,7 +534,6 @@
 .dashboard-nav-outer {
   background-color: #050505;
   border: 1px solid #292929;
-  border-radius: 8px;
 }
 
 .dashboard-nav {
@@ -556,7 +555,6 @@
 .dashboard-inner-section {
   background-color: #050505;
   border: 1px solid #292929;
-  border-radius: 8px;
   padding: 1rem;
   margin: 1rem 0rem;
 }
@@ -582,6 +580,9 @@
   border: none;
   border-radius: 4px;
   padding: 0.2rem 0.4rem;
+}
+.dash-table tr th {
+  border-top: none;
 }
 
 .dashboard-head-left {
