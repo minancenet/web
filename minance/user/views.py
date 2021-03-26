@@ -4,12 +4,20 @@ from flask import Blueprint, render_template, url_for, redirect, flash, request
 from flask_login import login_required, current_user
 
 from minance import create_app, db
-from minance.models import Item, Order, Asset
+from minance.models import Item, Order, Asset, User
 from minance.user.forms import PlaceOrderForm, UpdateAccountForm
 
 user = Blueprint("user", __name__)
 
 app = create_app()
+
+@user.route("/u/<string:user_username>")
+def profile(user_username):
+  user = User.query.filter_by(username=user_username).first()
+  if not user:
+    flash("No user with specified username.", "alert")
+    return redirect(url_for("main.home"))
+  return render_template("user/profile.html", user=user, title=user.username+"'s Profile")
 
 @user.route("/account/dashboard", methods=["GET", "POST"])
 @login_required
