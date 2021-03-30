@@ -35,6 +35,8 @@ class User(db.Model, UserMixin):
 
   portfolio = db.Column(db.PickleType(), default=pickle.dumps([]))
 
+  api_key = db.relationship("APIKey", backref="user", lazy=True, uselist=False)
+
   def __init__(self, username, email, password):
     self.username = username
     self.email = email
@@ -52,6 +54,16 @@ candles = db.Table("candles",
   db.Column("containee_id", db.Integer, db.ForeignKey("candle.id")),
   db.Column("container_id", db.Integer, db.ForeignKey("candle.id"))
 )
+
+class APIKey(db.Model):
+  """
+  API key model for API access.
+  """
+  id = db.Column(db.Integer(), primary_key=True)
+  # UUID API Key
+  clearance = db.Column(db.Integer(), nullable=False, default=1)
+
+  user_id = db.Column(db.Integer(), db.ForeignKey("user.id"))
 
 class Candle(db.Model):
   """
