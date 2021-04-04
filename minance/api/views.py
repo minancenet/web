@@ -31,7 +31,6 @@ def key_required(clearance):
     return wrapper
   return decorator
 
-
 def validateClearance(args, clearance=1):
   if not "key" in args:
     response = {

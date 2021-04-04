@@ -12,7 +12,7 @@ asset = Blueprint("asset", __name__)
 @asset.route("/assets", methods=["GET", "POST"])
 def assets():
   page = request.args.get("page", 1, type=int)
-  assets = Asset.query.order_by(Asset.name.asc()).paginate(page, per_page=20)
+  assets = Asset.query.order_by(Asset.name.asc()).paginate(page, per_page=15)
 
   return render_template("asset/assets.html", assets=assets, active_page="assets", title="Assets", round=round)
 
@@ -51,7 +51,7 @@ def filterAssets():
   else:
     assets = Asset.query.filter(Asset.name.like(searchText)).order_by(Asset.name.asc())
 
-  return render_template("asset/assets.html", assets=assets.paginate(page, per_page=20), active_page="assets", title="Assets", round=round)
+  return render_template("asset/assets.html", assets=assets.paginate(page, per_page=15), active_page="assets", title="Assets", round=round)
 
 @asset.route("/asset/<string:asset_name>", methods=["GET", "POST"])
 def specific_asset(asset_name):
