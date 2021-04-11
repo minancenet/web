@@ -1,6 +1,6 @@
 import pickle
 
-from flask import Blueprint, render_template, url_for, redirect, flash, request
+from flask import Blueprint, render_template, url_for, redirect, flash, request, abort
 from flask_login import login_required, current_user
 
 from minance import create_app, db
@@ -19,13 +19,14 @@ def profile(user_username):
     return redirect(url_for("main.home"))
   return render_template("user/profile.html", user=user, title=user.username+"'s Profile")
 
-@user.route("/account/dashboard", methods=["GET", "POST"])
+@user.route("/account/portfolio", methods=["GET", "POST"])
 @login_required
-def dashboard():
-  # Portfolio Page
+def portfolio():
+  return render_template("user/portfolio.html", title="Portfolio")
 
-  items = Item.query.filter_by(owner=current_user).all()
-
+@user.route("/account/transactions", methods=["GET", "POST"])
+@login_required
+def transactions():
   # Transactions Page
   pOF = PlaceOrderForm()
   if pOF.validate_on_submit():
@@ -56,7 +57,17 @@ def dashboard():
 
       return redirect(url_for("user.dashboard")) # TODO Return to specific order page when it is made
 
-  return render_template("user/dashboard.html", items=items, pOF=pOF, title="Dashboard")
+  return render_template("user/transactions.html", pOF=pOF, title="Transactions")
+
+@user.route("/account/trades")
+@login_required
+def trades():
+  return render_template('user/trades.html', title="Trades")
+
+@user.route("/accout/earn")
+@login_required
+def earn():
+  return render_template("user/earn.html", title="Earn")
 
 @user.route("/account/settings", methods=["GET", "POST"])
 @login_required
@@ -80,3 +91,14 @@ def settings():
     return redirect(url_for("main.home")) # Return to public user profile
   
   return render_template("user/settings.html", form=form, title="Settings")
+
+@user.route("/account/order/<int:order_id>")
+@login_required
+def order(order_id):
+  order = Order.query.filter_by(id=order_id).first()
+  if not order:
+    abort(404)
+  if not order.orderer == current_user:
+    abort(403)
+
+  return render_template("user/order.html", title="Order #"+str(order.id))
