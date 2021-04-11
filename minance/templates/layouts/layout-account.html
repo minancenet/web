@@ -1,0 +1,17 @@
+{% extends "layouts/layout-alt.html" %}
+{% block content %}
+
+<div class="dashboard-section">
+  <div class="row" style="display: flex;">
+    <div class="col-2">
+      {% include "layouts/components/account-sidebar.html" %}
+      {% block sidebar %} {% endblock sidebar %}
+    </div>
+    <div class="col-10">
+      {% block account %}
+      {% endblock account %}
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

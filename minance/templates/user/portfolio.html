@@ -1,0 +1,53 @@
+{% extends "layouts/layout-account.html" %}
+{% block account %}
+
+<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+<script src="{{ url_for('static', filename='js/charts.js') }}"></script>
+
+<div class="dashboard-content">
+  <h3>Portfolio</h3>
+  <p>Here is the summary of your 18 assets.</p>
+  <div class="dashboard-inner-section">
+    <div class="dashboard-head-left">
+      <h2 class="balance">{{ current_user.balance|prettyInt }} COINS</h2>
+      <p>Total Balance</p>  
+    </div>
+    <div class="dashboard-head-right">
+      <h3 class="moving"><i class="fas fa-chevron-up"></i>0%</h3>
+      <p class="moving-small">past week</p>
+    </div>
+    <div style="clear: both;"></div>
+    <div class="portoflio-chart">
+      <div id="lineChart"></div>
+    </div>
+  </div>
+</div>
+<h5>Your Assets</h5>
+<div class="dashboard-inner-section no-pad">
+  <table class="assets-table dash-table">
+    <tr>
+      <th class="letter-td"></th>
+      <th class="letter-td">Name</th>
+      <th class="number-td">Amount</th>
+      <th class="number-td">Worth</th>
+      <th class="letter-td">Status</th>
+      <th class="letter-td">Actions</th>
+    </tr>
+    {% for item in items %}
+      <tr onClick="">
+        <td class="letter-td"><span class="asset-img-helper"></span><img src="{{ url_for('static', filename='img/skyblock/' + item.asset.name + '.webp') }}" class="asset-img" alt="{{ item.asset.name }}" onerror="this.onerror=null; this.src='../../static/img/skyblock/NULL.webp'"></td>
+        <a href="#"><td class="letter-td">{{ item.asset.name.title().replace("_", " ") }}</td></a>
+        <td class="number-td">{{ item.amount }}</td>
+        <td class="number-td">{{ item.totalWorth() }}</td>
+        <td class="letter-td"><span class="order-status status-{{ item.status() }}">{{ item.status()|capitalize }}</span></td>
+        <td class="letter-td"></td>
+      </tr>
+    {% endfor %}
+  </table>    
+</div>
+
+<script>
+  createPortfolioChart({{ (current_user.portfolio|convertObj) | tojson }})
+</script>
+
+{% endblock account %}
