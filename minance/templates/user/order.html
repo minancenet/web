@@ -1,3 +1,173 @@
 {% extends "layouts/layout-account.html" %}
 {% block account %}
+
+<h3>Order</h3>
+<p>View or place new trades.</p>
+<div class="row">
+  <div class="col-6">
+    <h5 style="margin-top: 1rem;">Place Buy Order</h5>
+    <div class="dashboard-inner-section">
+      <form method="POST" action="">
+        {{ pOF.hidden_tag() }}
+
+        <div class="form-group">
+          <p class="form-label">{{ pOF.orderType.label }}</p>
+
+          <div class="form-field">
+            {% if pOF.orderType.errors %}
+            {{ pOF.orderType(class="form-select one invalid") }}
+            <div class="invalid-feedback">
+                {% for error in pOF.orderType.errors %}
+                  <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+          {% else %}
+            {{ pOF.orderType(class="form-select one") }}
+          {% endif %}  
+          </div>
+        </div>
+
+        <div class="form-group">
+          <p class="form-label">{{ pOF.orderMethod.label }}</p>
+
+          <div class="form-field">
+            {% if pOF.orderMethod.errors %}
+            {{ pOF.orderMethod(class="form-select one invalid") }}
+            <div class="invalid-feedback">
+                {% for error in pOF.orderMethod.errors %}
+                  <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+          {% else %}
+            {{ pOF.orderMethod(class="form-select one") }}
+          {% endif %}  
+          </div>
+        </div>
+
+        <div class="form-group">
+          <p class="form-label">{{ pOF.asset.label }}</p>
+
+          <div class="form-field">
+            {% if pOF.asset.errors %}
+            {{ pOF.asset(class="form-input one invalid", placeholder="Asset") }}
+            <div class="invalid-feedback">
+                {% for error in pOF.asset.errors %}
+                  <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+          {% else %}
+            {{ pOF.asset(class="form-input one", placeholder="Asset") }}
+          {% endif %}  
+          </div>
+        </div>
+
+        <div class="form-group">
+          <p class="form-label">{{ pOF.amount.label }}</p>
+
+          <div class="form-field">
+            {% if pOF.amount.errors %}
+            {{ pOF.amount(class="form-input one invalid", placeholder="Amount") }}
+            <div class="invalid-feedback">
+                {% for error in pOF.amount.errors %}
+                  <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+          {% else %}
+            {{ pOF.amount(class="form-input one", placeholder="Amount") }}
+          {% endif %}  
+          </div>
+        </div>
+
+        <div class="form-group">
+          <p class="form-label">{{ pOF.fee.label }}/ {{ pOF.minimumTrust.label }}</p>
+
+          <div class="form-field">
+            {% if pOF.fee.errors %}
+              {{ pOF.fee(class="form-select two invalid") }}
+              <div class="invalid-feedback">
+                  {% for error in pOF.fee.errors %}
+                    <span>{{ error }}</span>
+                  {% endfor %}
+              </div>
+            {% else %}
+              {{ pOF.fee(class="form-select two ") }}
+            {% endif %}
+
+            {% if pOF.minimumTrust.errors %}
+              {{ pOF.minimumTrust(class="form-select two invalid") }}
+              <div class="invalid-feedback">
+                  {% for error in pOF.minimumTrust.errors %}
+                    <span>{{ error }}</span>
+                  {% endfor %}
+              </div>
+            {% else %}
+              {{ pOF.minimumTrust(class="form-select two ") }}
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="form-group">
+          <p class="form-label">{{ pOF.visibility.label }}</p>
+
+          <div class="form-field">
+            {% if pOF.visibility.errors %}
+              {{ pOF.visibility(class="form-select one invalid") }}
+              <div class="invalid-feedback">
+                  {% for error in pOF.visibility.errors %}
+                    <span>{{ error }}</span>
+                  {% endfor %}
+              </div>
+            {% else %}
+              {{ pOF.visibility(class="form-select one") }}
+            {% endif %}  
+          </div>
+        </div>
+
+        <div class="form-group">
+          <button class="reset-btn">Place Order</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="col-6">
+    <h5 style="margin-top: 1rem;">Place Sell Order</h5>
+    <div class="dashboard-inner-section">
+      <p>Coming Soon...</p>
+    </div>
+  </div>
+</div>
+<h5 style="margin-top: 1rem;">History</h5>
+<div class="dashboard-inner-section no-pad">
+  <table class="assets-table dash-table">
+    <tr>
+      <th class="letter-td"></th>
+      <th class="letter-td">Name</th>
+      <th class="letter-td">Buy/Sell</th>
+      <th class="number-td">Fees</th>
+      <th class="number-td">Price Per Unit</th>
+      <th class="number-td">Status</th>
+      <th class="number-td">Visibility</th>
+      <th class="number-td">Date</th>
+    </tr>
+    {% for order in current_user.orders %}
+      <tr onclick="window.location = '/account/order/{{ order.id }}';">
+        <td class="letter-td"><span class="asset-img-helper"></span><img src="{{ url_for('static', filename='img/skyblock/' + order.items[0].asset.name + '.webp') }}" class="asset-img" alt="{{ order.items[0].asset.name }}" onerror="this.onerror=null; this.src='../../static/img/skyblock/NULL.webp'"></td>
+        <td class="letter-td">{{ order.items[0].asset.prettyName }}</td>
+        <td class="letter-td">{{ order.method|capitalize }}</td>
+        <td class="number-td">{{ order.fee }}%</td>
+        <td class="number-td">{{ order.items[0].asset.sellPrice }}</td>
+        <td class="number-td"><span class="order-status order-{{ order.status }}">{{ order.status }}</span></td>
+        <td class="number-td">
+          {% if order.visibility == "private" %}
+            <i class="fas fa-lock visibility"></i>
+          {% else %}
+            <i class="fas fa-glasses visibility"></i>
+          {% endif %}
+        </td>
+        <td class="number-td">{{ order.order_date.strftime("%b %d, %y") }}</td>
+      </tr>
+    {% endfor %}
+  </table>    
+</div>
+
 {% endblock account %}

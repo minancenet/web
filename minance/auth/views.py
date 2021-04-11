@@ -20,12 +20,12 @@ def login():
     else:
       flash("Invalid credentials.", "error")
 
-  return redirect (next_page) if next_page else redirect(url_for("user.dashboard"))
+  return redirect (next_page) if next_page else redirect(url_for("user.portfolio"))
 
 @auth.route("/auth/logout", methods=["GET", "POST"])
 def logout():
   logout_user()
-  return redirect(url_for("auth.login"))
+  return redirect(url_for("main.home"))
 
 @auth.route("/auth/register", methods=["POST"])
 def register():
@@ -42,4 +42,4 @@ def register():
 
     flash("Account created successfully.", "success")
 
-  return redirect (next_page) if next_page else redirect(url_for("user.dashboard"))
+  return redirect (next_page) if next_page else redirect(url_for("user.portfolio"))

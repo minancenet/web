@@ -40,7 +40,7 @@
   <div class="nav-sec right border-l padding-alt">
     <ul class="nav-links">
       {% if current_user.is_authenticated %}
-        <li class="nav-item pop">{{ current_user.username }}</li>
+        <li class="nav-item"><span class="pop">{{ current_user.username }}</span></li>
         <li class="nav-item icon"><a href="{{ url_for('user.portfolio') }}"><i class="fas fa-user auth-icon"></i></a></li>
       {% else %}
         <li class="nav-item icon" onclick="openModal('authModal')"><a href="#"><i class="fas fa-user auth-icon"> <span class="pop">+</span></i></a></li>

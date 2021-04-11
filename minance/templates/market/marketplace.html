@@ -28,7 +28,7 @@
         <th class="letter-td">Date</th>
       </tr>
       {% for order in orders %}
-        <tr onClick="">
+        <tr onClick="openModal('orderModal')">
           <td class="letter-td"><span class="asset-img-helper"></span><img src="{{ url_for('static', filename='img/skyblock/' + order.items[0].asset.name + '.webp') }}" class="asset-img" alt="{{ order.items[0].asset.name }}" onerror="this.onerror=null; this.src='../../static/img/skyblock/NULL.webp'"></td>
           <a href="#"><td class="letter-td">{{ order.items[0].asset.prettyName }}</td></a>
           <td class="letter-td">{{ order.method|capitalize }}</td>
@@ -46,6 +46,84 @@
         </tr>
       {% endfor %}
     </table>    
+  </div>
+</div>
+
+<div id="orderModal" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">   
+    <span onclick="closeModal('orderModal')" class="close">&times;</span>
+    <div class="modal-content-inner">
+      <h3>Order #1</h3>
+      <p style="font-size: 0.8rem;">Placed 12 seconds ago</p>
+      <br>
+      <p style="font-size: 0.76rem; margin-bottom: 0.5rem;"><b>Meta</b></p>
+      <div class="flex-row">
+        <div class="flex-col">
+          <p class="stat">
+            <span>Asset</span>
+            <span class="stat-data pop">Cobblestone</span>
+          </p>
+        </div>
+        <div class="flex-col">
+          <p class="stat">
+            <span>Type</span>
+            <span class="stat-data pop">Buy</span>
+          </p>
+        </div>
+        <div class="flex-col">
+          <p class="stat">
+            <span>Amount</span>
+            <span class="stat-data pop">1024</span>
+          </p>
+        </div>
+        <div class="flex-col">
+          <p class="stat">
+            <span>Rate</span>
+            <span class="stat-data pop">1%</span>
+          </p>
+        </div>
+        <div class="flex-col">
+          <p class="stat">
+            <span>Cost</span>
+            <span class="stat-data pop">5,120.12</span>
+          </p>
+        </div>
+        <div class="flex-col">
+          <p class="stat">
+            <span>Return</span>
+            <span class="stat-data pop">51.2</span>
+          </p>
+        </div>
+        <div class="flex-col">
+          <p class="stat">
+            <span>Minimum Trust</span>
+            <span class="stat-data pop">2</span>
+          </p>
+        </div>
+        <div class="flex-col">
+          <p class="stat">
+            <span>Orderer</span>
+            <span class="stat-data pop">test</span>
+          </p>
+        </div>
+      </div>
+      <p style="font-size: 0.76rem; margin-bottom: 0.5rem;"><b>Order Status</b></p>
+      <div class="flex-row">
+        <div class="flex-col">
+          <p class="stat">
+            <span>Fulfilled</span>
+            <span class="stat-data pop">45/1024</span>
+          </p>
+        </div>
+        <div class="flex-col">
+          <p class="stat">
+            <span>Hub</span>
+            <span class="stat-data pop">Lobby #80</span>
+          </p>
+        </div>
+      </div>
+    </div> 
   </div>
 </div>
 {% endblock content %}

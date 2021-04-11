@@ -547,9 +547,11 @@
 .dashboard-nav ul li {
   font-size: 0.83rem;
   font-family: "Iosevka";
-  padding-bottom: 0.7rem;
   width: 100%;
   transition-duration: 200ms;
+}
+.dashboard-nav ul li:not(:last-child) {
+  padding-bottom: 0.7rem;
 }
 
 .dashboard-inner-section {

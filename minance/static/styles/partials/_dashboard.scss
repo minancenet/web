@@ -133,9 +133,12 @@ margin-bottom: 1rem;
         li {
             font-size: 0.83rem;
             font-family: "Iosevka";
-            padding-bottom: 0.7rem;
             width: 100%;
             transition-duration: 200ms;
+        }
+
+        li:not(:last-child) {
+            padding-bottom: 0.7rem;
         }
     }
 }

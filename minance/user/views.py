@@ -22,9 +22,11 @@ def profile(user_username):
 @user.route("/account/portfolio", methods=["GET", "POST"])
 @login_required
 def portfolio():
-  return render_template("user/portfolio.html", title="Portfolio")
+  items = Item.query.filter_by(owner=current_user).all()
 
-@user.route("/account/transactions", methods=["GET", "POST"])
+  return render_template("user/portfolio.html", items=items, title="Portfolio")
+
+@user.route("/account/order", methods=["GET", "POST"])
 @login_required
 def transactions():
   # Transactions Page
@@ -47,7 +49,7 @@ def transactions():
         item = Item.query.filter_by(holder=current_user).filter_by(asset=asset).first()
         if not item:
           flash("You do not own that asset in that quantity.", "error")
-          return redirect(url_for("user.dashboard"))
+          return redirect(url_for("user.portfolio"))
 
         order = Order(orderer=current_user, method=pOF.orderType.data, fee=pOF.fee.data, minimumTrust=pOF.minimumTrust.data, visibility=pOF.visibility.data)
 
@@ -55,9 +57,9 @@ def transactions():
 
         db.session.commit()
 
-      return redirect(url_for("user.dashboard")) # TODO Return to specific order page when it is made
+      return redirect(url_for("user.specific_order", order_id=order.id))
 
-  return render_template("user/transactions.html", pOF=pOF, title="Transactions")
+  return render_template("user/order.html", pOF=pOF, title="Order")
 
 @user.route("/account/trades")
 @login_required
@@ -94,11 +96,11 @@ def settings():
 
 @user.route("/account/order/<int:order_id>")
 @login_required
-def order(order_id):
+def specific_order(order_id):
   order = Order.query.filter_by(id=order_id).first()
   if not order:
     abort(404)
   if not order.orderer == current_user:
     abort(403)
 
-  return render_template("user/order.html", title="Order #"+str(order.id))
+  return render_template("user/specific_order.html", order=order, title="Order #"+str(order.id))

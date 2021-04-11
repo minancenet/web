@@ -7,8 +7,8 @@ from flask_login import current_user
 from minance.models import Asset, User
 
 class PlaceOrderForm(FlaskForm):
-  orderType = SelectField("Order Type", choices=[("buy", "Buy"), ("sell", "Sell")], validators=[DataRequired()])
-  orderMethod = SelectField("Order Method", choices=[("top_order", "Top Order"), ("top_order_+0.1", "Top Order +0.1"), ("5%_spread", "5% Spread"), ("10%_spread", "10% Spread")], validators=[DataRequired()])
+  orderType = SelectField("Order Type", choices=[("buy", "Buy")], validators=[DataRequired()]) # orderType = SelectField("Order Type", choices=[("buy", "Buy"), ("sell", "Sell")], validators=[DataRequired()])
+  orderMethod = SelectField("Order Method", choices=[("top_order", "Top Order"), ("top_order_+0.1", "Top Order +0.1"), ("5%_spread", "5% Spread")], validators=[DataRequired()])
   asset = StringField("Asset Name", validators=[DataRequired()])
   amount = IntegerField("Amount", validators=[DataRequired(), NumberRange(min=1)])
   fee = SelectField("Fee", choices=[(0.1, "0.1%"),

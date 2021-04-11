@@ -27,7 +27,7 @@ def giveAsset(user, asset, amount):
     db.session.add(item)
     db.session.commit()
 
-    print(f"{amount} {asset} added to {user.username}'s assets.")
+    print(f"{amount} {asset.name} added to {user.username}'s assets.")
 
 def addBalance(user, amount):
   with app.app_context():

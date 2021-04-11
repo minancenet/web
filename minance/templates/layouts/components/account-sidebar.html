@@ -3,9 +3,19 @@
     <div class="tabs">
       <ul>
         <li class="tablink"><a href="{{ url_for('user.portfolio') }}">Portfolio</a></li>
-        <li class="tablink"><a href="{{ url_for('user.transactions') }}">Transactions</a></li>
+        <li class="tablink"><a href="{{ url_for('user.transactions') }}">Order</a></li>
         <li class="tablink"><a href="{{ url_for('user.trades') }}">Trades</a></li>
         <li class="tablink"><a href="{{ url_for('user.earn') }}">Earn</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="dashboard-nav-outer mt-1">
+  <div class="dashboard-nav">
+    <div class="tabs">
+      <ul>
+        <li class="tablink"><a href="{{ url_for('auth.logout') }}">Logout</a></li>
       </ul>
     </div>
   </div>
