@@ -11,6 +11,31 @@
     <div class="filters">
       <h4>Filters</h4>
       <hr style="height: 1px; background-color: #292929; border: none;">
+      <form method="GET" action="{{ url_for('market.filterOrders') }}">
+        <label>Asset Name</label>
+        <input class="filter-field" name="asset" type="text" value="{{request.args.get('asset') if request.args.get('asset') != None else ''}}">
+        <label>Type Filter</label>
+        <select name="typeFilter">
+          <option {{ "selected=selected" if request.args.get("typeFilter") == "buy" else "" }} value="buy">Buy</option>
+          <option {{ "selected=selected" if request.args.get("typeFilter") == "sell" else "" }} value="sell">Sell</option>
+        </select>
+        <label>Rate</label>
+        <select name="rateFilter">
+          <option {{ "selected=selected" if request.args.get("rateFilter") == "0.1" else "" }} value=0.1>0.1%</option>
+          <option {{ "selected=selected" if request.args.get("rateFilter") == "0.2" else "" }} value=0.2>0.2%</option>
+          <option {{ "selected=selected" if request.args.get("rateFilter") == "0.3" else "" }} value=0.3>0.3%</option>
+          <option {{ "selected=selected" if request.args.get("rateFilter") == "0.4" else "" }} value=0.4>0.4%</option>
+          <option {{ "selected=selected" if request.args.get("rateFilter") == "0.5" else "" }} value=0.5>0.5%</option>
+          <option {{ "selected=selected" if request.args.get("rateFilter") == "0.75" else "" }} value=0.75>0.75%</option>
+          <option {{ "selected=selected" if request.args.get("rateFilter") == "1.0" else "" }} value=1.0>1%</option>
+          <option {{ "selected=selected" if request.args.get("rateFilter") == "2.0" else "" }} value=2.0>2%</option>
+          <option {{ "selected=selected" if request.args.get("rateFilter") == "3.0" else "" }} value=3.0>3%</option>
+          <option {{ "selected=selected" if request.args.get("rateFilter") == "4.0" else "" }} value=4.0>4%</option>
+          <option {{ "selected=selected" if request.args.get("rateFilter") == "5.0" else "" }} value=5.0>5%</option>
+          <option {{ "selected=selected" if request.args.get("rateFilter") == "7.5" else "" }} value=7.5>7.5%</option>
+        </select>
+        <button class="filter-btn" type="submit">Search</button>
+      </form>
     </div>
   </div>
   <div class="col-10">
@@ -27,7 +52,7 @@
         <th class="letter-td">Orderer</th>
         <th class="letter-td">Date</th>
       </tr>
-      {% for order in orders %}
+      {% for order in orders.items %}
         <tr onClick="openModal('orderModal')">
           <td class="letter-td"><span class="asset-img-helper"></span><img src="{{ url_for('static', filename='img/skyblock/' + order.items[0].asset.name + '.webp') }}" class="asset-img" alt="{{ order.items[0].asset.name }}" onerror="this.onerror=null; this.src='../../static/img/skyblock/NULL.webp'"></td>
           <a href="#"><td class="letter-td">{{ order.items[0].asset.prettyName }}</td></a>

@@ -6,4 +6,5 @@ venv/
 .DS_Store
 .env
 
-~$chnical-spec.docx
+~$chnical-spec.*
+technical-spec.docx
