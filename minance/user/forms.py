@@ -46,6 +46,18 @@ class PlaceOrderForm(FlaskForm):
     if not asset:
       raise ValidationError("There is no asset with this name.")
 
+class SendCoinsForm(FlaskForm):
+  receiver = StringField("Receiver", validators=[DataRequired()])
+  amount = StringField("Amount", validators=[DataRequired()])
+  send = SubmitField("Send")
+
+class SendAssetForm(FlaskForm):
+  receiver = StringField("Receiver", validators=[DataRequired()])
+  asset = StringField("Asset", validators=[DataRequired()])
+  amount = StringField("Amount", validators=[DataRequired()])
+  visibility = SelectField("Private", choices=[("private", "Private"), ("public", "Public")])
+  send = SubmitField("Send")
+
 class UpdateAccountForm(FlaskForm):
   username = StringField("Username", validators=[DataRequired()])
   email = StringField("Email", validators=[DataRequired()])

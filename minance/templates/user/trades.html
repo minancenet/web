@@ -1,9 +1,97 @@
 {% extends "layouts/layout-account.html" %}
 {% block account %}
 
-<h3>Trades</h3>
-<p>Trade assets with other Minance users.</p>
-<br>
-<p>Coming soon...</p>
+<div class="dashboard-content">
+  <h3>Trades</h3>
+  <p>Trade assets with other Minance users.</p>
+  <div class="row">
+    <div class="col-6">
+      <h5 class="mt-1">Send Coins</h5>
+      <div class="dashboard-inner-section">
+
+      </div>
+    </div>
+    <div class="col-6">
+      <h5 class="mt-1">Send Assets</h5>
+      <div class="dashboard-inner-section">
+        <form method="POST" action="">
+          {{ af.hidden_tag() }}
+
+          <div class="form-group">
+            <p class="form-label">{{ af.receiver.label }}</p>
+  
+            <div class="form-field">
+              {% if af.receiver.errors %}
+              {{ af.receiver(class="form-select one invalid") }}
+              <div class="invalid-feedback">
+                  {% for error in af.receiver.errors %}
+                    <span>{{ error }}</span>
+                  {% endfor %}
+              </div>
+            {% else %}
+              {{ af.receiver(class="form-select one") }}
+            {% endif %}  
+            </div>
+          </div> 
+          
+          <div class="form-group">
+            <p class="form-label">{{ af.asset.label }}</p>
+  
+            <div class="form-field">
+              {% if af.asset.errors %}
+              {{ af.asset(class="form-select one invalid") }}
+              <div class="invalid-feedback">
+                  {% for error in af.asset.errors %}
+                    <span>{{ error }}</span>
+                  {% endfor %}
+              </div>
+            {% else %}
+              {{ af.asset(class="form-select one") }}
+            {% endif %}  
+            </div>
+          </div> 
+          
+          <div class="form-group">
+            <p class="form-label">{{ af.amount.label }}</p>
+  
+            <div class="form-field">
+              {% if af.amount.errors %}
+              {{ af.amount(class="form-select one invalid") }}
+              <div class="invalid-feedback">
+                  {% for error in af.amount.errors %}
+                    <span>{{ error }}</span>
+                  {% endfor %}
+              </div>
+            {% else %}
+              {{ af.amount(class="form-select one") }}
+            {% endif %}  
+            </div>
+          </div>  
+
+          <div class="form-group">
+            <p class="form-label">{{ af.visibility.label }}</p>
+  
+            <div class="form-field">
+              {% if af.visibility.errors %}
+              {{ af.visibility(class="form-select one invalid") }}
+              <div class="invalid-feedback">
+                  {% for error in af.visibility.errors %}
+                    <span>{{ error }}</span>
+                  {% endfor %}
+              </div>
+            {% else %}
+              {{ af.visibility(class="form-select one") }}
+            {% endif %}  
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <h5 class="mt-1">History</h5>
+  <div class="dashboard-inner-section">
+    
+  </div>
+</div>
 
 {% endblock account %}

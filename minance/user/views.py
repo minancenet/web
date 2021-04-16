@@ -5,7 +5,12 @@ from flask_login import login_required, current_user
 
 from minance import create_app, db
 from minance.models import Item, Order, Asset, User
-from minance.user.forms import PlaceOrderForm, UpdateAccountForm
+from minance.user.forms import (
+  PlaceOrderForm,
+  UpdateAccountForm,
+  SendCoinsForm,
+  SendAssetForm
+)
 
 user = Blueprint("user", __name__)
 
@@ -61,10 +66,12 @@ def transactions():
 
   return render_template("user/order.html", pOF=pOF, title="Order")
 
-@user.route("/account/trades")
+@user.route("/account/trades", methods=["GET", "POST"])
 @login_required
 def trades():
-  return render_template('user/trades.html', title="Trades")
+  af = SendAssetForm()
+  cf = SendCoinsForm()
+  return render_template('user/trades.html', af=af, cf=cf, title="Trades")
 
 @user.route("/accout/earn")
 @login_required
