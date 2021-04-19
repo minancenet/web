@@ -149,24 +149,30 @@
       <th class="number-td">Visibility</th>
       <th class="number-td">Date</th>
     </tr>
-    {% for order in current_user.orders %}
-      <tr onclick="window.location = '/account/order/{{ order.id }}';">
-        <td class="letter-td"><span class="asset-img-helper"></span><img src="{{ url_for('static', filename='img/skyblock/' + order.items[0].asset.name + '.webp') }}" class="asset-img" alt="{{ order.items[0].asset.name }}" onerror="this.onerror=null; this.src='../../static/img/skyblock/NULL.webp'"></td>
-        <td class="letter-td">{{ order.items[0].asset.prettyName }}</td>
-        <td class="letter-td">{{ order.method|capitalize }}</td>
-        <td class="number-td">{{ order.fee }}%</td>
-        <td class="number-td">{{ order.items[0].asset.sellPrice }}</td>
-        <td class="number-td"><span class="order-status order-{{ order.status }}">{{ order.status }}</span></td>
-        <td class="number-td">
-          {% if order.visibility == "private" %}
-            <i class="fas fa-lock visibility"></i>
-          {% else %}
-            <i class="fas fa-glasses visibility"></i>
-          {% endif %}
-        </td>
-        <td class="number-td">{{ order.order_date.strftime("%b %d, %y") }}</td>
-      </tr>
-    {% endfor %}
+    {% if current_user.orders|length > 0 %}
+      {% for order in current_user.orders %}
+        <tr onclick="window.location = '/account/order/{{ order.id }}';">
+          <td class="letter-td"><span class="asset-img-helper"></span><img src="{{ url_for('static', filename='img/skyblock/' + order.items[0].asset.name + '.webp') }}" class="asset-img" alt="{{ order.items[0].asset.name }}" onerror="this.onerror=null; this.src='../../static/img/skyblock/NULL.webp'"></td>
+          <td class="letter-td">{{ order.items[0].asset.prettyName }}</td>
+          <td class="letter-td">{{ order.method|capitalize }}</td>
+          <td class="number-td">{{ order.fee }}%</td>
+          <td class="number-td">{{ order.items[0].asset.sellPrice }}</td>
+          <td class="number-td"><span class="order-status order-{{ order.status }}">{{ order.status }}</span></td>
+          <td class="number-td">
+            {% if order.visibility == "private" %}
+              <i class="fas fa-lock visibility"></i>
+            {% else %}
+              <i class="fas fa-glasses visibility"></i>
+            {% endif %}
+          </td>
+          <td class="number-td">{{ order.order_date.strftime("%b %d, %y") }}</td>
+        </tr>
+      {% endfor %}
+    {% else %}
+        <tr>
+          <td class="letter-td" colspan=8>No order history.</td>
+        </tr>
+    {% endif %}
   </table>    
 </div>
 

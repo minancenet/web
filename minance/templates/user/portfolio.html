@@ -33,16 +33,22 @@
       <th class="letter-td">Status</th>
       <th class="letter-td">Actions</th>
     </tr>
-    {% for item in items %}
-      <tr onClick="">
-        <td class="letter-td"><span class="asset-img-helper"></span><img src="{{ url_for('static', filename='img/skyblock/' + item.asset.name + '.webp') }}" class="asset-img" alt="{{ item.asset.name }}" onerror="this.onerror=null; this.src='../../static/img/skyblock/NULL.webp'"></td>
-        <a href="#"><td class="letter-td">{{ item.asset.name.title().replace("_", " ") }}</td></a>
-        <td class="number-td">{{ item.amount }}</td>
-        <td class="number-td">{{ item.totalWorth() }}</td>
-        <td class="letter-td"><span class="order-status status-{{ item.status() }}">{{ item.status()|capitalize }}</span></td>
-        <td class="letter-td"></td>
-      </tr>
-    {% endfor %}
+    {% if items|length > 0 %}
+      {% for item in items %}
+        <tr onClick="">
+          <td class="letter-td"><span class="asset-img-helper"></span><img src="{{ url_for('static', filename='img/skyblock/' + item.asset.name + '.webp') }}" class="asset-img" alt="{{ item.asset.name }}" onerror="this.onerror=null; this.src='../../static/img/skyblock/NULL.webp'"></td>
+          <a href="#"><td class="letter-td">{{ item.asset.name.title().replace("_", " ") }}</td></a>
+          <td class="number-td">{{ item.amount }}</td>
+          <td class="number-td">{{ item.totalWorth() }}</td>
+          <td class="letter-td"><span class="order-status status-{{ item.status() }}">{{ item.status()|capitalize }}</span></td>
+          <td class="letter-td"></td>
+        </tr>
+      {% endfor %}
+    {% else %}
+        <tr>
+          <td class="letter-td" colspan=6>You have no assets.</td>
+        </tr>
+    {% endif %}
   </table>    
 </div>
 
