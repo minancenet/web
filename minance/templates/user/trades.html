@@ -8,7 +8,47 @@
     <div class="col-6">
       <h5 class="mt-1">Send Coins</h5>
       <div class="dashboard-inner-section">
+        <form method="POST" action="">
+          {{ cf.hidden_tag() }}
 
+          <div class="form-group">
+            <p class="form-label">{{ cf.receiver.label }}</p>
+
+            <div class="form-field">
+              {% if cf.receiver.errors %}
+                {{ cf.receiver(class="form-select one invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in cf.receiver.errors %}
+                      <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+              {% else %}
+                {{ cf.receiver(class="form-select one") }}
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="form-group">
+            <p class="form-label">{{ cf.amount.label }}</p>
+
+            <div class="form-field">
+              {% if cf.amount.errors %}
+                {{ cf.amount(class="form-select one invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in cf.amount.errors %}
+                      <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+              {% else %}
+                {{ cf.amount(class="form-select one") }}
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="form-group">
+            {{ cf.send(class="reset-btn") }}
+          </div>
+        </form>
       </div>
     </div>
     <div class="col-6">
@@ -22,15 +62,15 @@
   
             <div class="form-field">
               {% if af.receiver.errors %}
-              {{ af.receiver(class="form-select one invalid") }}
-              <div class="invalid-feedback">
-                  {% for error in af.receiver.errors %}
-                    <span>{{ error }}</span>
-                  {% endfor %}
-              </div>
-            {% else %}
-              {{ af.receiver(class="form-select one") }}
-            {% endif %}  
+                {{ af.receiver(class="form-select one invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in af.receiver.errors %}
+                      <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+              {% else %}
+                {{ af.receiver(class="form-select one") }}
+              {% endif %}  
             </div>
           </div> 
           
@@ -39,15 +79,15 @@
   
             <div class="form-field">
               {% if af.asset.errors %}
-              {{ af.asset(class="form-select one invalid") }}
-              <div class="invalid-feedback">
-                  {% for error in af.asset.errors %}
-                    <span>{{ error }}</span>
-                  {% endfor %}
-              </div>
-            {% else %}
-              {{ af.asset(class="form-select one") }}
-            {% endif %}  
+                {{ af.asset(class="form-select one invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in af.asset.errors %}
+                      <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+              {% else %}
+                {{ af.asset(class="form-select one") }}
+              {% endif %}  
             </div>
           </div> 
           
@@ -56,15 +96,15 @@
   
             <div class="form-field">
               {% if af.amount.errors %}
-              {{ af.amount(class="form-select one invalid") }}
-              <div class="invalid-feedback">
-                  {% for error in af.amount.errors %}
-                    <span>{{ error }}</span>
-                  {% endfor %}
-              </div>
-            {% else %}
-              {{ af.amount(class="form-select one") }}
-            {% endif %}  
+                {{ af.amount(class="form-select one invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in af.amount.errors %}
+                      <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+              {% else %}
+                {{ af.amount(class="form-select one") }}
+              {% endif %}  
             </div>
           </div>  
 
@@ -73,16 +113,20 @@
   
             <div class="form-field">
               {% if af.visibility.errors %}
-              {{ af.visibility(class="form-select one invalid") }}
-              <div class="invalid-feedback">
-                  {% for error in af.visibility.errors %}
-                    <span>{{ error }}</span>
-                  {% endfor %}
-              </div>
-            {% else %}
-              {{ af.visibility(class="form-select one") }}
-            {% endif %}  
+                {{ af.visibility(class="form-select one invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in af.visibility.errors %}
+                      <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+              {% else %}
+                {{ af.visibility(class="form-select one") }}
+              {% endif %}  
             </div>
+          </div>
+
+          <div class="form-group">
+            {{ cf.send(class="reset-btn") }}
           </div>
         </form>
       </div>

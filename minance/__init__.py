@@ -11,7 +11,8 @@ from minance.extensions import (
   migrate,
   scheduler,
   csrf,
-  cor
+  cor,
+  ma
 )
 
 def create_app(config_filename="flask.cfg"):
@@ -34,6 +35,7 @@ def initialize_extensions(app):
   migrate.init_app(app, db)
   csrf.init_app(app)
   cor.init_app(app)
+  ma.init_app(app)
 
 def register_scheduler(app):
   """Registering Flask scheduler tasks"""
@@ -51,18 +53,20 @@ def register_blueprints(app):
   from minance.main.views import main
   from minance.asset.views import asset
   from minance.auth.views import auth
-  from minance.api.views import api
+  from minance.api.views import api as api_old
   from minance.user.views import user
   from minance.market.views import market
   from minance.errors.handlers import errors
+  from minance.api.api import api_bp
 
   app.register_blueprint(main)
   app.register_blueprint(asset)
   app.register_blueprint(auth)
-  app.register_blueprint(api)
+  app.register_blueprint(api_old)
   app.register_blueprint(user)
   app.register_blueprint(market)
   app.register_blueprint(errors)
+  app.register_blueprint(api_bp)
 
 def configure_logger(app):
   """Configuring logging."""
