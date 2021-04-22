@@ -1,5 +1,7 @@
 alembic==1.5.4
+aniso8601==9.0.1
 APScheduler==3.7.0
+astroid==2.5.1
 attrs==20.3.0
 bcrypt==3.2.0
 bidict==0.21.2
@@ -14,7 +16,9 @@ Flask-APScheduler==1.11.0
 Flask-Bcrypt==0.7.1
 Flask-Cors==3.0.10
 Flask-Login==0.5.0
+flask-marshmallow==0.14.0
 Flask-Migrate==2.6.0
+Flask-RESTful==0.3.8
 Flask-Script==2.0.6
 Flask-SocketIO==5.0.1
 Flask-SQLAlchemy==2.4.4
@@ -22,16 +26,22 @@ Flask-WTF==0.14.3
 greenlet==1.0.0
 idna==2.10
 iniconfig==1.1.1
+isort==5.7.0
 itsdangerous==1.1.0
 Jinja2==2.11.3
+lazy-object-proxy==1.5.2
 Mako==1.1.4
 MarkupSafe==1.1.1
+marshmallow==3.11.1
+marshmallow-sqlalchemy==0.24.2
+mccabe==0.6.1
 packaging==20.9
 pg8000==1.17.0
 pluggy==0.13.1
 psycopg2-binary==2.8.6
 py==1.10.0
 pycparser==2.20
+pylint==2.7.2
 pyparsing==2.4.7
 pytest==6.2.2
 python-dateutil==2.8.1
@@ -50,4 +60,5 @@ toml==0.10.2
 tzlocal==2.1
 urllib3==1.26.3
 Werkzeug==1.0.1
+wrapt==1.12.1
 WTForms==2.3.3
