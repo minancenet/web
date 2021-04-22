@@ -12,9 +12,10 @@ from flask import (
 )
 
 from minance import create_app
-from minance.models import Asset, Candle
+from minance.asset.models import Asset, Candle
 
-api = Blueprint("api", __name__)
+api_old = Blueprint("api_old", __name__)
+api = api_old
 
 app = create_app()
 V = app.config.get("API_VERSION")

@@ -4,7 +4,8 @@ from wtforms.validators import DataRequired, ValidationError, NumberRange
 
 from flask_login import current_user
 
-from minance.models import Asset, User
+from minance.asset.models import Asset
+from minance.user.models import User
 
 class PlaceOrderForm(FlaskForm):
   orderType = SelectField("Order Type", choices=[("buy", "Buy")], validators=[DataRequired()]) # orderType = SelectField("Order Type", choices=[("buy", "Buy"), ("sell", "Sell")], validators=[DataRequired()])

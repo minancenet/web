@@ -3,7 +3,7 @@ from datetime import datetime
 
 from flask import Blueprint, render_template, abort, Response, session, request
 
-from minance.models import Asset
+from minance.asset.models import Asset
 from minance.asset.forms import TrackForm
 from minance.asset.utils import findProfitMargin
 

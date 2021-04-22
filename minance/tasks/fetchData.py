@@ -5,7 +5,7 @@ import pickle
 from datetime import datetime
 
 from minance import db, create_app
-from minance.models import Asset
+from minance.asset.models import Asset
 
 app = create_app()
 

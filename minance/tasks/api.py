@@ -3,7 +3,7 @@ import logging
 from datetime import datetime, timedelta
 
 from minance import db, create_app
-from minance.models import Asset, Candle
+from minance.asset.models import Asset, Candle
 
 app = create_app()
 

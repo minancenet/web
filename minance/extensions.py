@@ -7,6 +7,7 @@ from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
 from flask_wtf.csrf import CSRFProtect
 from flask_cors import CORS
+from flask_marshmallow import Marshmallow
 
 db = SQLAlchemy()
 bcrypt = Bcrypt()
@@ -18,3 +19,4 @@ migrate = Migrate()
 scheduler = APScheduler()
 csrf = CSRFProtect()
 cor = CORS()
+ma = Marshmallow()

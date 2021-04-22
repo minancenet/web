@@ -6,7 +6,7 @@
 
 <div class="dashboard-content">
   <h3>Portfolio</h3>
-  <p>Here is the summary of your 18 assets.</p>
+  <p>Here is the summary of your {{ items|count }} assets.</p>
   <div class="dashboard-inner-section">
     <div class="dashboard-head-left">
       <h2 class="balance">{{ current_user.balance|prettyInt }} COINS</h2>

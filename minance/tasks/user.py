@@ -2,7 +2,7 @@ import pickle
 from datetime import datetime
 
 from minance import create_app, db
-from minance.models import User, Item
+from minance.user.models import User, Item
 
 app = create_app()
 
