@@ -1,5 +1,5 @@
 from minance import ma
-from minance.models import User
+from minance.user.models import User
 
 class UserSchema(ma.Schema):
   class Meta:

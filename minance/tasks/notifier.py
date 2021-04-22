@@ -2,7 +2,7 @@ import eventlet
 eventlet.monkey_patch(thread=True, time=True)
 
 from minance import create_app, db
-from minance.models import Asset
+from minance.asset.models import Asset
 from minance.extensions import socketio
 
 app = create_app()

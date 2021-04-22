@@ -1,6 +1,6 @@
 from flask_restful import Resource, reqparse
 
-from minance.models import User
+from minance.user.models import User
 from minance.user.schemas import UserSchema
 from minance.api.utils import keyRequired
 

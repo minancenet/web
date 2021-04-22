@@ -4,7 +4,8 @@ from flask import Blueprint, render_template, url_for, redirect, flash, request,
 from flask_login import login_required, current_user
 
 from minance import create_app, db
-from minance.models import Item, Order, Asset, User
+from minance.asset.models import Asset
+from minance.user.models import Item, Order, User
 from minance.user.forms import (
   PlaceOrderForm,
   UpdateAccountForm,

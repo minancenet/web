@@ -9,7 +9,7 @@ from flask import (
 )
 
 from minance import create_app, db
-from minance.models import Order
+from minance.user.models import Order
 
 market = Blueprint("market", __name__)
 

@@ -1,5 +1,5 @@
 from minance import ma
-from minance.models import Asset, Candle
+from minance.asset.models import Asset, Candle
 
 class AssetSchema(ma.Schema):
   class Meta:

@@ -1,7 +1,7 @@
 import pytest
 
 from minance import create_app, db
-from minance.models import User
+from minance.user.models import User
 
 @pytest.fixture(scope="module")
 def test_client():

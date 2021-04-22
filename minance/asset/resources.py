@@ -1,6 +1,6 @@
 from flask_restful import Resource, reqparse
 
-from minance.models import Asset
+from minance.asset.models import Asset
 from minance.asset.schemas import AssetSchema
 
 class AssetListResource(Resource):

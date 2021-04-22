@@ -3,7 +3,8 @@ import sys, os
 sys.path.insert(0, os.path.abspath('.'))
 
 from minance import create_app, db
-from minance.models import User, Asset, Item
+from minance.asset.models import Asset
+from minance.user.models import User, Item
 
 app = create_app()
 

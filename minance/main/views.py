@@ -6,7 +6,7 @@ from sqlalchemy.sql.expression import func
 from flask import Blueprint, render_template, request, redirect, url_for, current_app
 import jinja2
 
-from minance.models import Asset
+from minance.asset.models import Asset
 from minance.main.forms import SearchForm
 from minance.auth.forms import RegistrationForm, LoginForm
 
