@@ -9,7 +9,20 @@ api = Api(api_bp)
 
 class AssetListResource(Resource):
   def get(self):
+    parser = reqparse.RequestParser()
+    parser.add_argument("name", type=str, help="Name of the asset")
+    args = parser.parse_args()
+    
     assets = Asset.query.all()
+
+    if args["name"]:
+      assets = Asset.query.filter(Asset.name == args["name"]).all()
+    else:
+      assets = Asset.query.all()
+
+    # if "buyPrice" in args:
+    #   assets = Asset.query.filter(Asset.buyPrice == int(args["buyPrice"])).all()
+    #   if not len(assets) > 0:        
     return AssetSchema(many=True).dump(assets)
 
 class AssetResource(Resource):

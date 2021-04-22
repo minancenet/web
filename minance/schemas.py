@@ -3,7 +3,20 @@ from minance.models import User, Asset
 
 class AssetSchema(ma.Schema):
   class Meta:
-    fields = ("name", "lastUpdated", "sellPrice", "buyPrice")
+    fields = (
+      "name",
+      "lastUpdated",
+      "sellPrice",
+      "sellVolume",
+      "sellMovingWeek",
+      "sellOrderAmount",
+      "buyPrice",
+      "buyVolume",
+      "buyMovingWeek",
+      "buyOrderAmount",
+    )
+
+    ordered = True
     model = Asset
 
 class UserSchema(ma.Schema):
