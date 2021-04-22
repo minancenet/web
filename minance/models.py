@@ -12,7 +12,7 @@ def load_user(user_id):
 
 class User(db.Model, UserMixin):
   """
-  Main user model.
+  Main website user model.
   """
   id = db.Column(db.Integer, primary_key=True)
   username = db.Column(db.String(16), unique=True, nullable=False)
@@ -50,6 +50,9 @@ class User(db.Model, UserMixin):
     """Check password."""
     return bcrypt.check_password_hash(self.password, value)
     
+  def __repr__(self):
+    return f"<User {self.username}>"
+
 candles = db.Table("candles",
   db.Column("containee_id", db.Integer, db.ForeignKey("candle.id")),
   db.Column("container_id", db.Integer, db.ForeignKey("candle.id"))

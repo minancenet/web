@@ -1,5 +1,5 @@
 from minance import ma
-from minance.models import User, Asset
+from minance.models import Asset, Candle
 
 class AssetSchema(ma.Schema):
   class Meta:
@@ -14,19 +14,23 @@ class AssetSchema(ma.Schema):
       "buyVolume",
       "buyMovingWeek",
       "buyOrderAmount",
+      "margin"
     )
 
     ordered = True
     model = Asset
 
-class UserSchema(ma.Schema):
+class CandleSchema(ma.Schema):
   class Meta:
-    fields = ("username", "email", "_links")
-    model = User
-
-  _links = ma.Hyperlinks(
-    {
-      "self": ma.URLFor("api.user_detail", values=dict(user_id="<id>")),
-      "collection": ma.URLFor("api.users"),
-    }
-  )
+    fields = (
+      "priceType",
+      "timeFrame",
+      "creationDate",
+      "open",
+      "high",
+      "low",
+      "close"
+    )
+    
+    ordered = True
+    model = Candle
